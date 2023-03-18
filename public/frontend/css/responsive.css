@@ -1,0 +1,79 @@
+/* lg */ 
+@media (max-width: 575.98px) {
+	.slider-area .owl-dots {
+		bottom: 20px;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width: 768px) {
+	header .container {
+		min-width: 768px;
+	}
+}
+
+@media only screen and (max-width: 787.98px) {
+
+	header,
+	header .container {
+		padding: 0;
+	}
+
+	header .is-sticky .sticky-area {
+		background: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		margin-top: 0;
+		padding: 0;
+	}
+
+	.factory-text {
+		width: 100%;
+		border: 0;
+		padding: 0;
+	}
+
+	.factory-text h4 {
+		position: absolute;
+		z-index: 1000000;
+		left: 5%;
+		transform: translateY(19px);
+	}
+
+	.factory-text a {
+		color: var(--white);
+	}
+
+	.single-slide-item h2 {
+		font-size: 20px;
+	}
+
+	.bordered-btn {
+		margin-top: 10px;
+	}
+
+	.slider-area .owl-dots {
+		width: 90%;
+	}
+
+	.header-top {
+		text-align: center;
+	}
+
+	.right-items {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.right-items {
+		flex-direction: row;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.right-items {
+		justify-content: space-between;
+	}
+}
+
