@@ -1,9 +1,9 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style="background-image: url({{ asset('frontend/images/page-title.png') }})">
+    <div class="page-title" style="background-image: url({{ asset($service->image) }})">
         <h1>{{ $service->title }}</h1>
     </div>
-    <section id="single-service" style="background: #F2F2F2">
+    <section id="single-service" style="background: #fff">
         <div class=" container-fluid">
             <br />
             <br />
@@ -11,12 +11,12 @@
                 <div class="col-md-6">
                     <h1 class="fw-bold primary-light">{{ $service->title }}</h1>
                     <br />
-                    <p class="" style="text-align: justify">{{ $service->description }}</p>
+                    <p class="" style="text-align: justify">{!! $service->description !!}</p>
                     <br />
                     {{-- <h2>Price: ${{ $service->price }}</h2> --}}
                     <br />
-                    <a class="btn btn-info plan-button my-2 two">RQUEST A DEMO</a>
-                    <a class="btn btn-info plan-button my-2 one" href="#fantastic">SEE HOW IT WORKS</a>
+                    <a class="btn plan-button my-2 rounded-sm two">Request a demo</a>
+                    <a class="btn plan-button my-2 rounded-sm one" href="#plans">See Our Plans</a>
                 </div>
                 <div class="col-md-6 common-div">
                     <img lazyload="true" class="common-image float-end" src="{{ asset('/') . $service->image }}"
@@ -26,52 +26,56 @@
 
             <div class="container " style="display: flex;align-items:center;flex-direction:column">
                 <div class="col-md-10  text-center">
-                    <h1 class="p-5 fw-bold">WHY WILL YOUR <b class="primary-light">CHOOSE</b> PEOPLEDESK</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est voluptatibus quos odio pariatur
-                        perspiciatis placeat, dicta illo quisquam maiores a inventore ab labore adipisci nesciunt.</p>
-                    <a class="link-primary" href="#">Take The Platform Tour ></a>
+                    <h1 class="p-3 fw-bold">Here's Our <b class="primary-light">Packages</b></h1>
+                    <p>
+                        You can Either any of them here. Also, you can order a custom package by clicking on the <a
+                            href="#customize" class="text-blue-500" style="text-decoration: underline">customize
+                            button</a>
+                    </p>
+                    <p>
+                        We are always ready to serve you
+                    </p>
+                    {{-- <a class="link-primary" href="#">Take The Platform Tour ></a> --}}
                 </div>
             </div>
-            <div class="row py-5">
+            <div class="row py-5" id="plans">
                 <div class="col-md-4">
                     <div class="plan-card p-1">
-
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">PLATINUM</h2>
+                            <h2 class="text-center my-2 fw-bold  text-blue-600">PLATINUM</h2>
                         </div>
                         <div class="card-description">
-                            <p style="text-align: justify;min-height:275px">
-                                {{ $service->platinum_des }}
+                            <p class="" style="text-align: justify;">
+                                {!! $service->platinum_des !!}
                             </p>
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="plan-card p-1">
-
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center fw-bold primary-light">GOLD</h2>
+                            <h2 class="text-center fw-bold text-blue-600 my-2">GOLD</h2>
                         </div>
-                        <div class=" card-description">
-                            <p style="text-align: justify;min-height:275px">
-                                {{ $service->gold_des }}
+                        <div class="card-description">
+                            <p class="" style="text-align: justify;">
+                                {!! $service->gold_des !!}
                             </p>
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
@@ -80,46 +84,48 @@
 
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">SILVER</h2>
+                            <h2 class="text-center text-blue-600 my-2 fw-bold">SILVER</h2>
                         </div>
-                        <div class=" card-description">
-                            <p style="text-align: justify;min-height:275px">
-                                {{ $service->silver_des }}
+                        <div class="card-description">
+                            <p class="" style="text-align: justify;">
+                                {!! $service->silver_des !!}
                             </p>
 
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="customize">
                     <div class="plan-card p-1">
 
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">CUSTOMIZE</h2>
+                            <h2 class="text-center text-blue-600 my-2 fw-bold">CUSTOMIZE</h2>
                         </div>
-                        <div class=" card-description">
-                            <p style="text-align: justify;min-height:275px">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tempora tempore reprehenderit
-                                eveniet delectus debitis placeat ab vero, neque doloribus, accusantium aliquid. Velit ab
-                                voluptas minus iusto eum, mollitia maxime!
-
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tempora tempore reprehenderit
-                                eveniet delectus debitis placeat ab vero, neque doloribus, accusantium aliquid. Velit ab
-                                voluptas minus iusto eum, mollitia maxime!</p>
+                        <div class="card-description">
+                            <p class="" style="text-align: justify;">
+                                If you're looking for a package that you can customize to your specific needs, look no
+                                further than our customizable package options. Our packages are designed to be flexible and
+                                versatile, allowing you to personalize them to suit your preferences.
+                                <br>
+                                With our user-friendly customization tools and expert customer service, you can easily
+                                tell us the options you want and make any necessary adjustments to create a package that
+                                perfectly meets your needs. Our goal is to make the customization process as easy and
+                                straightforward as possible, so you can focus on creating a package that truly stands out.
+                            </p>
                         </div>
-                        <h2></h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <h3 class="font-bold text-xl">Price: Based on your features</h3>
+                        {{-- <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a> --}}
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Customize</a>
                     </div>
                 </div>
 
@@ -252,7 +258,7 @@
                             Debitis!
                         </p>
                         <br />
-                        <div class=" mt-3 plan-button my-2 one btn btn-success">LET'S TALK</div>
+                        <div class=" mt-3 plan-button my-2 rounded-sm one btn btn-success">LET'S TALK</div>
                     </div>
                     <div class="col-md-6 common-div">
                         <img lazyload="true" class="img-fluid float-end"
@@ -378,7 +384,7 @@
             <div class="container py-5">
                 <h1 class="pb-5 mb-5 fw-bold text-center">Frquently Asked <span class="primary-light">Question</span>
                 </h1>
-                <div class="row mb-5 d-flex align-items-center">
+                <div class="row mb-5 d-flex align-items-centers text-dark">
                     <div class="col-md-6">
                         <div class="bg-light p-2 my-2 rounded custom-collapse" data-bs-toggle="collapse"
                             href="#collapseExample1" role="button" aria-expanded="false"
