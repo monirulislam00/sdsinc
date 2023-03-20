@@ -30,6 +30,8 @@ use App\Http\Controllers\Bio_metricController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -264,7 +266,7 @@ Route::get('portfolio', [CommonController::class, 'FrontendPortfolio'])->name('f
 Route::get('service', [CommonController::class, 'FrontendService'])->name('frontend.service');
 Route::get('service/{id}/{userId?}', [CommonController::class, 'FrontendSingleService']);
 
-
+Route::post('service/order', [OrderController::class, 'getInfo'])->name('order.info');
 //================================= contact routes ========================/
 
 Route::get('contact', [CommonController::class, 'FrontendContact'])->name('frontend.contact');
