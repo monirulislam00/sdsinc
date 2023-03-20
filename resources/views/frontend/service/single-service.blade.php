@@ -19,8 +19,8 @@
                     <a class="btn plan-button my-2 rounded-sm one" href="#plans">See Our Plans</a>
                 </div>
                 <div class="col-md-6 common-div">
-                    <img lazyload="true" class="common-image float-end" src="{{ asset('/') . $service->image }}"
-                        alt="">
+                    <img lazyload="true" class="common-image float-end w-full h-auto"
+                        src="{{ asset('/') . $service->image }}" alt="">
                 </div>
             </div>
 
@@ -55,7 +55,12 @@
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
                         <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
+                        <form action="{{ route('order.info') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="quality" value="1">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                        </form>
 
                     </div>
                 </div>
@@ -66,7 +71,7 @@
                                 src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center fw-bold text-blue-600 my-2">GOLD</h2>
+                            <h2 class="text-center fw-bold text-blue-600 my-2">Gold</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -75,7 +80,12 @@
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
                         <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
+                        <form action="{{ route('order.info') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="quality" value="2">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                        </form>
 
                     </div>
                 </div>
@@ -97,8 +107,12 @@
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
                         <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
-
+                        <form action="{{ route('order.info') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="quality" value="3">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4" id="customize">
@@ -131,13 +145,13 @@
 
                 <div class="container" style="display: flex;align-items:center;flex-direction:column">
                     <div class="col-md-10  text-center">
-                        <h1 class="p-5 fw-bold">No Matter How Complex Of Business. We Provide The<b class="primary-light">
-                                Unlimited HR Software</b> Experince</h1>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est voluptatibus quo</p>
+                        <h1 class="p-5 fw-bold">No Matter How Complex Of Business.Ours Goal Is to<b class="primary-light">
+                                Serve Good Products </b> To Our Customers</h1>
+                        {{-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est voluptatibus quo</p> --}}
                     </div>
                 </div>
             </div>
-            <img lazyload="true" src="{{ asset('frontend/images/team.png') }}" alt="" class="img-fluid">
+            <img lazyload="true" src="{{ asset('frontend/images/team.png') }}" alt="" class="w-full">
             <br />
             <br />
             <div class=" p-5">
