@@ -15,8 +15,8 @@
                     <br />
                     {{-- <h2>Price: ${{ $service->price }}</h2> --}}
                     <br />
-                    <a class="btn btn-info plan-button my-2 two">RQUEST A DEMO</a>
-                    <a class="btn btn-info plan-button my-2 one" href="#plans">See Our Plans</a>
+                    <a class="btn plan-button my-2 rounded-sm two">Request a demo</a>
+                    <a class="btn plan-button my-2 rounded-sm one" href="#plans">See Our Plans</a>
                 </div>
                 <div class="col-md-6 common-div">
                     <img lazyload="true" class="common-image float-end" src="{{ asset('/') . $service->image }}"
@@ -41,13 +41,12 @@
             <div class="row py-5" id="plans">
                 <div class="col-md-4">
                     <div class="plan-card p-1">
-
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">PLATINUM</h2>
+                            <h2 class="text-center my-2 fw-bold  text-blue-600">PLATINUM</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -55,20 +54,19 @@
                             </p>
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="plan-card p-1">
-
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center fw-bold primary-light">GOLD</h2>
+                            <h2 class="text-center fw-bold text-blue-600 my-2">GOLD</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -76,8 +74,8 @@
                             </p>
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
@@ -86,10 +84,10 @@
 
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">SILVER</h2>
+                            <h2 class="text-center text-blue-600 my-2 fw-bold">SILVER</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -98,8 +96,8 @@
 
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
-                        <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a>
-                        <a class="btn btn-info plan-button my-2 two" href="">Buy Now</a>
+                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Buy now</a>
 
                     </div>
                 </div>
@@ -108,10 +106,10 @@
 
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
-                                src="{{ asset('image/service/quality.png') }}" alt="platinum quality image">
+                                src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center primary-light fw-bold">CUSTOMIZE</h2>
+                            <h2 class="text-center text-blue-600 my-2 fw-bold">CUSTOMIZE</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -126,8 +124,8 @@
                             </p>
                         </div>
                         <h3 class="font-bold text-xl">Price: Based on your features</h3>
-                        {{-- <a class="btn btn-info plan-button my-2 one" href="">RQUEST A DEMO</a> --}}
-                        <a class="btn btn-info plan-button my-2 one" href="">Customize</a>
+                        {{-- <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a> --}}
+                        <a class="btn plan-button my-2 rounded-sm two" href="">Customize</a>
                     </div>
                 </div>
 
@@ -260,7 +258,7 @@
                             Debitis!
                         </p>
                         <br />
-                        <div class=" mt-3 plan-button my-2 one btn btn-success">LET'S TALK</div>
+                        <div class=" mt-3 plan-button my-2 rounded-sm one btn btn-success">LET'S TALK</div>
                     </div>
                     <div class="col-md-6 common-div">
                         <img lazyload="true" class="img-fluid float-end"

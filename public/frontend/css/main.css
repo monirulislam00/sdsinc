@@ -1352,23 +1352,22 @@ section.pricing {
 }
 
 .plan-button.one {
-    background-color: #3757D5;
+    background-color: #2d3436;
+
 
 }
 
 .plan-button.one:hover {
-    background-color: #33C298;
-
+    background-color: #0984e3;
 }
 
 .plan-button.two {
-
-    background-color: #33C298;
+    background-color: #0984e3;
 }
 
 .plan-button.two:hover {
+background-color: #2d3436;
 
-    background-color: #3757D5;
 }
 
 .thumbnail {
