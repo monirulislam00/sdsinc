@@ -10,9 +10,43 @@
                 <p class="lead">We provide Development and Solution services with expart team.</p>
             </div>
             <!--/#services-->
-            <div class=" center fadeInDown">
-                @foreach ($services as $service)
-                    <a href="service/{{ $service->id }}">
+            <div class="center fadeInDown ">
+                <div class="flex flex-wrap gap-3">
+                    @foreach ($services as $service)
+                        <div class="basis-1 md:basis-[30%]">
+                            <div
+                                class="bg-white border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 border-2  m-auto w-[95%]">
+                                <img class="p-3 rounded-t-lg" src="{{ $service->image }}"
+                                    alt="{{ $service->image }} image" />
+                                <div class="px-4 pb-4">
+                                    <a href="service/{{ $service->id }}">
+                                        <h5
+                                            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-start mb-4">
+                                            {{ $service->title }}</h5>
+                                    </a>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-3xl font-bold text-gray-900 dark:text-white">$
+                                            {{ $service->gold_price }}</span>
+                                        <a href="service/{{ $service->id }}"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Read
+                                            more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+
+
+{{-- old one  --}}
+
+
+{{-- <a href="service/{{ $service->id }}">
                         <div class="card rounded">
                             <img class="img-style" src="{{ $service->image }}" alt="Biometric">
 
@@ -25,12 +59,8 @@
                                 <br>
                                 <div class="text-center " style="padding-bottom: 10px;">
                                     <a href="service/{{ $service->id }}"
-                                        class="bg-blue-800 text-light p-2 rounded fw-medium">Buy Now</a>
+                                        class="bg-blue-800 text-light p-2 rounded fw-medium">Read more</a>
                                 </div>
                             </div>
                         </div>
-                    </a>
-                @endforeach
-            </div>
-    </section>
-@endsection
+                    </a> --}}

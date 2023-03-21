@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style="background-image: url({{ asset('frontend/images/page-title.png') }})">
+    <div class="page-title"
+        style="background: url('{{ asset('frontend/images/contact.jpg') }}');background-size:contain;background-position:-50%">
         <div class="container mt-3">
             <h1 class="text-start mb-1 fw-light">Any Question ?</h1>
             <h3 class="text-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo similique ut <br>
@@ -52,7 +53,7 @@
                                     aria-describedby="company">
                             </div>
                             <div class="form-group mb-3">
-                                <select value="{{ old('enquiryType') }}" class="form-select"
+                                <select value="{{ old('enquiryType') }}" class="tailwind-select"
                                     aria-label="Default select example" name="enquiryType">
                                     <option>Enquery Type *</option>
                                     <option value="operations">Operations</option>
@@ -66,7 +67,7 @@
                                 </select>
                             </div>
                             <div class="from-group mb-3">
-                                <select value="{{ old('fromWhereHeard') }}" class="form-select" name="fromWhereHeard">
+                                <select value="{{ old('fromWhereHeard') }}" class="tailwind-select" name="fromWhereHeard">
                                     <option value="">How did you hear about us</option>
                                     <option value="Internet Search">Internet Search</option>
                                     <option value="Social Media">Social Media</option>
