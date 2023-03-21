@@ -1,13 +1,14 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style="background-image: url({{ asset($service->image) }})">
+    <div class="page-title"
+        style="background-image: url({{ asset($service->image) }});background-size:cover; background-attachment: fixed;">
         <h1>{{ $service->title }}</h1>
     </div>
     <section id="single-service" style="background: #fff">
         <div class=" container-fluid">
             <br />
             <br />
-            <div class="row service-section  p-3">
+            <div class="row service-section p-3">
                 <div class="col-md-6">
                     <h1 class="fw-bold primary-light">{{ $service->title }}</h1>
                     <br />
@@ -15,8 +16,13 @@
                     <br />
                     {{-- <h2>Price: ${{ $service->price }}</h2> --}}
                     <br />
-                    <a class="btn plan-button my-2 rounded-sm two">Request a demo</a>
-                    <a class="btn plan-button my-2 rounded-sm one" href="#plans">See Our Plans</a>
+                    <a
+                        class="py-3 px-4 text-white bg-slate-700 m-1 mb-2 rounded-md inline-block hover:bg-slate-600 text-center">Request
+                        a
+                        demo</a>
+                    <a class="py-3 px-4 text-white bg-primaryColor mb-1 rounded-md  hover:bg-primaryLight text-center inline-block"
+                        href="#plans">See Our
+                        Plans</a>
                 </div>
                 <div class="col-md-6 common-div">
                     <img lazyload="true" class="common-image float-end w-full h-auto"
@@ -29,7 +35,7 @@
                     <h1 class="p-3 fw-bold">Here's Our <b class="primary-light">Packages</b></h1>
                     <p>
                         You can Either any of them here. Also, you can order a custom package by clicking on the <a
-                            href="#customize" class="text-blue-500" style="text-decoration: underline">customize
+                            href="#customize" class="text-primaryColor" style="text-decoration: underline">customize
                             button</a>
                     </p>
                     <p>
@@ -40,13 +46,13 @@
             </div>
             <div class="row py-5" id="plans">
                 <div class="col-md-4">
-                    <div class="plan-card p-1">
+                    <div class="shadow mt-3 px-5 pt-3 pb-1 rounded border-gray-100 border-[1px]">
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
                                 src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center my-2 fw-bold  text-blue-600">PLATINUM</h2>
+                            <h2 class="font-bold text-primaryColor my-3">PLATINUM</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -54,24 +60,29 @@
                             </p>
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
-                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <form action="{{ route('order.info') }}" method="post">
+                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                            href="">Request a
+                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
                             <input type="hidden" name="quality" value="1">
                             <input type="hidden" name="service_id" value="{{ $service->id }}">
-                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-1 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
+                                type="submit">Buy Now</button>
                         </form>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="plan-card p-1">
+                    <div class="shadow mt-3 px-5 pt-3 pb-1 rounded border-gray-100 border-[1px]">
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
                                 src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center fw-bold text-blue-600 my-2">Gold</h2>
+                            <h2 class="font-bold text-primaryColor my-3">Gold</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -79,25 +90,30 @@
                             </p>
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
-                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <form action="{{ route('order.info') }}" method="post">
+                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                            href="">Request a
+                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
                             <input type="hidden" name="quality" value="2">
                             <input type="hidden" name="service_id" value="{{ $service->id }}">
-                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-1 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
+                                type="submit">Buy Now</button>
                         </form>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="plan-card p-1">
+                    <div class="shadow mt-3 px-5 pt-3 pb-1 rounded border-gray-100 border-[1px]">
 
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
                                 src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center text-blue-600 my-2 fw-bold">SILVER</h2>
+                            <h2 class="font-bold text-primaryColor my-3">SILVER</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -106,24 +122,28 @@
 
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
-                        <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a>
-                        <form action="{{ route('order.info') }}" method="post">
+                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                            href="">Request a
+                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
-                            <input type="hidden" name="quality" value="3">
+                            <input type="hidden" name="quality" value="2">
                             <input type="hidden" name="service_id" value="{{ $service->id }}">
-                            <button class="btn plan-button my-2 rounded-sm two" type="submit">Buy now</button>
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-1 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
+                                type="submit">Buy Now</button>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-4" id="customize">
-                    <div class="plan-card p-1">
-
+                    <div class="shadow mt-3 px-5 pt-3 pb-1 rounded border-gray-100 border-[1px]">
                         <div class="thumbnail plan-image">
                             <img lazyload="true" style="height:100px" class="mt-3"
                                 src="{{ asset('frontend/images/plan-image.png') }}" alt="platinum quality image">
                         </div>
                         <div class="card-title">
-                            <h2 class="text-center text-blue-600 my-2 fw-bold">CUSTOMIZE</h2>
+                            <h2 class="font-bold text-primaryColor my-3">CUSTOMIZE</h2>
                         </div>
                         <div class="card-description">
                             <p class="" style="text-align: justify;">
@@ -138,8 +158,9 @@
                             </p>
                         </div>
                         <h3 class="font-bold text-xl">Price: Based on your features</h3>
-                        {{-- <a class="btn plan-button my-2 rounded-sm one" href="">Request a demo</a> --}}
-                        <a class="btn plan-button my-2 rounded-sm two" href="">Customize</a>
+                        {{-- <a class="py-3 px-4 text-white max-w-[272px] bg-slate-700 m-1 mb-2 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto" href="">Request a demo</a> --}}
+                        <a class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-2 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
+                            href="">Customize</a>
                     </div>
                 </div>
 
@@ -155,22 +176,22 @@
             <br />
             <br />
             <div class=" p-5">
-                <div class="row blue-cards ">
-                    <div class="col-md-4 blue-card   p-5 ">
+                <div class="row primaryds ">
+                    <div class="col-md-4 primaryd   p-5 ">
                         <img lazyload="true" src="{{ asset('frontend/images/card-1.png') }}" alt="">
                         <h2 class="fw-bold">ONBOARD YOUR TALENTS</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero error adipisci, consectetur
                             dolores
                             consequuntur explicabo?</p>
                     </div>
-                    <div class="col-md-4 blue-card p-5 ">
+                    <div class="col-md-4 primaryd p-5 ">
                         <img lazyload="true" src="{{ asset('frontend/images/card-2.png') }}" alt="">
                         <h2 class="fw-bold">ONBOARD YOUR TALENTS</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero error adipisci, consectetur
                             dolores
                             consequuntur explicabo?</p>
                     </div>
-                    <div class="col-md-4 blue-card   p-5 ">
+                    <div class="col-md-4 primaryd   p-5 ">
                         <img lazyload="true" src="{{ asset('frontend/images/card-3.png') }}" alt="">
                         <h2 class="fw-bold">ONBOARD YOUR TALENTS</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero error adipisci, consectetur

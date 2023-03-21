@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style="background-image: url({{ asset('frontend/images/page-title.png') }})">
+    <div class="page-title"
+        style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
         <h1>Services</h1>
     </div>
     <section id="services" class="service-item">
@@ -11,17 +12,18 @@
             </div>
             <!--/#services-->
             <div class="center fadeInDown ">
-                <div class="flex flex-wrap gap-3">
+                <div class="-mx-4 flex flex-wrap justify-center">
                     @foreach ($services as $service)
                         <div class="basis-1 md:basis-[30%]">
                             <div
                                 class="bg-white border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 border-2  m-auto w-[95%]">
-                                <img class="p-3 rounded-t-lg" src="{{ $service->image }}"
-                                    alt="{{ $service->image }} image" />
+                                <div class=" rounded-t-lg overflow-hidden">
+                                    <img class="" src="{{ $service->image }}" alt="{{ $service->image }} image" />
+                                </div>
                                 <div class="px-4 pb-4">
                                     <a href="service/{{ $service->id }}">
                                         <h5
-                                            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-start mb-4">
+                                            class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-start mb-4 mt-3">
                                             {{ $service->title }}</h5>
                                     </a>
                                     <div class="flex items-center justify-between">
