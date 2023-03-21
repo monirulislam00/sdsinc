@@ -43,7 +43,7 @@ class CommonController extends Controller
     {
         $service = Service::where('id', $id)->first();
         // dd($service);
-        return view('frontend.service.single-service', compact('service'));
+        return view('frontend.service.single-service', compact('service', 'uniqueId'));
     }
     public function FrontendContact()
     {
