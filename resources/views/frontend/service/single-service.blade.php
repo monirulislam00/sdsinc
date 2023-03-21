@@ -11,8 +11,8 @@
             <div class="row service-section p-3">
                 <div class="col-md-6">
                     <h1 class="fw-bold primary-light">{{ $service->title }}</h1>
-                    <br />
-                    <p class="" style="text-align: justify">{!! $service->description !!}</p>
+                    <brul />
+                    p-0 <p class="" style="text-align: justify">{!! $service->description !!}</p>
                     <br />
                     {{-- <h2>Price: ${{ $service->price }}</h2> --}}
                     <br />
@@ -55,9 +55,9 @@
                             <h2 class="font-bold text-primaryColor my-3">PLATINUM</h2>
                         </div>
                         <div class="card-description">
-                            <p class="" style="text-align: justify;">
+                            <ul class="p-0" style="text-align: justify;">
                                 {!! $service->platinum_des !!}
-                            </p>
+                            </ul>
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
                         <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
@@ -85,9 +85,9 @@
                             <h2 class="font-bold text-primaryColor my-3">Gold</h2>
                         </div>
                         <div class="card-description">
-                            <p class="" style="text-align: justify;">
+                            <ul class="p-0" style="text-align: justify;">
                                 {!! $service->gold_des !!}
-                            </p>
+                            </ul>
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
                         <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
@@ -116,9 +116,9 @@
                             <h2 class="font-bold text-primaryColor my-3">SILVER</h2>
                         </div>
                         <div class="card-description">
-                            <p class="" style="text-align: justify;">
+                            <ul class="p-0" style="text-align: justify;">
                                 {!! $service->silver_des !!}
-                            </p>
+                            </ul>
 
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
@@ -151,6 +151,7 @@
                                 further than our customizable package options. Our packages are designed to be flexible and
                                 versatile, allowing you to personalize them to suit your preferences.
                                 <br>
+                                <br>
                                 With our user-friendly customization tools and expert customer service, you can easily
                                 tell us the options you want and make any necessary adjustments to create a package that
                                 perfectly meets your needs. Our goal is to make the customization process as easy and
@@ -159,8 +160,15 @@
                         </div>
                         <h3 class="font-bold text-xl">Price: Based on your features</h3>
                         {{-- <a class="py-3 px-4 text-white max-w-[272px] bg-slate-700 m-1 mb-2 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto" href="">Request a demo</a> --}}
-                        <a class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-2 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
-                            href="">Customize</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
+                            @csrf
+                            <input type="hidden" name="quality" value="4">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-1 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
+                                type="submit">Customize</button>
+                        </form>
                     </div>
                 </div>
 

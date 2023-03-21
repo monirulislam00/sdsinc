@@ -35,7 +35,7 @@
 
             {{-- ---------------------------- alert message box ends --------------------------- --}}
             <div class="row contact-wrap ">
-                <form id="main-contact-form" class="contact-form" action="{{ route('contactmessage') }}" method="POST">
+                <form id="main-contact-form" class="contact-form" action="{{ route('order.place') }}" method="POST">
                     @csrf
                     <div class="row py-3 mb-5">
                         <div class="col-md-6">
@@ -46,9 +46,7 @@
                                     aria-describedby="company">
                             </div>
                             <div class="mb-3">
-                                <input value="{{ old('countryName') }}" type="text" class="w-full  rounded"
-                                    id="" placeholder="Country Name " name="countryName"
-                                    aria-describedby="company">
+                                @include('frontend.contact.countryNames')
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" class="w-full rounded" name="companySize"

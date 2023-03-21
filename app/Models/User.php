@@ -21,9 +21,6 @@ class User extends Authenticatable implements ShouldQueue
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
-
-
-
     /**
      * The attributes that are mass assignable.
      *
