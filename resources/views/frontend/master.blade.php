@@ -9,6 +9,7 @@
     <title>Siams Development & Solution Inc.</title>
     <!-- core CSS -->
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <link rel="stylesheet" href="{{url('css/app.css')}}"> --}}
     {{-- <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -47,6 +48,16 @@
     @include('frontend.body.footer')
 
     <script src="{{ asset('frontend/js/jquery-3.2.0.min.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+    </script>
+    {{-- js stack to get information before order placed start --}}
+    @stack('get-info-js')
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
