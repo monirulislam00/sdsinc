@@ -20,7 +20,7 @@
 
             {{-- ---------------------------- alert message box starts --------------------------- --}}
             @if (session()->has('alert'))
-                <div class="flex p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+                <div class="flex p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-200"
                     role="alert">
                     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -48,9 +48,7 @@
                                     aria-describedby="company">
                             </div>
                             <div class="mb-3">
-                                <input value="{{ old('countryName') }}" type="text" class="w-full  rounded"
-                                    id="" placeholder="Country Name " name="countryName"
-                                    aria-describedby="company">
+                                @include('frontend.contact.countryNames')
                             </div>
                             <div class="form-group mb-3">
                                 <select value="{{ old('enquiryType') }}" class="tailwind-select"
@@ -121,8 +119,7 @@
                         <div class="col-md-6">
                             <h4>Message</h4>
                             <div class="mb-3">
-                                <textarea rows="18" cols="10" class="w-full  rounded" id="" placeholder="message *"
-                                    name="message">{{ old('message') }}</textarea>
+                                <textarea rows="18" cols="10" class="w-full  rounded" id="" placeholder="message *" name="message">{{ old('message') }}</textarea>
                                 <small class="text-danger">
                                     @error('message')
                                         {{ $message }}

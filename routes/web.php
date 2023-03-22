@@ -267,6 +267,7 @@ Route::get('service', [CommonController::class, 'FrontendService'])->name('front
 Route::get('service/{id}/{userId?}', [CommonController::class, 'FrontendSingleService']);
 
 Route::post('service/order', [OrderController::class, 'getInfo'])->name('order.info');
+Route::post('service/placeOrder', [OrderController::class, 'placeOrder'])->name('order.place');
 //================================= contact routes ========================/
 
 Route::get('contact', [CommonController::class, 'FrontendContact'])->name('frontend.contact');
