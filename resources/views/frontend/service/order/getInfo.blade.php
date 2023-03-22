@@ -112,7 +112,8 @@
                                 </small>
                             </div>
                             <br>
-                            <input type="hidden" name="serviceId" value="{{ $data['service_id'] }}">
+                            <input type="hidden" id="serviceId" name="serviceId" value="{{ $data['service_id'] }}">
+                            <input type="hidden" name="type" value="{{ $data['type'] ?? '' }}">
                             <input type="hidden" name="quality" value="{{ $data['quality'] }}">
                             <input type="hidden" name="promoCode" value="{{ $data['promoCode'] }}">
                             <div id="button-here">
@@ -121,15 +122,17 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
+
             <br>
             <br>
             <br>
+
             <!--/.row-->
         </div>
         <!--/.container-->
+
     </section>
     <!--/#contact-page-->
 @endsection
@@ -157,11 +160,9 @@
                 `)
                 },
                 success: function(response, data) {
-                    console.log(response)
-
                     if (response.status == 1) {
-                        $('#button-here').hide()
                         $("#get-info")[0].reset();
+                        $("#serviceId").val('');
                         $("#get-info").html(`
                             <div id="alert-additional-content-3" class="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-300  " role="alert">
                             <div class="flex items-center">
@@ -179,7 +180,16 @@
                             </div>
                             </div>
                         `)
-                    } else {
+                    } else if (response.status == 0) {
+                        $.each(response.data, function(index, error) {
+                            $.toast({
+                                heading: 'Warning',
+                                text: error,
+                                showHideTransition: 'plain',
+                                icon: 'warning'
+                            })
+                        })
+
                         $('#button-here').html(`
                             <button style="border: 2px solid #2B40AF" type="submit"
                             class="float-right transition duration-150 ease-in text-blue-700 hover:text-white  border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Submit</button>
@@ -187,8 +197,15 @@
                     }
                 },
                 error: function(request, error) {
-                    console.log(error);
                     console.log(request)
+                    $.each(request.data, function(index, error) {
+                        $.toast({
+                            heading: 'Warning',
+                            text: "Oops! Something went wrong",
+                            showHideTransition: 'plain',
+                            icon: 'warning'
+                        })
+                    })
                     $('#button-here').html(`
                         <button style="border: 2px solid #2B40AF" type="submit"
                         class="float-right transition duration-150 ease-in text-blue-700 hover:text-white  border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Submit</button>

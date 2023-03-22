@@ -27,6 +27,9 @@
     <link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/icofont.min.css') }}" rel="stylesheet">
 
+    {{-- jquery toast css  --}}
+    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.toast.min.css') }}">
+
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
@@ -55,9 +58,10 @@
             },
         });
     </script>
+    {{-- jquery toast cdn   --}}
+    <script src="{{ asset('frontend/js/jquery.toast.min.js') }}"></script>
     {{-- js stack to get information before order placed start --}}
     @stack('get-info-js')
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>

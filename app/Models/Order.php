@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,6 +24,11 @@ class Order extends Model
         'description',
         'quality',
         'service_id',
-        'affiliate_id'
+        'affiliate_id',
+        'service_type'
     ];
+    public function getService()
+    {
+        return $this->hasOne(Service::class, 'id', 'service_id');
+    }
 }

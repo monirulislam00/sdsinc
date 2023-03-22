@@ -26,8 +26,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services');
             $table->string('affiliate_id')->nullable();
+            $table->string('service_type');
             $table->tinyInteger('quality');
-            $table->tinyInteger('status')->default('3');
+            $table->string('status', 20)->default('pending');
             $table->softDeletes();
             $table->timestamps();
         });
