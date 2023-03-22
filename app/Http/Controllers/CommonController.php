@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Contact;
 use App\Models\Service;
 use App\Models\Portfolio;
 use App\Models\Subscriber;
 use Illuminate\Support\Str;
-use App\Models\BlogCategory;
 // use AmrShawky\Currency\Facade\Currency;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Carbon\Exceptions\Exception;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,8 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
+use App\Notifications\OrderPlaceNotification;
 use App\Notifications\SubscribedNotification;
 
 
@@ -166,5 +169,58 @@ class CommonController extends Controller
         $subscriber->save();
         $subscriber->notify(new SubscribedNotification);
         return redirect()->route('/');
+    }
+
+    // orders functions
+    public function getInfo(Request $request)
+    {
+        if (!session()->has('message')) {
+            $data = $request->only(['service_id', 'quality', 'promoCode', 'type']);
+            return view('frontend.service.order.getInfo', ['data' => $data]);
+        } else {
+            // redirecting after getting information
+            return redirect()->route('frontend.service');
+        }
+    }
+    public function placeOrder(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'fullName' => 'required',
+            'email' => 'required',
+            'phone' => 'min:10 | required',
+            'reason' => 'required | min:20',
+            'description' => 'required | min:20',
+            'serviceId' => 'required',
+            'quality' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 0,
+                'data' => $validator->messages()
+            ], 200);
+        } else {
+            // setting flash session to redirect after placing order .Related to getinfo function
+            session()->flash('message', "placed");
+            $type = $request->type == 'demo' ? "demo" :  "real";
+            $order = Order::create([
+                'name' => $request->fullName,
+                'email' => $request->email,
+                'phone' => $request->countryCode . " " . $request->phone,
+                'company' => $request->companyName,
+                'country' => $request->countryName,
+                'companySize' => $request->companySize,
+                'reason' => $request->reason,
+                'description' => $request->description,
+                'service_type' => $type,
+                'quality' => $request->quality,
+                'service_id' => $request->serviceId,
+                'affiliate_id' => $request->promoCode
+            ]);
+            $order->notify(new OrderPlaceNotification);
+            return response()->json([
+                'status' => 1,
+                'data' => "Your order has been placed successfully. Our employee will contact you soon thorough your phone number."
+            ], 200);
+        }
     }
 }

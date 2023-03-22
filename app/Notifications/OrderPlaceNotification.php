@@ -44,7 +44,7 @@ class OrderPlaceNotification extends Notification
             ->subject('New Email Notification')
             ->greeting('Hello sir!')
             ->action('Visit us', url('https://sdsincbd.com/'))
-            ->line('Your order has been placed successfully. Our employee will contact you soon thorough your phone number.
+            ->line('Your order has been placed successfully. Our team member will contact you soon through your phone number.
 
             Stay with us.
             ')

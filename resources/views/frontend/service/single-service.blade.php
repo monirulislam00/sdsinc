@@ -11,12 +11,11 @@
             <div class="row service-section p-3">
                 <div class="col-md-6">
                     <h1 class="fw-bold primary-light">{{ $service->title }}</h1>
-                    <brul />
-                    p-0 <p class="" style="text-align: justify">{!! $service->description !!}</p>
+
+                    <p class="" style="text-align: justify">{!! $service->description !!}</p>
                     <br />
-                    {{-- <h2>Price: ${{ $service->price }}</h2> --}}
                     <br />
-                    <a
+                    <a href="#plans"
                         class="py-3 px-4 text-white bg-slate-700 m-1 mb-2 rounded-md inline-block hover:bg-slate-600 text-center">Request
                         a
                         demo</a>
@@ -60,9 +59,16 @@
                             </ul>
                         </div>
                         <h2> $ {{ $service->platinum_price }}</h2>
-                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
-                            href="">Request a
-                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
+                            @csrf
+                            <input type="hidden" name="type" value="demo">
+                            <input type="hidden" name="quality" value="1">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                                type="submit">Request a demo</button>
+                        </form>
                         <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
                             <input type="hidden" name="quality" value="1">
@@ -72,6 +78,9 @@
                                 class="py-3 px-4 text-white max-w-[272px] bg-slate-700 my-1 mb-3 rounded-md inline-block hover:bg-slate-600 w-full text-center m-auto"
                                 type="submit">Buy Now</button>
                         </form>
+
+
+
 
                     </div>
                 </div>
@@ -90,9 +99,16 @@
                             </ul>
                         </div>
                         <h2> $ {{ $service->gold_price }}</h2>
-                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
-                            href="">Request a
-                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
+                            @csrf
+                            <input type="hidden" name="type" value="demo">
+                            <input type="hidden" name="quality" value="2">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                                type="submit">Request a demo</button>
+                        </form>
                         <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
                             <input type="hidden" name="quality" value="2">
@@ -122,9 +138,16 @@
 
                         </div>
                         <h2> $ {{ $service->silver_price }}</h2>
-                        <a class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
-                            href="">Request a
-                            demo</a>
+                        <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
+                            @csrf
+                            <input type="hidden" name="type" value="demo">
+                            <input type="hidden" name="quality" value="1">
+                            <input type="hidden" name="service_id" value="{{ $service->id }}">
+                            <input type="hidden" name="promoCode" value="{{ $uniqueId ?? '' }}">
+                            <button
+                                class="py-3 px-4 text-white max-w-[272px] bg-primaryColor mt-5 mb-1 rounded-md  hover:bg-primaryLight w-full text-center block m-auto"
+                                type="submit">Request a demo</button>
+                        </form>
                         <form action="{{ route('order.info') }}" method="post" class="flex m-auto">
                             @csrf
                             <input type="hidden" name="quality" value="2">
@@ -183,7 +206,7 @@
             <img lazyload="true" src="{{ asset('frontend/images/team.png') }}" alt="" class="w-full">
             <br />
             <br />
-            <div class=" p-5">
+            {{-- <div class=" p-5">
                 <div class="row primaryds ">
                     <div class="col-md-4 primaryd   p-5 ">
                         <img lazyload="true" src="{{ asset('frontend/images/card-1.png') }}" alt="">
@@ -500,7 +523,7 @@
                             alt="">
                     </div>
                 </div>
-            </div>
+            </div> --}}
     </section>
     <!--/#blog-->
 @endsection

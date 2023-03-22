@@ -216,7 +216,7 @@ Route::prefix('dashboard')->group(
             Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
             Route::get('subscribers/delete/{id}', [SubscribersController::class, 'delete'])->name('dashboard.subscribers.delete');
 
-
+            Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
             // ============ Users and affiliates ========= //
             // Route::prefix('dashboard')->group(function () {
@@ -266,8 +266,8 @@ Route::get('portfolio', [CommonController::class, 'FrontendPortfolio'])->name('f
 Route::get('service', [CommonController::class, 'FrontendService'])->name('frontend.service');
 Route::get('service/{id}/{userId?}', [CommonController::class, 'FrontendSingleService']);
 
-Route::post('service/order', [OrderController::class, 'getInfo'])->name('order.info');
-Route::post('service/placeOrder', [OrderController::class, 'placeOrder'])->name('order.place');
+Route::post('service/order', [CommonController::class, 'getInfo'])->name('order.info');
+Route::post('service/placeOrder', [CommonController::class, 'placeOrder'])->name('order.place');
 //================================= contact routes ========================/
 
 Route::get('contact', [CommonController::class, 'FrontendContact'])->name('frontend.contact');
