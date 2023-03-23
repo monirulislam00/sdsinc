@@ -647,6 +647,11 @@ input[type="radio"]:checked ~ .box span {
   display: none;
 }
 
+.themeSwitcherTwo input:checked ~ .light {
+  background: transparent;
+  color: #637381;
+}
+
 .themeSwitcherTwo input:checked ~ .dark {
   color: #3056D3;
   background: #f4f7ff;
@@ -658,6 +663,11 @@ input[type="radio"]:checked ~ .box span {
 
 .themeSwitcherTwo input:checked ~ .slider .dot {
   transform: translateX(28px);
+}
+
+.themeSwitcherThree input:checked ~ div .light {
+  background: #fff;
+  color: #637381;
 }
 
 .themeSwitcherThree input:checked ~ div .dark {
@@ -1810,6 +1820,9 @@ input[type="radio"]:checked ~ .box span {
 .border-l-4 {
   border-left-width: 4px;
 }
+.border-r {
+  border-right-width: 1px;
+}
 .border-t {
   border-top-width: 1px;
 }
@@ -2121,6 +2134,9 @@ input[type="radio"]:checked ~ .box span {
 }
 .leading-tight {
   line-height: 1.25;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 .tracking-widest {
   letter-spacing: 0.1em;
