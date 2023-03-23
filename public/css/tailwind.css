@@ -1772,11 +1772,11 @@ input:checked + .toggle-bg {
 .m-2 {
   margin: 0.5rem;
 }
-.m-auto {
-  margin: auto;
-}
 .m-4 {
   margin: 1rem;
+}
+.m-auto {
+  margin: auto;
 }
 .-mx-4 {
   margin-left: -1rem;

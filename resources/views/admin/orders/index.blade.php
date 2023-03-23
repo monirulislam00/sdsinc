@@ -17,7 +17,7 @@
                                 <th scope="col">SL</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Customer's Email</th>
-                                <th scope="col">Customer's Email</th>
+                                <th scope="col">Customer's Name</th>
                                 <th scope="col">Customer's Phone</th>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Service Quality</th>
@@ -28,8 +28,7 @@
                                 <th scope="col">Company Name</th>
                                 <th scope="col">Company Size</th>
                                 <th scope="col">Promo Code</th>
-                                <th scope="col">Action</th>
-
+                                <th scope="col"> action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,11 +41,25 @@
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td>{{ $order->getService->title }}</td>
+                                    <td> @if ($order->quality == 1)Platinum
+                                        @elseif ($order->quality == 2)Gold
+                                        @elseif ($order->quality == 3) Silver
+                                        @elseif ($order->quality == 4) Customize
+                                        @endif 
+                                    </td>
+                                    {{-- <td>{{ $order->quality }}</td> --}}
+                                    <td>{{ $order->service_type }}</td>
+                                    <td>{{ $order->country }}</td>
+                                    <td>{{ $order->reason }}</td>
+                                    <td>{{ $order->description }}</td>
+                                    <td>{{ $order->company }}</td>
+                                    <td>{{ $order->companySize }}</td>
+                                    <td>{{ $order->affiliate_id}}</td>
                                     <td>
                                         <a href="{{ url('dashboard/orders/delete/' . $order->id) }}" class="btn btn-danger"
                                             onclick="return confirm('Do you want to Delete')">Delete</a>
                                     </td>
-                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
