@@ -189,6 +189,7 @@ class CommonController extends Controller
             'email' => 'required',
             'phone' => 'min:10 | required',
             'reason' => 'required | min:20',
+            'companySize' => 'integer',
             'description' => 'required | min:20',
             'serviceId' => 'required',
             'quality' => 'required',
