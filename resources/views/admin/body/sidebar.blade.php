@@ -28,7 +28,25 @@
                 <span>Afiiliate Dashboard</span></a>
         </li>
     @endcan
-
+    @hasanyrole(['admin', 'affiliated'])
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+                aria-expanded="true" aria-controls="collapseTeam">
+                <i class="fas fa-user-alt"></i>
+                <span>Orders</span>
+            </a>
+            <div id="collapseOrders" class="collapse" aria-labelledby="headingTeam" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @hasrole('admin')
+                        <a class="collapse-item" href="{{ route('orders.index') }}">All Orders</a>
+                    @endhasrole
+                    @hasrole('affiliated')
+                        <a class="collapse-item" href="{{ route('orders.affiliated') }}">Ordered through link</a>
+                    @endhasrole
+                </div>
+            </div>
+        </li>
+    @endhasanyrole
     <!-- Divider -->
     <hr class="sidebar-divider">
 
