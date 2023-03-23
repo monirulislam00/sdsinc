@@ -218,6 +218,7 @@ Route::prefix('dashboard')->group(
 
             Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
+
             // ============ Users and affiliates ========= //
             // Route::prefix('dashboard')->group(function () {
 
@@ -244,6 +245,9 @@ Route::prefix('dashboard')->group(
 Route::prefix('affiliated/dashboard')->group(function () {
     Route::get('/', [AffiliatedController::class, "index"])->name('affiliate.index');
     Route::get('/services', [AffiliatedController::class, "services"])->name('affiliate.services');
+
+    //==========================orders through link ==================================/
+    Route::get('orders', [OrderController::class, 'getAffiliateOrders'])->name('orders.affiliated');
 });
 
 /* -------------------------------------------------------------------------- */

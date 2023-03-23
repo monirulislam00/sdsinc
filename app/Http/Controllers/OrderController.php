@@ -14,9 +14,23 @@ class OrderController extends Controller
         $this->middleware('auth');
         $this->middleware(['role:admin']);
     }
+    /**
+     *
+     *  @return all orders with services
+     *
+     */
     public  function index()
     {
         $orders = Order::with('getService')->get();
+        return view('admin.orders.index', ['orders' => $orders]);
         return $orders;
+    }
+    /**
+     *
+     * @return only orders had been done through link / promocode
+     *
+     */
+    public function getAffiliateOrders()
+    {
     }
 }
