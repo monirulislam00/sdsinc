@@ -630,8 +630,7 @@ input.search-form:hover {
     text-align: center;
 }
 
-.quality-service h1::after,
-.product h1::after {
+.quality-service h1::after,.product h1::after, .serve h2::after{
     content: "";
     width: 5rem;
     height: 3px;
@@ -665,7 +664,48 @@ input.search-form:hover {
 }
 
 /* Quality service End */
-
+/* serve section start */
+.serve{
+    padding: 30px 0;
+    background: #eeeeee;
+}
+.serve .title{
+    text-align: center;
+}
+.serve .title span{
+    color: var(--primary);
+}
+.serve .content{
+    background: #fff;
+    min-height: 112px;
+    padding: 25px 20px;
+    border-bottom: 5px solid #fff;
+    transition: .3s ease-in-out;
+}
+.serve .content img{
+    margin: auto;
+    width: 70px;
+}
+.serve .content p{
+    margin-top: 15px;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+.serve .content:hover{
+    border-bottom: 5px solid var(--primary);
+}
+/* serve section end */
+/* blog start */
+.blog .title span{
+    color: var(--primary);
+}
+.blog .title a{
+    padding: 15px 25px;
+    background-color: var(--primary);
+    color: var(--white);
+    text-transform: uppercase;
+}
+/* blog end */
 /**************************
 ********* Pricing Table CSS *
 **************************/

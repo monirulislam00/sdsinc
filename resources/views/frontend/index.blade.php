@@ -145,9 +145,100 @@
 </section>
 <section class="serve">
     <div class="container">
-        <div class="title"><h2><span>INDUSTRIES WE</span> SERVE</h2></div>
-        <div class="row"></div>
+        <div class="title"><h2 class="font-bold"><span>INDUSTRIES WE</span> SERVE</h2></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/005-sme.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">SME BUSINESS</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/015-thrift-shop.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">RMG SECTOR</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/013-factory.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">STEEL & ISPAT</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/004-enterprise.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">ENTERPRISES</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/011-agriculture.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">AGRO</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/001-startup.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">STARTUP</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/012-increase.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">Trading</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/009-automotive.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">automotive</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/002-cargo-ship.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">SHIPPING</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/003-gym.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">fitness</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/014-hosting-services.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">ISP & CABLE</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content mt-4 shadow-md">
+                    <img src="{{asset('frontend/images/008-consult.png')}}" alt="" srcset="">
+                    <p class="text-center font-bold">Service</p>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+<section class="blog my-5">
+   <div class="container">
+    <div class="title flex justify-between"><h2 class="font-bold"><span>OUR</span> BLOGS</h2>
+        <a href="{{route("frontend.blogs")}}">View More</a>
+    </div>
+    <div class="row">
+        @foreach ($blogs as $blog)
+            <div class="col-md-4 blog-item p-3">
+                <a href="blog/{{ $blog->title }}" class="m-4"> 
+                    <img style="width:100%" class=" border-0 p-0"
+                        src="{{ $blog->image}}" width="100%" alt="tech blog" />
+                    <h3 class="font-semibold text-dark py-2">{{ $blog->title }}</h3>
+                </a>
+            </div>
+        @endforeach
+    </div>
+   </div>
 </section>
 {{-- <section id="feature">
     <div class="container">

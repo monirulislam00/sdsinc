@@ -50,7 +50,8 @@ Route::get('/', function () {
     $portfolio = DB::table('portfolios')->latest()->get();
     $partner = DB::table('partners')->latest()->get();
     $popularBlogs = DB::table('blogs')->orderBy('visits', 'desc')->take(3)->get();
-    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products'));
+    $blogs = DB::table('blogs')->latest()->take(6)->get();
+    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products','blogs'));
 })->name('/');
 
 Route::middleware([
