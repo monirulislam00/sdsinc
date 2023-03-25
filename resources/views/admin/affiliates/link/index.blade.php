@@ -16,9 +16,7 @@
                             <tr>
                                 <th scope="col">SL</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Customer's Email</th>
                                 <th scope="col">Customer's Name</th>
-                                <th scope="col">Customer's Phone</th>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Service Quality</th>
                                 <th scope="col">Service Type</th>
@@ -36,9 +34,7 @@
                                 <tr>
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $order->status }}</td>
-                                    <td>{{ $order->email }}</td>
                                     <td>{{ $order->name }}</td>
-                                    <td>{{ $order->phone }}</td>
                                     <td>{{ $order->getService->title }}</td>
                                     <td> @if ($order->quality == 1)Platinum
                                         @elseif ($order->quality == 2) Gold
