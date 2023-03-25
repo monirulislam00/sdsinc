@@ -33,4 +33,20 @@ class OrderController extends Controller
     public function getAffiliateOrders()
     {
     }
+    public function OrderAccept($id){
+        $value = Order::find($id);
+        $value->status = "Accepted";
+        $value->save();
+        return redirect()->back()->with('success', 'Order Accepted successfully');
+    }
+    public function OrderCancel($id){
+        $value = Order::find($id);
+        $value->status = "Cancelled";
+        $value->save();
+        return redirect()->back()->with('success', 'Order Cancelled successfully');
+    }
+    public function OrderDelete($id){
+        Order::find($id)->delete();
+        return redirect()->back()->with('success', 'Order Deleted successfully');
+    }
 }

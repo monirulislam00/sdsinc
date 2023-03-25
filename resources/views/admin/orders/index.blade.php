@@ -28,7 +28,7 @@
                                 <th scope="col">Company Name</th>
                                 <th scope="col">Company Size</th>
                                 <th scope="col">Promo Code</th>
-                                <th scope="col"> action</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +42,7 @@
                                     <td>{{ $order->phone }}</td>
                                     <td>{{ $order->getService->title }}</td>
                                     <td> @if ($order->quality == 1)Platinum
-                                        @elseif ($order->quality == 2)Gold
+                                        @elseif ($order->quality == 2) Gold
                                         @elseif ($order->quality == 3) Silver
                                         @elseif ($order->quality == 4) Customize
                                         @endif 
@@ -56,6 +56,8 @@
                                     <td>{{ $order->companySize }}</td>
                                     <td>{{ $order->affiliate_id}}</td>
                                     <td>
+                                        <a href="{{ url('dashboard/orders/accept/' . $order->id) }}" class="btn btn-success">Accept</a>
+                                        <a href="{{ url('dashboard/orders/cancel/' . $order->id) }}" class="btn btn-danger">Cancel</a>
                                         <a href="{{ url('dashboard/orders/delete/' . $order->id) }}" class="btn btn-danger"
                                             onclick="return confirm('Do you want to Delete')">Delete</a>
                                     </td>

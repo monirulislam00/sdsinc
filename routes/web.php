@@ -218,6 +218,9 @@ Route::prefix('dashboard')->group(
             Route::get('subscribers/delete/{id}', [SubscribersController::class, 'delete'])->name('dashboard.subscribers.delete');
 
             Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+            Route::get('orders/accept/{id}', [OrderController::class, 'OrderAccept']);
+            Route::get('orders/cancel/{id}', [OrderController::class, 'OrderCancel']);
+            Route::get('orders/delete/{id}', [OrderController::class, 'OrderDelete']);
 
 
             // ============ Users and affiliates ========= //
@@ -241,7 +244,7 @@ Route::prefix('dashboard')->group(
 
 
 /* -------------------------------------------------------------------------- */
-/*                             End All affiliated Route                            */
+/*                             Start All affiliated Route                     */
 /* -------------------------------------------------------------------------- */
 Route::prefix('affiliated/dashboard')->group(function () {
     Route::get('/', [AffiliatedController::class, "index"])->name('affiliate.index');
