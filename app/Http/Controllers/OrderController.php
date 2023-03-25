@@ -11,8 +11,8 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware(['role:admin']);
+        $this->middleware(['role:admin'])->only(['index']);
+        $this->middleware(['role:affiliated'])->only(['getAffiliateOrders']);
     }
     /**
      *
@@ -32,6 +32,8 @@ class OrderController extends Controller
      */
     public function getAffiliateOrders()
     {
+        $orders = Order::latest()->get();
+        return view('admin.affiliates.link.index', ['orders' => $orders]);
     }
     public function OrderAccept($id){
         $value = Order::find($id);
