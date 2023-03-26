@@ -36,16 +36,29 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <th scope="row">{{ $i++ }}</th>
-                                    <td>{{ $order->status }}</td>
+                                    <td class="text-white">
+                                        @if ($order->status == 'pending')
+                                            <p class="bg-warning rounded p-1">{{ $order->status }}</p>
+                                        @elseif ($order->status == 'Accepted')
+                                            <p class="bg-success rounded p-1">{{ $order->status }}</p>
+                                        @else
+                                            <p class="bg-danger rounded p-1">{{ $order->status }}</p>
+                                        @endif
+                                    </td>
                                     <td>{{ $order->email }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td>{{ $order->getService->title }}</td>
-                                    <td> @if ($order->quality == 1)Platinum
-                                        @elseif ($order->quality == 2) Gold
-                                        @elseif ($order->quality == 3) Silver
-                                        @elseif ($order->quality == 4) Customize
-                                        @endif 
+                                    <td>
+                                        @if ($order->quality == 1)
+                                            Platinum
+                                        @elseif ($order->quality == 2)
+                                            Gold
+                                        @elseif ($order->quality == 3)
+                                            Silver
+                                        @elseif ($order->quality == 4)
+                                            Customize
+                                        @endif
                                     </td>
                                     {{-- <td>{{ $order->quality }}</td> --}}
                                     <td>{{ $order->service_type }}</td>
@@ -54,10 +67,12 @@
                                     <td>{{ $order->description }}</td>
                                     <td>{{ $order->company }}</td>
                                     <td>{{ $order->companySize }}</td>
-                                    <td>{{ $order->affiliate_id}}</td>
+                                    <td>{{ $order->affiliate_id }}</td>
                                     <td>
-                                        <a href="{{ url('dashboard/orders/accept/' . $order->id) }}" class="btn btn-success">Accept</a>
-                                        <a href="{{ url('dashboard/orders/cancel/' . $order->id) }}" class="btn btn-danger">Cancel</a>
+                                        <a href="{{ url('dashboard/orders/accept/' . $order->id) }}"
+                                            class="btn btn-success">Accept</a>
+                                        <a href="{{ url('dashboard/orders/cancel/' . $order->id) }}"
+                                            class="btn btn-danger">Cancel</a>
                                         <a href="{{ url('dashboard/orders/delete/' . $order->id) }}" class="btn btn-danger"
                                             onclick="return confirm('Do you want to Delete')">Delete</a>
                                     </td>
