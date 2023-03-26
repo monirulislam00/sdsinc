@@ -10,8 +10,8 @@ class SubscribersController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['permission:view subscribers'])->only(['index']);
-        // $this->middleware(['permission:delete subscribers'])->only(['delete']);
+        $this->middleware(['permission:view subscribers'])->only(['index']);
+        $this->middleware(['permission:delete subscribers'])->only(['delete']);
     }
     public function index()
     {

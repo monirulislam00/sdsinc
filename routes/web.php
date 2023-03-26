@@ -30,6 +30,8 @@ use App\Http\Controllers\Bio_metricController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -214,6 +216,7 @@ Route::prefix('dashboard')->group(
             Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
             Route::get('subscribers/delete/{id}', [SubscribersController::class, 'delete'])->name('dashboard.subscribers.delete');
 
+            Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
 
             // ============ Users and affiliates ========= //
@@ -242,6 +245,9 @@ Route::prefix('dashboard')->group(
 Route::prefix('affiliated/dashboard')->group(function () {
     Route::get('/', [AffiliatedController::class, "index"])->name('affiliate.index');
     Route::get('/services', [AffiliatedController::class, "services"])->name('affiliate.services');
+
+    //==========================orders through link ==================================/
+    Route::get('orders', [OrderController::class, 'getAffiliateOrders'])->name('orders.affiliated');
 });
 
 /* -------------------------------------------------------------------------- */
@@ -254,22 +260,54 @@ Route::prefix('affiliated/dashboard')->group(function () {
 /*                               FrontEnd Route start                         */
 /* -------------------------------------------------------------------------- */
 
+//================================= portfolio routes ========================/
 
 Route::get('portfolio', [CommonController::class, 'FrontendPortfolio'])->name('frontend.portfolio');
+
+
+//================================= service routes ========================/
+
 Route::get('service', [CommonController::class, 'FrontendService'])->name('frontend.service');
 Route::get('service/{id}/{userId?}', [CommonController::class, 'FrontendSingleService']);
+
+Route::post('service/order', [CommonController::class, 'getInfo'])->name('order.info');
+Route::post('service/placeOrder', [CommonController::class, 'placeOrder'])->name('order.place');
+//================================= contact routes ========================/
+
 Route::get('contact', [CommonController::class, 'FrontendContact'])->name('frontend.contact');
+Route::post('contact/message', [CommonController::class, 'ContactMessage'])->name('contactmessage');
+
+//================================= blogs routes ========================/
+
 Route::get('blogs', [CommonController::class, 'FrontendBlog'])->name('frontend.blogs');
 Route::get('blog/{title}', [CommonController::class, 'WatchFrontendBlog']);
 Route::post('blogs/', [CommonController::class, 'searchBlog']);
+
+//================================= affiliate routes ========================/
+
 Route::get('affiliate', [CommonController::class, 'FrontendAffiliate'])->name('frontend.affiliate');
 Route::post('store/affiliate', [CommonController::class, 'StoreAffiliated'])->name('store.affiliated');
+//================================= About_of_SDSINC routes ========================/
+
 Route::get('About_of_SDSINC.', [CommonController::class, 'FrontendAboutsds'])->name('frontend.aboutsds');
-Route::post('contact/message', [CommonController::class, 'ContactMessage'])->name('contactmessage');
+//================================= our_team routes ========================/
+
+
 Route::get('our_team', [CommonController::class, 'FrontendTeam'])->name('frontend.team');
+
+//================================= global routes ========================/
+
 // Route::get("global", [CommonController::class, 'FrontendGlobal'])->name('frontend.global');
+
+//================================= technologies routes ========================/
+
 Route::get("technologies", [CommonController::class, 'FrontendTechnologies'])->name('frontend.tech');
+
+//================================= subscribe routes ========================/
+
 Route::post('subscribe', [CommonController::class, 'subscriber'])->name('subscribe');
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                               FrontEnd Route ends                          */

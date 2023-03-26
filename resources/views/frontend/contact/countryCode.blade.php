@@ -1,5 +1,5 @@
 <!-- country codes (ISO 3166) and Dial codes. -->
-<select name="countryCode" id="" class="form-control" style="height:100%">
+<select name="countryCode" id="" class="tailwind-select" style="height:100%">
     <option data-countryCode="BD" value="880" Selected>Bangladesh (+880)</option>
     <option data-countryCode="GB" value="44">UK (+44)</option>
     <option data-countryCode="US" value="1">USA (+1)</option>
