@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->string('affiliate_id')->nullable();
             $table->string('service_type');
             $table->tinyInteger('quality');
+            $table->string('earnings')->nullable();
             $table->string('status', 20)->default('pending');
             $table->softDeletes();
             $table->timestamps();

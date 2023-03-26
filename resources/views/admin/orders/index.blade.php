@@ -22,6 +22,7 @@
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Service Quality</th>
                                 <th scope="col">Service Type</th>
+                                <th scope="col">Earning</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Customer's Reason of needing</th>
                                 <th scope="col">Description</th>
@@ -62,6 +63,7 @@
                                     </td>
                                     {{-- <td>{{ $order->quality }}</td> --}}
                                     <td>{{ $order->service_type }}</td>
+                                    <td>{{ $order->earnings }}</td>
                                     <td>{{ $order->country }}</td>
                                     <td>{{ $order->reason }}</td>
                                     <td>{{ $order->description }}</td>
@@ -69,9 +71,11 @@
                                     <td>{{ $order->companySize }}</td>
                                     <td>{{ $order->affiliate_id }}</td>
                                     <td>
-                                        <a href="{{ url('dashboard/orders/accept/' . $order->id) }}"
+                                        <a onclick="return confirm('Do you want to acccept this order?')"
+                                            href="{{ url('dashboard/orders/accept/' . $order->id) }}"
                                             class="btn btn-success">Accept</a>
-                                        <a href="{{ url('dashboard/orders/cancel/' . $order->id) }}"
+                                        <a onclick="return confirm('Do you want to cancel this order?')"
+                                            href="{{ url('dashboard/orders/cancel/' . $order->id) }}"
                                             class="btn btn-danger">Cancel</a>
                                         <a href="{{ url('dashboard/orders/delete/' . $order->id) }}" class="btn btn-danger"
                                             onclick="return confirm('Do you want to Delete')">Delete</a>

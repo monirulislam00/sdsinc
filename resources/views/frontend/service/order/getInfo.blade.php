@@ -48,7 +48,7 @@
                                 @include('frontend.contact.countryNames')
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" class="w-full rounded" name="companySize"
+                                <input type="number" class="w-full rounded" name="companySize"
                                     placeholder="How many employees do you have?">
                             </div>
                             <h4>Contact Info</h4>

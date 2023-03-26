@@ -13,6 +13,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebdevController;
@@ -30,7 +31,7 @@ use App\Http\Controllers\Bio_metricController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AffiliateEarningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,7 @@ Route::get('/', function () {
     $partner = DB::table('partners')->latest()->get();
     $popularBlogs = DB::table('blogs')->orderBy('visits', 'desc')->take(3)->get();
     $blogs = DB::table('blogs')->latest()->take(6)->get();
-    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products','blogs'));
+    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products', 'blogs'));
 })->name('/');
 
 Route::middleware([
@@ -246,12 +247,12 @@ Route::prefix('dashboard')->group(
 /* -------------------------------------------------------------------------- */
 /*                             Start All affiliated Route                     */
 /* -------------------------------------------------------------------------- */
-Route::prefix('affiliated/dashboard')->group(function () {
-    Route::get('/', [AffiliatedController::class, "index"])->name('affiliate.index');
+Route::prefix('affiliated/')->group(function () {
+    Route::get('/dashboard', [AffiliatedController::class, "index"])->name('affiliate.index');
     Route::get('/services', [AffiliatedController::class, "services"])->name('affiliate.services');
 
     //==========================orders through link ==================================/
-    Route::get('orders', [OrderController::class, 'getAffiliateOrders'])->name('orders.affiliated');
+    Route::get('earnings', [AffiliateEarningController::class, 'getEarnings'])->name('earnings.affiliated');
 });
 
 /* -------------------------------------------------------------------------- */
