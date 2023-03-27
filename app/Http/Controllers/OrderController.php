@@ -69,14 +69,16 @@ class OrderController extends Controller
     }
     public function OrderCancel($id)
     {
-        $value = Order::find($id);
-        $value->status = "Cancelled";
-        $value->save();
+        $order = Order::find($id);
+        $order->status = "Cancelled";
+        $order->save();
+        $affiliateEarning = AffiliateEarning::where('order_id', $id)->delete();
         return redirect()->back()->with('success', 'Order Cancelled successfully');
     }
     public function OrderDelete($id)
     {
         Order::find($id)->delete();
+        $affiliateEarning = AffiliateEarning::where('order_id', $id)->delete();
         return redirect()->back()->with('success', 'Order Deleted successfully');
     }
 }
