@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AffiliatedController extends Controller
 {
@@ -14,7 +15,8 @@ class AffiliatedController extends Controller
     }
     public function index()
     {
-        return view('affiliated.index');
+        $totalAmount = DB::table('affiliate_earnings')->sum('amount');
+        return view('affiliated.index',compact('totalAmount'));
     }
     public function services()
     {

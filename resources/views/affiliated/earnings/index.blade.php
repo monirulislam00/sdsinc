@@ -24,7 +24,7 @@
                             @php($i = 1)
                             @foreach ($earnings as $earning)
                                 <tr>
-                                    <th scope="row">{{ $i++ }}</th>
+                                    <th>{{ $i++ }}</th>
                                     <td>{{ $earning->getService->title }}</td>
                                     <td>
                                         @if ($earning->getOrder->quality == 1)

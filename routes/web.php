@@ -70,7 +70,8 @@ Route::middleware([
         if ($user->hasexactroles('affiliated')) {
             return redirect()->route('affiliate.index');
         } else {
-            return view('admin.index');
+            $totalAmount = DB::table('orders')->sum('earnings');
+            return view('admin.index',compact('totalAmount'));
         }
     })->name('dashboard');
 });
