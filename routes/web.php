@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Order;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +34,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\AffiliateEarningController;
+use App\Http\Controllers\AffiliateProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ Route::middleware([
             return redirect()->route('affiliate.index');
         } else {
             $totalAmount = DB::table('orders')->sum('earnings');
-            return view('admin.index',compact('totalAmount','monthlyEarnings'));
+            return view('admin.index', compact('totalAmount', 'monthlyEarnings'));
         }
     })->name('dashboard');
 });
@@ -262,6 +263,8 @@ Route::prefix('affiliated/')->group(function () {
 
     //==========================orders through link ==================================/
     Route::get('earnings', [AffiliateEarningController::class, 'getEarnings'])->name('earnings.affiliated');
+    Route::get('/profile', [AffiliateProfileController::class, 'profile'])->name('affiliate.profile');
+    Route::post('/profile/update/', [AffiliateProfileController::class, 'UpdateProfile'])->name('affiliate.profileUpdate');
 });
 
 /* -------------------------------------------------------------------------- */
