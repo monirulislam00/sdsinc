@@ -12,10 +12,10 @@
             </div>
             <!--/#services-->
             <div class="center fadeInDown ">
-                <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="mx-4 flex flex-wrap justify-center">
                     @foreach ($services as $service)
                         <div
-                            class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            class="max-w-sm m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <a href="service/{{ $service->id }}">
                                 <img class="rounded-t-lg" src="{{ $service->image }}" alt="" />
                             </a>

@@ -58,6 +58,7 @@
                         <li><a class="nav-link scrollto" href="{{ route('frontend.blogs') }}">Blog</a></li>
                         <li><a class="nav-link scrollto" href="{{ route('frontend.affiliate') }}">Affiliate</a></li>
                         <li><a class="nav-link scrollto" href="{{ route('frontend.contact') }}">Contact</a></li>
+                        <li><a class="nav-link scrollto font-bold text-danger" href="{{ url('/login') }}">Log in</a></li>
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
