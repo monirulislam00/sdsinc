@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\AffiliateEarning;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Carbon;
 class AffiliatedController extends Controller
 {
     public function __construct()
@@ -15,8 +17,14 @@ class AffiliatedController extends Controller
     }
     public function index()
     {
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $transactions = AffiliateEarning::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
+        $monthlyEarnings = $transactions->sum('amount');
+        
         $totalAmount = DB::table('affiliate_earnings')->sum('amount');
-        return view('affiliated.index',compact('totalAmount'));
+
+        return view('affiliated.index',compact('totalAmount', 'monthlyEarnings'));
     }
     public function services()
     {

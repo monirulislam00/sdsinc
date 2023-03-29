@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,6 +66,13 @@ Route::middleware([
         $loggedInUser =  auth::user();
         // return $loggedInUser;
         $user = User::find($loggedInUser->id);
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $transactions = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
+        $monthlyEarnings = $transactions->sum('earnings');
+
+
         if ($user->status == 0) {
             $user->logout();
         }
@@ -71,7 +80,7 @@ Route::middleware([
             return redirect()->route('affiliate.index');
         } else {
             $totalAmount = DB::table('orders')->sum('earnings');
-            return view('admin.index',compact('totalAmount'));
+            return view('admin.index',compact('totalAmount','monthlyEarnings'));
         }
     })->name('dashboard');
 });
