@@ -1018,41 +1018,22 @@ section.pricing {
     align-items: center;
     text-align: center;
 }
-
-/* CSS */
-.button-1 {
-    background-color: var(--primary);
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    transition: .3s;
+.button-1{
+    margin: 10px;
+    padding: 10px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 5px;
+    min-height: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    min-width: 6rem;
 }
-
 .button-1:hover,
 .button-1:focus {
-    background-color: var(--primary-light);
+    background-color: var(--primary-light); 
     box-shadow: var(--box-shadow);
 }
-
 /***********************
 ********* Footer ******
 ************************/

@@ -13,6 +13,7 @@
             <div class="background flex justify-center">
                 <h1 class="text-white">Recommend Products. Earn Commissions.</h1>
                 <a class="button-1" href="#sign_up">Sign up</a>
+                <a class="button-1" href="{{url('/login')}}">Log in</a>
             </div>
         </div>
         <div class="col-md-10 py-5">
