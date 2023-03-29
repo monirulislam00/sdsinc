@@ -148,7 +148,7 @@ hr {
     z-index: 1
 }
 
-.page-title::before {
+/* .page-title::before {
     position: absolute !important;
     content: "";
     left: 0;
@@ -158,17 +158,21 @@ hr {
     background-color: black;
     opacity: 0.5;
     z-index: -1;
-}
+} */
 
 .page-title-texts {
     z-index: 10;
 }
 
-.page-title h1 {
+.page-title h2 {
     color: #fff;
     margin: 0;
     text-align: center;
-    font-size: 64px;
+    /* font-size: 64px; */
+}
+.page-title h3{
+    color: var(--white);
+    text-align: center;
 }
 
 
@@ -594,7 +598,7 @@ input.search-form:hover {
 *******Home Page******
 **************************/
 #slider-image {
-    height: 90vh;
+    height: 95vh;
 }
 
 .slider-content a {
@@ -706,85 +710,6 @@ input.search-form:hover {
     text-transform: uppercase;
 }
 /* blog end */
-/**************************
-********* Pricing Table CSS *
-**************************/
-section.pricing {
-    background-color: #FAFAFA;
-}
-
-.single-pricing {
-    display: inline-block;
-    background-color: #fff;
-    border: 1px solid #E4EBF0;
-    padding: 50px;
-    text-align: center;
-    margin: 50px 0;
-}
-
-.single-pricing span {
-    text-transform: uppercase;
-    font-weight: 700;
-    display: block;
-}
-
-.single-pricing h1 {
-    font-weight: 700;
-    font-size: 80px;
-    position: relative;
-    display: inline-block;
-    padding: 0 50px 0 15px;
-}
-
-.single-pricing h1 span {
-    position: absolute;
-    top: 10px;
-    font-size: 26px;
-    left: 0;
-    text-transform: lowercase;
-}
-
-.single-pricing h1 span:last-child {
-    right: 0;
-    top: auto;
-    bottom: 10px;
-    left: auto;
-}
-
-.single-pricing ul {
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    color: #989898;
-    margin-bottom: 50px;
-    margin-top: 30px;
-}
-
-.single-pricing ul li i {
-    margin-right: 7px;
-}
-
-.single-pricing a {
-    line-height: 45px;
-    padding: 0 30px;
-    min-width: 140px;
-    text-align: center;
-    border: 1px solid #D0D7DD;
-    display: inline-block;
-    font-weight: 700;
-    border-radius: 4px;
-}
-
-.single-pricing.featured {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-}
-
-.single-pricing.featured a {
-    background-color: #EC5538;
-    color: #fff;
-}
 
 /*************************
 ********* Contact Us CSS ******
@@ -1453,3 +1378,21 @@ background-color: #2d3436;
 }
 
 /* -------------------------- single-service ends ------------------------- */
+/* portfolio */
+.portfolio-content{
+    background-color: var(--primary-light);
+    color: var(--white-text);
+}
+
+.portfolio-type{    
+    background: #fff;
+    color: var(--primary);
+    text-align: center;
+    min-width: none;
+    max-width: fit-content; 
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}    
+
+/* portfolio end */

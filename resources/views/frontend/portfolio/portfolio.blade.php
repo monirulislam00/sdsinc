@@ -1,36 +1,31 @@
 @extends('frontend.master')
 @section('home_content')
 <div class="page-title" style="background-image: url({{asset('frontend/images/page-title.png')}})">
-    <h1>Portfolio</h1>
+    <h2 class="py-1 mt-4 fw-bold text-light">Portfolio</h2>
+    <h3>Home > Portfolio</h3>
 </div>
 <section id="recent-works">
-    <div class="container">
+    <div class="container-fluid">
         <div class="center fadeInDown">
-            <h2>Recent Works</h2>
+            <h2 class="mt-4">Recent Works</h2>
             <p class="lead">Our Recent Project For International Company.</p>
         </div>
 
         <div class="row">
-            @foreach ($portfolio as $port)
-                <div class="col-xs-12 col-sm-6 col-md-4 single-work">
-                <div class="recent-work-wrap">
-                    <img class="img-responsive" src="{{$port->image}}" alt="">
-                    <div class="overlay">
-                        <div class="recent-work-inner">
-                            <a class="preview" href="" rel="prettyPhoto"><i class="fa fa-plus"></i></a>
-                        </div>
+            <div class=" flex flex-wrap justify-center">
+                @foreach ($portfolio as $port)
+                <div class="max-w-sm m-3 border rounded-lg border-gray-200 shadow-md ">
+                        <img class=" rounded-t-lg" src="{{ $port->image }}" alt="" />
+                    <div class="p-3 rounded-b-lg portfolio-content">
+                        <p class="portfolio-type">{{$port->type}}</p>
+                        <a href="#"><h5 class="mb-2 text-2xl font-bold tracking-tight text-white">{{ $port->name }}</h5> </a>
+                        <p class="m-0">{{$port->description}}</p>
                     </div>
+                    
                 </div>
+                @endforeach
             </div>
-            @endforeach
-            
         </div>
-        <!--/.row-->
-        {{-- <div class="clearfix text-center">
-            <br>
-            <br>
-            <a href="#" class="btn btn-primary">Show More</a>
-        </div> --}}
     </div>
     <!--/.container-->
 </section>

@@ -81,6 +81,7 @@
                                 <option>-- select type --</option>
                                 <option value="For Enterpirse">For Enterpirse</option>
                                 <option value="For Every Business">For Every Business</option>
+                                <option value="For HR Management">For HR Management</option>
                                 <option value="For Tax Management">For Tax Management</option>
                                 <option value="For Managing Saleforce">For Managing Saleforce</option>
                                 <option value="Lets Start Now ">Lets Start Now</option>
