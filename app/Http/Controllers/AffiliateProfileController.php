@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AffiliateProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function profile()
     {
         if (Auth::user()) {
