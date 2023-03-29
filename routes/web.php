@@ -229,7 +229,6 @@ Route::prefix('dashboard')->group(
 
             Route::resource('/users', UserController::class);
             Route::get('/affiliates', [UserController::class, 'affiliates'])->name('user.affiliates');
-            Route::post('/affiliates', [UserController::class, 'affiliates'])->name('affiliates.store');
             //==========================role  routes ============================//
             Route::resource('/roles', RoleController::class);
         });
