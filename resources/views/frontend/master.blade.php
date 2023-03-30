@@ -30,7 +30,7 @@
     {{-- jquery toast css  --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.toast.min.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
+    {{-- <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -38,13 +38,14 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
         href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed"
-        href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
-
+        href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}"> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
 </head>
 <!--/head-->
 
 <body class="homepage">
     @include('frontend.body.header')
+    @include('frontend.body.mobile-nav')
     {{-- slider included on frontend/index page --}}
     @yield('home_content')
 
@@ -59,6 +60,7 @@
         });
     </script>
     {{-- jquery toast cdn   --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     <script src="{{ asset('frontend/js/jquery.toast.min.js') }}"></script>
     {{-- js stack to get information before order placed start --}}
     @stack('get-info-js')
