@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-2">
                 <a href="#" class="footer-logo">
-                    <img src="{{ asset('frontend/images/logo-black.png') }}" alt="logo">
+                    <img src="{{ asset('frontend/images/logo.png') }}" alt="logo">
                 </a>
 
             </div>

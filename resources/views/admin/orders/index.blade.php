@@ -17,11 +17,12 @@
                                 <th scope="col">SL</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Customer's Email</th>
-                                <th scope="col">Customer's Email</th>
+                                <th scope="col">Customer's Name</th>
                                 <th scope="col">Customer's Phone</th>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Service Quality</th>
                                 <th scope="col">Service Type</th>
+                                <th scope="col">Earning</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Customer's Reason of needing</th>
                                 <th scope="col">Description</th>
@@ -29,7 +30,6 @@
                                 <th scope="col">Company Size</th>
                                 <th scope="col">Promo Code</th>
                                 <th scope="col">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -37,16 +37,50 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <th scope="row">{{ $i++ }}</th>
-                                    <td>{{ $order->status }}</td>
+                                    <td class="text-white">
+                                        @if ($order->status == 'pending')
+                                            <p class="bg-warning rounded p-1">{{ $order->status }}</p>
+                                        @elseif ($order->status == 'Accepted')
+                                            <p class="bg-success rounded p-1">{{ $order->status }}</p>
+                                        @else
+                                            <p class="bg-danger rounded p-1">{{ $order->status }}</p>
+                                        @endif
+                                    </td>
                                     <td>{{ $order->email }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td>{{ $order->getService->title }}</td>
                                     <td>
+                                        @if ($order->quality == 1)
+                                            Platinum
+                                        @elseif ($order->quality == 2)
+                                            Gold
+                                        @elseif ($order->quality == 3)
+                                            Silver
+                                        @elseif ($order->quality == 4)
+                                            Customize
+                                        @endif
+                                    </td>
+                                    {{-- <td>{{ $order->quality }}</td> --}}
+                                    <td>{{ $order->service_type }}</td>
+                                    <td>{{ $order->earnings }}</td>
+                                    <td>{{ $order->country }}</td>
+                                    <td>{{ $order->reason }}</td>
+                                    <td>{{ $order->description }}</td>
+                                    <td>{{ $order->company }}</td>
+                                    <td>{{ $order->companySize }}</td>
+                                    <td>{{ $order->affiliate_id }}</td>
+                                    <td>
+                                        <a onclick="return confirm('Do you want to acccept this order?')"
+                                            href="{{ url('dashboard/orders/accept/' . $order->id) }}"
+                                            class="btn btn-success">Accept</a>
+                                        <a onclick="return confirm('Do you want to cancel this order?')"
+                                            href="{{ url('dashboard/orders/cancel/' . $order->id) }}"
+                                            class="btn btn-danger">Cancel</a>
                                         <a href="{{ url('dashboard/orders/delete/' . $order->id) }}" class="btn btn-danger"
                                             onclick="return confirm('Do you want to Delete')">Delete</a>
                                     </td>
-                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -21,12 +21,12 @@
                             <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                             <li><a href="#"><i class="fa fa-github"></i></a></li>
                         </ul>
-                        <div class="search">
+                        {{-- <div class="search">
                             <form role="form">
                                 <input type="text" class="search-form" autocomplete="off" placeholder="Search">
                                 <i class="fa fa-search"></i>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -58,6 +58,7 @@
                         <li><a class="nav-link scrollto" href="{{ route('frontend.blogs') }}">Blog</a></li>
                         <li><a class="nav-link scrollto" href="{{ route('frontend.affiliate') }}">Affiliate</a></li>
                         <li><a class="nav-link scrollto" href="{{ route('frontend.contact') }}">Contact</a></li>
+                        {{-- <li><a class="nav-link scrollto font-bold text-danger" href="{{ url('/login') }}">Log in</a></li> --}}
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->

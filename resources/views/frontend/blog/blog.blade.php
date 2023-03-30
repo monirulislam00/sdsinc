@@ -21,7 +21,7 @@
                                 <a href="blog/{{ $blog->title }}">
                                     <div class="p-3" style="background-color: #ecf0f1">
                                         <div class="blog-image">
-                                            <img style="height:290px" class="img-thumbnail border-0 p-0 img-blog"
+                                            <img style="width:100%" class="img-thumbnail border-0 p-0 img-blog"
                                                 src="{{ $blog->image }}" width="100%" alt="tech blog" />
                                         </div>
                                         <div class="blog-content">
@@ -45,7 +45,7 @@
                                 <a href="blog/{{ $blog->title }}">
                                     <div class="">
                                         <div class="blog-image">
-                                            <img style="height:200px" class="img-thumbnail border-0 p-0 img-blog"
+                                            <img style="width:100%;" class="img-thumbnail border-0 p-0 img-blog"
                                                 src="{{ $blog->image }}" width="100%" alt="tech blog" />
                                         </div>
                                         <div class="blog-content py-4">

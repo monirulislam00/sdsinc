@@ -1,6 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +15,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebdevController;
@@ -30,7 +33,8 @@ use App\Http\Controllers\Bio_metricController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AffiliateEarningController;
+use App\Http\Controllers\AffiliateProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +54,8 @@ Route::get('/', function () {
     $portfolio = DB::table('portfolios')->latest()->get();
     $partner = DB::table('partners')->latest()->get();
     $popularBlogs = DB::table('blogs')->orderBy('visits', 'desc')->take(3)->get();
-    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products'));
+    $blogs = DB::table('blogs')->latest()->take(6)->get();
+    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products', 'blogs'));
 })->name('/');
 
 Route::middleware([
@@ -62,13 +67,21 @@ Route::middleware([
         $loggedInUser =  auth::user();
         // return $loggedInUser;
         $user = User::find($loggedInUser->id);
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $transactions = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
+        $monthlyEarnings = $transactions->sum('earnings');
+
+
         if ($user->status == 0) {
             $user->logout();
         }
         if ($user->hasexactroles('affiliated')) {
             return redirect()->route('affiliate.index');
         } else {
-            return view('admin.index');
+            $totalAmount = DB::table('orders')->sum('earnings');
+            return view('admin.index', compact('totalAmount', 'monthlyEarnings'));
         }
     })->name('dashboard');
 });
@@ -217,6 +230,9 @@ Route::prefix('dashboard')->group(
             Route::get('subscribers/delete/{id}', [SubscribersController::class, 'delete'])->name('dashboard.subscribers.delete');
 
             Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+            Route::get('orders/accept/{id}', [OrderController::class, 'OrderAccept']);
+            Route::get('orders/cancel/{id}', [OrderController::class, 'OrderCancel']);
+            Route::get('orders/delete/{id}', [OrderController::class, 'OrderDelete']);
 
 
             // ============ Users and affiliates ========= //
@@ -224,7 +240,6 @@ Route::prefix('dashboard')->group(
 
             Route::resource('/users', UserController::class);
             Route::get('/affiliates', [UserController::class, 'affiliates'])->name('user.affiliates');
-            Route::post('/affiliates', [UserController::class, 'affiliates'])->name('affiliates.store');
             //==========================role  routes ============================//
             Route::resource('/roles', RoleController::class);
         });
@@ -240,14 +255,16 @@ Route::prefix('dashboard')->group(
 
 
 /* -------------------------------------------------------------------------- */
-/*                             End All affiliated Route                            */
+/*                             Start All affiliated Route                     */
 /* -------------------------------------------------------------------------- */
-Route::prefix('affiliated/dashboard')->group(function () {
-    Route::get('/', [AffiliatedController::class, "index"])->name('affiliate.index');
+Route::prefix('affiliated/')->group(function () {
+    Route::get('/dashboard', [AffiliatedController::class, "index"])->name('affiliate.index');
     Route::get('/services', [AffiliatedController::class, "services"])->name('affiliate.services');
 
     //==========================orders through link ==================================/
-    Route::get('orders', [OrderController::class, 'getAffiliateOrders'])->name('orders.affiliated');
+    Route::get('earnings', [AffiliateEarningController::class, 'getEarnings'])->name('earnings.affiliated');
+    Route::get('/profile', [AffiliateProfileController::class, 'profile'])->name('affiliate.profile');
+    Route::post('/profile/update/', [AffiliateProfileController::class, 'UpdateProfile'])->name('affiliate.profileUpdate');
 });
 
 /* -------------------------------------------------------------------------- */

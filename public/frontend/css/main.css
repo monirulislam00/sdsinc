@@ -148,7 +148,7 @@ hr {
     z-index: 1
 }
 
-.page-title::before {
+/* .page-title::before {
     position: absolute !important;
     content: "";
     left: 0;
@@ -158,17 +158,21 @@ hr {
     background-color: black;
     opacity: 0.5;
     z-index: -1;
-}
+} */
 
 .page-title-texts {
     z-index: 10;
 }
 
-.page-title h1 {
+.page-title h2 {
     color: #fff;
     margin: 0;
     text-align: center;
-    font-size: 64px;
+    /* font-size: 64px; */
+}
+.page-title h3{
+    color: var(--white);
+    text-align: center;
 }
 
 
@@ -594,7 +598,7 @@ input.search-form:hover {
 *******Home Page******
 **************************/
 #slider-image {
-    height: 90vh;
+    height: 95vh;
 }
 
 .slider-content a {
@@ -630,8 +634,7 @@ input.search-form:hover {
     text-align: center;
 }
 
-.quality-service h1::after,
-.product h1::after {
+.quality-service h1::after,.product h1::after, .serve h2::after{
     content: "";
     width: 5rem;
     height: 3px;
@@ -665,86 +668,48 @@ input.search-form:hover {
 }
 
 /* Quality service End */
-
-/**************************
-********* Pricing Table CSS *
-**************************/
-section.pricing {
-    background-color: #FAFAFA;
+/* serve section start */
+.serve{
+    padding: 30px 0;
+    background: #eeeeee;
 }
-
-.single-pricing {
-    display: inline-block;
-    background-color: #fff;
-    border: 1px solid #E4EBF0;
-    padding: 50px;
+.serve .title{
     text-align: center;
-    margin: 50px 0;
 }
-
-.single-pricing span {
+.serve .title span{
+    color: var(--primary);
+}
+.serve .content{
+    background: #fff;
+    min-height: 112px;
+    padding: 25px 20px;
+    border-bottom: 5px solid #fff;
+    transition: .3s ease-in-out;
+}
+.serve .content img{
+    margin: auto;
+    width: 70px;
+}
+.serve .content p{
+    margin-top: 15px;
+    color: var(--primary);
     text-transform: uppercase;
-    font-weight: 700;
-    display: block;
 }
-
-.single-pricing h1 {
-    font-weight: 700;
-    font-size: 80px;
-    position: relative;
-    display: inline-block;
-    padding: 0 50px 0 15px;
+.serve .content:hover{
+    border-bottom: 5px solid var(--primary);
 }
-
-.single-pricing h1 span {
-    position: absolute;
-    top: 10px;
-    font-size: 26px;
-    left: 0;
-    text-transform: lowercase;
+/* serve section end */
+/* blog start */
+.blog .title span{
+    color: var(--primary);
 }
-
-.single-pricing h1 span:last-child {
-    right: 0;
-    top: auto;
-    bottom: 10px;
-    left: auto;
+.blog .title a{
+    padding: 15px 25px;
+    background-color: var(--primary);
+    color: var(--white);
+    text-transform: uppercase;
 }
-
-.single-pricing ul {
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    color: #989898;
-    margin-bottom: 50px;
-    margin-top: 30px;
-}
-
-.single-pricing ul li i {
-    margin-right: 7px;
-}
-
-.single-pricing a {
-    line-height: 45px;
-    padding: 0 30px;
-    min-width: 140px;
-    text-align: center;
-    border: 1px solid #D0D7DD;
-    display: inline-block;
-    font-weight: 700;
-    border-radius: 4px;
-}
-
-.single-pricing.featured {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-}
-
-.single-pricing.featured a {
-    background-color: #EC5538;
-    color: #fff;
-}
+/* blog end */
 
 /*************************
 ********* Contact Us CSS ******
@@ -978,41 +943,22 @@ section.pricing {
     align-items: center;
     text-align: center;
 }
-
-/* CSS */
-.button-1 {
-    background-color: var(--primary);
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    transition: .3s;
+.button-1{
+    margin: 10px;
+    padding: 10px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 5px;
+    min-height: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    min-width: 6rem;
 }
-
 .button-1:hover,
 .button-1:focus {
-    background-color: var(--primary-light);
+    background-color: var(--primary-light); 
     box-shadow: var(--box-shadow);
 }
-
 /***********************
 ********* Footer ******
 ************************/
@@ -1432,3 +1378,21 @@ background-color: #2d3436;
 }
 
 /* -------------------------- single-service ends ------------------------- */
+/* portfolio */
+.portfolio-content{
+    background-color: var(--primary-light);
+    color: var(--white-text);
+}
+
+.portfolio-type{    
+    background: #fff;
+    color: var(--primary);
+    text-align: center;
+    min-width: none;
+    max-width: fit-content; 
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}    
+
+/* portfolio end */

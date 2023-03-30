@@ -38,7 +38,7 @@ class BlogController extends Controller
         $name_gen = str_replace(" ", "_", $image->getClientOriginalName());
         echo $name_gen;
         // die;
-        Image::make($image)->resize(750, 492)->save('image/blogs/' . $name_gen);
+        Image::make($image)->resize(1920, 1080)->save('image/blogs/' . $name_gen);
 
         $last_img = 'image/blogs/' . $name_gen;
 
@@ -72,7 +72,7 @@ class BlogController extends Controller
 
         if ($image) {
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(750, 400)->save('image/blogs/' . $name_gen);
+            Image::make($image)->resize(1920, 1080)->save('image/blogs/' . $name_gen);
 
             $last_img = 'image/blogs/' . $name_gen;
             unlink($old_image);

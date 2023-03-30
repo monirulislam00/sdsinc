@@ -10,9 +10,16 @@
  <div class="container">
     <section class="affiliated">
         <div class="col-md-12">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="background flex justify-center">
                 <h1 class="text-white">Recommend Products. Earn Commissions.</h1>
                 <a class="button-1" href="#sign_up">Sign up</a>
+                <a class="button-1" href="{{url('/login')}}">Log in</a>
             </div>
         </div>
         <div class="col-md-10 py-5">

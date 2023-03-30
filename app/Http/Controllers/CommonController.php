@@ -145,7 +145,7 @@ class CommonController extends Controller
         if ($affiliated != null) {
             $affiliated->syncRoles('affiliated');
         }
-        return redirect()->back();
+        return redirect()->back()->with('success','Sign Up Successfully, Please Log in');
     }
     public function FrontendAboutsds()
     {

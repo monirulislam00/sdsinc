@@ -1,8 +1,8 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title"
-        style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
-        <h1>Services</h1>
+    <div class="page-title" style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
+        <h2 class="py-1 mt-4 fw-bold text-light">Services</h2>
+        <h3>Home > Service</h3>
     </div>
     <section id="services" class="service-item">
         <div class="container-fluid px-4 my-3">
@@ -12,18 +12,16 @@
             </div>
             <!--/#services-->
             <div class="center fadeInDown ">
-                <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="flex flex-wrap justify-center">
                     @foreach ($services as $service)
-                        <div
-                            class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="max-w-sm m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <a href="service/{{ $service->id }}">
                                 <img class="rounded-t-lg" src="{{ $service->image }}" alt="" />
                             </a>
                             <div class="p-3 text-left">
                                 <div class="flex flex-wrap">
                                     <div class="basis-[75%]"> <a href="#">
-                                            <h5
-                                                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                                 {{ $service->title }}</h5>
                                         </a>
                                         <p class="mb-3  text-slate-700 text-base">
@@ -31,9 +29,7 @@
                                         </p>
                                     </div>
                                     <div class="basis-[25%] text-center ">
-                                        <p
-                                            class="text-sm bg-[#f0a596] p-1 px-2 inline-block rounded-full text-[#932c18] font-bold">
-                                            $ {{ $service->gold_price }}</p>
+                                        <p class="text-sm bg-[#f0a596] p-1 px-2 inline-block rounded-full text-[#932c18] font-bold">${{ $service->gold_price }}</p>
                                     </div>
                                 </div>
 

@@ -10,8 +10,10 @@
  $networks = DB::table('networks')->get();
  $e_commerces = DB::table('e_commerces')->get();
 ?>
-<div class="page-title" style="background-image: url({{asset('frontend/images/page-title.png')}})">
-    <h1>Our Team</h1>
+
+<div class="page-title" style='background-image: url({{asset('frontend/images/page-title.png')}})'">
+    <h2 class="py-1 mt-4 fw-bold text-light">Our Team</h2>
+    <h3>Home > About us > Our Team</h3>
 </div>
 
 <section id="about-us">
@@ -19,7 +21,7 @@
     <div class="row">
         <div class="com-md-12 col-xs-12">
             <header class="section-header wow fadeInUp ourteam" style="visibility: visible; animation-name: fadeInUp;">
-                <h2>Our Team</h2>
+                <h2 class="mt-4">Our Team</h2>
                 <p style="text-align: justify;">The internet has been a boon and an inseparable partner in our modern lives, but it has its own disadvantages as well. Criminals are now faceless and seemingly traceless. The bigger weapon now is not a gun, but a keyboard. From malicious codes to Trojans to phishing and organized crimes (data theft, DoS, DDoS) are the new threats we face every day. The new criminal hides in the Deep Web, without a face or a name, waiting, only but a keystroke away. The threat is very real and the danger of being attacked is imminent. Beetles has been created with the sole purpose of warding off these criminals, safeguarding the clients’ data, both personal and professional from such attacks and ensuring that no <b>Revenue</b> or <b>Business Impact</b> befalls the client.</p>
             </header>
             
@@ -31,10 +33,6 @@
 
 <section id="team-area">
     <div class="container">
-        <div class="center fadeInDown">
-            <h2>Our Team</h2>
-            <p class="lead">Our Expert Team member who expert their own department <br> Our all team member are very sencire, dedicated, workfull and professional.</p>
-        </div>
         
             <div class="teamheading">
                 <h2 class="mb-4">Board Of Directors</h2>

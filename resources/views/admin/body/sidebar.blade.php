@@ -28,7 +28,7 @@
                 <span>Afiiliate Dashboard</span></a>
         </li>
     @endcan
-    @hasanyrole(['admin', 'affiliated'])
+    @hasanyrole(['admin'])
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
                 aria-expanded="true" aria-controls="collapseTeam">
@@ -40,11 +40,16 @@
                     @hasrole('admin')
                         <a class="collapse-item" href="{{ route('orders.index') }}">All Orders</a>
                     @endhasrole
-                    @hasrole('affiliated')
-                        <a class="collapse-item" href="{{ route('orders.affiliated') }}">Ordered through link</a>
-                    @endhasrole
                 </div>
             </div>
+        </li>
+    @endhasanyrole
+    @hasanyrole(['affiliated'])
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('earnings.affiliated') }}">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Earnings from affiliate</span>
+            </a>
         </li>
     @endhasanyrole
     <!-- Divider -->
