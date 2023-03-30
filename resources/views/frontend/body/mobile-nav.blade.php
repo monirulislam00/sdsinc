@@ -1,6 +1,6 @@
 <nav class=" bg-gray-800 border-gray-700 lg:hidden fixed top-0 left-0 w-full z-[50]">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
-        <a href="#" class="flex items-center">
+        <a href="{{ route('/') }}" class="flex items-center">
             <img src="{{ asset('frontend/images/logo.png') }}" class="h-8 mr-3" alt="SDSincbd Logo" />
         </a>
         <button data-collapse-toggle="navbar-solid-bg" type="button"
@@ -19,12 +19,12 @@
                 class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-gray-800 lg:dark:bg-transparent dark:border-gray-700">
                 <li>
                     <a href="{{ url('/') }}"
-                        class="block py-2 pl-3 pr-4  rounded lg:bg-transparent lg:text-blue-700 lg:p-0 lg:dark:text-blue-500 dark:bg-blue-600 lg:dark:bg-transparent hover:bg-blue-700 hover:text-white"
+                        class="block py-2 pl-3 pr-4  rounded lg:bg-transparent lg:text-primaryColor lg:p-0 lg:dark:text-blue-500 dark:bg-blue-600 lg:dark:bg-transparent hover:bg-primaryColor hover:text-white"
                         aria-current="page">Home</a>
                 </li>
                 <li>
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                        class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500  px-3 ">About
+                        class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-primaryColor md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500  px-3 ">About
                         Us
                         <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -38,37 +38,37 @@
                         <ul class="px-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
                             <li>
                                 <a href="{{ route('frontend.aboutsds') }}"
-                                    class="block px-4 py-2 hover:bg-blue-700 hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">About
+                                    class="block px-4 py-2 hover:bg-primaryColor hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">About
                                     Of SDSInc.</a>
                             </li>
 
                         </ul>
                         <div class="py-1">
                             <a href="{{ route('frontend.team') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-700 hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Our
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-primaryColor hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Our
                                 Team</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <a href="{{ route('frontend.service') }}"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 ">Services</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-primaryColor lg:p-0 ">Services</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.portfolio') }}"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-blue-700 hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Portfolio</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-primaryColor lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-primaryColor hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Portfolio</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.blogs') }}"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-blue-700 hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Blog</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-primaryColor lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-primaryColor hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Blog</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.affiliate') }}"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-blue-700 hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Affiliate</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-primaryColor lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-primaryColor hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Affiliate</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.contact') }}"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-700 hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-blue-700 hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Contact</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primaryColor hover:text-white lg:hover:bg-transparent lg:border-0 lg:hover:text-primaryColor lg:p-0 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-primaryColor hover:text-white dark:hover:text-white lg:dark:hover:bg-transparent">Contact</a>
                 </li>
             </ul>
         </div>

@@ -423,6 +423,6 @@
     <!--/.container-->
 </section> --}}
     <!-- Preloader -->
-    <div id="preloader"></div>
+
     <!--/#partner-->
 @endsection

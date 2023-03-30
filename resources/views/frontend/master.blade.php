@@ -39,11 +39,12 @@
         href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed"
         href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}"> --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+
 </head>
 <!--/head-->
 
 <body class="homepage">
+    <div id="preloader"></div>
     @include('frontend.body.header')
     @include('frontend.body.mobile-nav')
     {{-- slider included on frontend/index page --}}
