@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 // use AmrShawky\Currency\Facade\Currency;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Jobs\OrderPlacedMail;
 use Carbon\Exceptions\Exception;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -145,7 +146,7 @@ class CommonController extends Controller
         if ($affiliated != null) {
             $affiliated->syncRoles('affiliated');
         }
-        return redirect()->back()->with('success','Sign Up Successfully, Please Log in');
+        return redirect()->back()->with('success', 'Sign Up Successfully, Please Log in');
     }
     public function FrontendAboutsds()
     {
@@ -217,7 +218,7 @@ class CommonController extends Controller
                 'service_id' => $request->serviceId,
                 'affiliate_id' => $request->promoCode
             ]);
-            $order->notify(new OrderPlaceNotification);
+            OrderPlacedMail::dispatch($order);
             return response()->json([
                 'status' => 1,
                 'data' => "Your order has been placed successfully. Our employee will contact you soon thorough your phone number."
