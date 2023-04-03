@@ -1,4 +1,4 @@
-<div id="header">
+<div id="header" class="hidden lg:block">
     <div class="top-bar">
         <div class="container">
             <div class="row">

@@ -107,7 +107,7 @@
                                 <h3>Subscribe</h3>
                                 <form action="{{ route('subscribe') }}" method="post">
                                     @csrf
-                                    <div class="flex gap-1">
+                                    <div class="flex gap-1 flex-wrap md:flex-nowrap">
                                         <input class="rounded ring-1 ring-orange border-0" type="text"
                                             placeholder="enter your email" aria-label="subscribe to get notified"
                                             name="subscriberEmail">
