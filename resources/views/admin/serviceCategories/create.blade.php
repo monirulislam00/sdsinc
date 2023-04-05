@@ -5,8 +5,9 @@
             @if (session()->has('success'))
                 <p class="alert alert-success">{{ session('success') }}</p>
             @endif
+            <a href="{{ route('service.index') }}" class="btn btn-primary">All Categories</a>
             <div class="card">
-                <div class="card-header">Edit Service Catogory</div>
+                <div class="card-header">Add Service Catogory</div>
                 <div class="card-body">
                     <form action="{{ route('service_categories.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -17,7 +18,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
             </div>

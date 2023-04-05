@@ -14,7 +14,7 @@ $(document).ready(function () {
         }
         console.log("ok");
     }
-    preloader();
+    // preloader();
     $(".carousel.owl-carousel").owlCarousel({
         loop: true,
         margin: 10,

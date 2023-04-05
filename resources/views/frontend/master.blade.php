@@ -63,7 +63,7 @@
 <!--/head-->
 
 <body class="homepage">
-    <div class="z-[999]" id="preloader"></div>
+    {{-- <div class="z-[999]" id="preloader"></div> --}}
     @include('frontend.body.header')
     @include('frontend.body.mobile-nav')
     {{-- slider included on frontend/index page --}}

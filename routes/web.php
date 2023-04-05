@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ServiceCategoryController;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -128,6 +129,7 @@ Route::prefix('dashboard')->group(
 
         // Service Route
         Route::resource('/service', ServiceController::class);
+        Route::resource('/service_categories', ServiceCategoryController::class);
 
         // Contact Route
         Route::get('contact/message/view', [ContactController::class, 'Contact'])->name('contact');

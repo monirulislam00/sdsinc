@@ -28,7 +28,8 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::latest()->with('getServiceType')->paginate();
-        return view('admin.service.index', compact('services'));
+        $service_categoires = ServiceCategory::all();
+        return view('admin.service.index', compact('services', 'service_categoires'));
     }
 
     /**
