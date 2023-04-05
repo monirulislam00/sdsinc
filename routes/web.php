@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,9 +49,8 @@ use App\Http\Controllers\AffiliateProfileController;
 */
 
 Route::get('/', function () {
-
+    $products = Product::latest()->with('getService')->take(6)->get();
     $features = DB::table('features')->get();
-    $products = DB::table('products')->get();
     $portfolio = DB::table('portfolios')->latest()->get();
     $partner = DB::table('partners')->latest()->get();
     $popularBlogs = DB::table('blogs')->orderBy('visits', 'desc')->take(3)->get();
@@ -64,7 +64,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        $loggedInUser =  auth::user();
+        $loggedInUser = auth::user();
         // return $loggedInUser;
         $user = User::find($loggedInUser->id);
 
@@ -127,12 +127,7 @@ Route::prefix('dashboard')->group(
         Route::get('partner/delete/{id}', [PartnerController::class, 'Delete']);
 
         // Service Route
-        Route::get('/service/view', [ServiceController::class, 'Service'])->name('service');
-        Route::get('service/create', [ServiceController::class, 'createService'])->name('service.create');
-        Route::post('/Store/service', [ServiceController::class, 'StoreService'])->name('store.service');
-        Route::get('service/edit/{id}', [ServiceController::class, 'Edit']);
-        Route::post('service/update/{id}', [ServiceController::class, 'Update']);
-        Route::get('service/delete/{id}', [ServiceController::class, 'Delete']);
+        Route::resource('/service', ServiceController::class);
 
         // Contact Route
         Route::get('contact/message/view', [ContactController::class, 'Contact'])->name('contact');

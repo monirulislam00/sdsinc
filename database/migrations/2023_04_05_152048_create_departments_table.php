@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBioMetricsTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateBioMetricsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bio_metrics', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('company');
-            $table->string('title');
-            $table->string('phone');
-            $table->string('mail');
-            $table->string('image');
+            $table->string('department_name', 100);
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateBioMetricsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bio_metrics');
+        Schema::dropIfExists('departments');
     }
 }

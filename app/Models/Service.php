@@ -9,6 +9,13 @@ class Service extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title', 'description', 'image', 'gold_price', 'platinum_price', 'silver_price', 'gold_des', 'platinum_des', 'silver_des'
+        'service_name',
+        'description',
+        'image',
+        'service_cat',
     ];
+    public function getServiceType()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'service_cat', 'id');
+    }
 }

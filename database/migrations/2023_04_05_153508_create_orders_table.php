@@ -23,8 +23,8 @@ class CreateOrdersTable extends Migration
             $table->string('company', 50)->nullable();
             $table->string('country', 50)->nullable();
             $table->string('companySize', 50)->nullable();
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('services');
             $table->string('affiliate_id')->nullable();
             $table->string('service_type');
             $table->tinyInteger('quality');

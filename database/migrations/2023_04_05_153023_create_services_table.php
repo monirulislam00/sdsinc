@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNetworksTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateNetworksTable extends Migration
      */
     public function up()
     {
-        Schema::create('networks', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('company');
-            $table->string('title');
-            $table->string('phone');
-            $table->string('mail');
+            $table->string('service_name');
             $table->string('image');
+            $table->string('description');
+            $table->unsignedBigInteger('service_cat');
+            $table->foreign('service_cat')->references('id')->on('service_categories');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateNetworksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('networks');
+        Schema::dropIfExists('services');
     }
 }

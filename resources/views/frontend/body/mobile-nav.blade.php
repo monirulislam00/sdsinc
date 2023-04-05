@@ -1,4 +1,4 @@
-<nav class=" bg-gray-800 border-gray-700 lg:hidden fixed top-0 left-0 w-full z-[50]">
+<nav class=" bg-gray-800 border-gray-700 lg:hidden fixed top-0 left-0 w-full z-[100]">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <a href="{{ route('/') }}" class="flex items-center">
             <img src="{{ asset('frontend/images/logo.png') }}" class="h-8 mr-3" alt="SDSincbd Logo" />
@@ -16,7 +16,7 @@
         </button>
         <div class="hidden w-full lg:block lg:w-auto" id="navbar-solid-bg">
             <ul
-                class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-gray-800 lg:dark:bg-transparent dark:border-gray-700">
+                class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-gray-800 lg:dark:bg-transparent dark:border-gray-700 p-3">
                 <li>
                     <a href="{{ url('/') }}"
                         class="block py-2 pl-3 pr-4  rounded lg:bg-transparent lg:text-primaryColor lg:p-0 lg:dark:text-blue-500 dark:bg-blue-600 lg:dark:bg-transparent hover:bg-primaryColor hover:text-white"

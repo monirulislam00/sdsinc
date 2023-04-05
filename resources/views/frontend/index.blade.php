@@ -3,7 +3,7 @@
     @include('frontend.body.slider')
     <section class="product py-5">
         <div class="container">
-            <h1> <span>Exclusive</span> Product</h1>
+            <h1> <span>Latest</span> Product</h1>
             <div class="row">
 
                 @foreach ($products as $product)
@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="type p-2 bg-orange-600 absolute top-0 right-0">
-                                <p class="mb-0 text-white font-semibold">{{ $product->type }}</p>
+                                <p class="mb-0 text-white font-semibold">{{ $product->getService->service_name }}</p>
                             </div>
                         </div>
                     </div>

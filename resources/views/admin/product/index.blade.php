@@ -22,9 +22,17 @@
                                 <tr>
                                     <th scope="col">SL</th>
                                     <th scope="col">Service Name</th>
-                                    <th scope="col">Service Image</th>
                                     <th scope="col">Service Description</th>
-                                    <th scope="col">Service Type</th>
+                                    <th scope="col">Standard Price/Gold Price</th>
+                                    <th scope="col">Service Image</th>
+                                    <th scope="col">Gold Description</th>
+                                    <th scope="col">Platinum Price</th>
+                                    <th scope="col">Platinum Description</th>
+                                    <th scope="col">Sliver Price</th>
+                                    <th scope="col">Sliver Description</th>
+                                    @hasrole('affiliated')
+                                        <th scope="col">Link</th>
+                                    @endhasrole
                                     @can(['edit service', 'delete service'])
                                         <th scope="col">Action</th>
                                     @endcan
@@ -35,25 +43,36 @@
                                 @foreach ($services as $service)
                                     <tr>
                                         <th scope="row">{{ $i++ }}</th>
-                                        <td>{{ $service->service_name }}</td>
+                                        <td>{{ $service->title }}</td>
+                                        <td style="text-align:justify;min-width:280px">{{ $service->description }}</td>
+                                        <td>{{ $service->gold_price }} $</td>
                                         <td><img src="{{ asset($service->image) }}" class="m-auto" alt=""
                                                 width="120px" height="80px"></td>
-                                        <td style="text-align:justify;min-width:280px">{{ $service->description }}</td>
-                                        <td>{{ $service->getServiceType->name }}</td>
+                                        <td style="min-width:280px">{{ $service->gold_des }} $</td>
+                                        <td>{{ $service->platinum_price }} $</td>
+                                        <td style="min-width:280px">{{ $service->platinum_des }} $</td>
+                                        <td>{{ $service->silver_price }} $</td>
+                                        <td style="min-width:280px">{{ $service->silver_des }} $</td>
+                                        @hasrole('affiliated')
+                                            <td scope="col">
+                                                {{-- <button class="btn btn-primary"><i
+                                                        class="fas fa-link"></i>
+                                                    </button>
+                                                        --}}
+                                                <a href="http://localhost:8001/service/5/{{ $userId }}"
+                                                    class="text-primary text-underline">http://localhost:8001/service/5/{{ $userId }}</a>
+                                            </td>
+                                        @endhasrole
                                         @can(['edit service', 'delete service'])
                                             <td>
                                                 @can('edit service')
-                                                    <a href="{{ route('service.edit', ['service' => $service->id]) }}"
+                                                    <a href="{{ url('dashboard/service/edit/' . $service->id) }}"
                                                         class="btn btn-success">Edit</a>
                                                 @endcan
                                                 @can('delete service')
-                                                    <form action="{{ route('service.destroy', ['service' => $service->id]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger"
-                                                            onclick="return confirm('Do you want to Delete')">Delete</a>
-                                                    </form>
+                                                    <a href="{{ url('dashboard/service/delete/' . $service->id) }}"
+                                                        class="btn btn-danger"
+                                                        onclick="return confirm('Do you want to Delete')">Delete</a>
                                                 @endcan
                                             </td>
                                         @endcan

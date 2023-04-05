@@ -2,134 +2,158 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\Product;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Service;
 use Intervention\Image\Facades\Image;
-use Illuminate\Bus\PrunableBatchRepository;
+use Illuminate\Support\Carbon;
 
 class ServiceController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+
         $this->middleware(['permission:view service'])->only(['Service']);
         $this->middleware(['permission:create service'])->only(['createService']);
         $this->middleware(['permission:edit service'])->only(['Edit']);
         $this->middleware(['permission:delete service'])->only(['Delete']);
     }
-    public function Service()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $services = Service::latest()->paginate(15);
-        $userId = Auth::user()->uniqueId;
-        return view('admin.service.index', compact('services', 'userId'));
+        $services = Service::latest()->with('getServiceType')->paginate();
+        return view('admin.service.index', compact('services'));
     }
-    public function createService()
-    {
-        return view('admin.service.create');
-    }
-    public function StoreService(Request $request)
-    {
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $service_types = ServiceCategory::all();
+        return view('admin.service.create', compact('service_types'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'title'       => 'required|min:2',
-            'description' => 'required|min:2',
-            'image'       => 'required|max:50000|mimes:jpg,jpeg,png',
-            'gold_price'       => 'required',
-            'silver_price'       => 'required',
-            'platinum_price'       => 'required',
-            'gold_des'       => 'required',
-            'silver_des'       => 'required',
-            'platinum_des'       => 'required',
-
+            'service_name' => 'required',
+            'description' => 'required|min:4|max:140',
+            'service_type' => 'required',
+            'image' => 'required|max:50000|mimes:jpg,jped,png',
         ]);
-        $image = $request->file('image');
 
-        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(900, 600)->save('image/service/' . $name_gen);
+        $Service_image = $request->file('image');
+
+        $name_gen = hexdec(uniqid()) . '.' . $Service_image->getClientOriginalExtension();
+        Image::make($Service_image)->resize(100, 100)->save('image/service/' . $name_gen);
 
         $last_img = 'image/service/' . $name_gen;
 
         Service::insert([
-            'title' => $request->title,
+            'service_name' => $request->service_name,
             'description' => $request->description,
-            'gold_price' => $request->gold_price,
-            'gold_des' => $request->gold_des,
-            'platinum_price' => $request->platinum_price,
-            'platinum_des' => $request->platinum_des,
-            'silver_price' => $request->silver_price,
-            'silver_des' => $request->silver_des,
             'image' => $last_img,
+            'service_cat' => $request->service_type,
             'created_at' => Carbon::now(),
         ]);
-        return redirect()->route('service')->with('success', 'service Inserted successfully');
+        return redirect()->route('service.index')->with('success', 'Service Inserted successfully');
     }
-    public function Edit($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $service = Service::find($id);
-        return view('admin.service.edit', compact('service'));
+        //
     }
-    public function Update(Request $request, $id)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $service = Service::where('id', $id)->with('getServiceType')->first();
+        $service_types = ServiceCategory::all();
+        return view('admin.service.edit', compact('service', 'service_types'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'title'       => 'required|min:2',
-            'description' => 'required|min:2',
-            'image'       => 'max:50000|mimes:jpg,jpeg,png',
-            'gold_price'       => 'required',
-            'silver_price'       => 'required',
-            'platinum_price'       => 'required',
-            'gold_des'       => 'required',
-            'silver_des'       => 'required',
-            'platinum_des'       => 'required',
-
+            'service_name' => 'required',
+            'description' => 'required|min:4|max:140',
+            'service_type' => 'required',
         ]);
-        $old_image  = $request->old_image;
-        $image      = $request->image;
-        if ($image) {
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(900, 600)->save('image/service/' . $name_gen);
+        $old_image = $request->old_image;
+        $service_image = $request->image;
 
+        if ($service_image) {
+            $name_gen = hexdec(uniqid()) . '.' . $service_image->getClientOriginalExtension();
+            Image::make($service_image)->resize(1920, 1088)->save('image/service/' . $name_gen);
             $last_img = 'image/service/' . $name_gen;
-            if ($old_image != null) {
-                unlink($old_image);
-            }
+            unlink($old_image);
             Service::find($id)->update([
-                'title' => $request->title,
+                'service_name' => $request->service_name,
                 'description' => $request->description,
-                'gold_price' => $request->gold_price,
-                'gold_des' => $request->gold_des,
-                'platinum_price' => $request->platinum_price,
-                'platinum_des' => $request->platinum_des,
-                'silver_price' => $request->silver_price,
-                'silver_des' => $request->silver_des,
                 'image' => $last_img,
+                'service_cat' => $request->service_type,
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->route('service')->with('success', 'service Updated successfully');
         } else {
             Service::find($id)->update([
-                'title' => $request->title,
+                'service_name' => $request->service_name,
                 'description' => $request->description,
-                'gold_price' => $request->gold_price,
-                'gold_des' => $request->gold_des,
-                'platinum_price' => $request->platinum_price,
-                'platinum_des' => $request->platinum_des,
-                'silver_price' => $request->silver_price,
-                'silver_des' => $request->silver_des,
+                'service_cat' => $request->service_type,
                 'created_at' => Carbon::now(),
             ]);
-
-            return redirect()->route('service')->with('success', 'service Updated successfully');
         }
+        return redirect()->route('service.index')->with('success', 'Service Updated successfully');
     }
-    public function Delete($id)
-    {
-        $image = Service::find($id);
-        $old_image = $image->image;
-        unlink($old_image);
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $service = Service::find($id);
+        // $old_image = $service->image;
+        // unlink($old_image);
+        $products = Product::where('service_id', $id)->get();
+        foreach ($products as $product) {
+            $product->delete();
+        }
         Service::find($id)->delete();
-        return redirect()->back()->with('success', 'service Deleted successfully');
+        return redirect()->route('service.index')->with('success', 'Service Deleted successfully');
     }
 }

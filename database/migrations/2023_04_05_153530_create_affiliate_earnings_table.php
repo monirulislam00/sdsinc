@@ -18,8 +18,8 @@ class CreateAffiliateEarningsTable extends Migration
             $table->unsignedBigInteger('order_id')->unique();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->string('affiliate_id');
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->string('amount');
             $table->timestamps();
         });

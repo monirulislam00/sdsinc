@@ -12,8 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <link rel="stylesheet" href="{{url('css/app.css')}}"> --}}
     {{-- <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="{{ asset('frontend/css/meanmenu.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -64,7 +63,7 @@
 <!--/head-->
 
 <body class="homepage">
-    <div id="preloader"></div>
+    <div class="z-[999]" id="preloader"></div>
     @include('frontend.body.header')
     @include('frontend.body.mobile-nav')
     {{-- slider included on frontend/index page --}}
