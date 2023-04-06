@@ -5,7 +5,8 @@
             <a href="{{ route('products.index') }}" class="btn btn-primary">All products</a>
         </div>
     </div>
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.update', ['product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
         <div class="card">
             <div class="card-header">Add product</div>
@@ -99,9 +100,13 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Silver description</label>
                         @foreach (json_decode($product->silver_des) as $item)
-                            <input type="text" class="form-control mt-1" name="silver_description[]"
-                                value="{{ $item }}">
+                            @if ($item != '')
+                                <input type="text" class="form-control mt-1" name="silver_description[]"
+                                    value="{{ $item }}">
+                            @endif
                         @endforeach
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
                         <input type="text" class="form-control mt-1" name="silver_description[]">
                         <input type="text" class="form-control mt-1" name="silver_description[]">
                         <input type="text" class="form-control mt-1" name="silver_description[]">
@@ -136,9 +141,13 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Gold Description</label>
                         @foreach (json_decode($product->gold_des) as $item)
-                            <input type="text" class="form-control mt-1" name="gold_description[]"
-                                value="{{ $item }}">
+                            @if ($item != '')
+                                <input type="text" class="form-control mt-1" name="gold_description[]"
+                                    value="{{ $item }}">
+                            @endif
                         @endforeach
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
                         <input type="text" class="form-control mt-1" name="gold_description[]">
                         <input type="text" class="form-control mt-1" name="gold_description[]">
                         <input type="text" class="form-control mt-1" name="gold_description[]">
@@ -169,9 +178,13 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Platinum description</label>
                         @foreach (json_decode($product->platinum_des) as $item)
-                            <input type="text" class="form-control mt-1" name="platinum_description[]"
-                                value="{{ $item }}">
+                            @if ($item != '')
+                                <input type="text" class="form-control mt-1" name="platinum_description[]"
+                                    value="{{ $item }}">
+                            @endif
                         @endforeach
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
                         <input type="text" class="form-control mt-1" name="platinum_description[]">
                         <input type="text" class="form-control mt-1" name="platinum_description[]">
                         <input type="text" class="form-control mt-1" name="platinum_description[]">
@@ -185,7 +198,7 @@
             </div>
         </div>
         <div class="col-md-2 float-end">
-            <button type="submit" class="btn btn-primary ">Add product</button>
+            <button type="submit" class="btn btn-primary ">Update product</button>
         </div>
     </form>
 @endsection

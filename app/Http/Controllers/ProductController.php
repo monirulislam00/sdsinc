@@ -129,7 +129,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:2',
             'description' => 'required|min:2',
-            'image' => 'required|max:50000|mimes:jpg,jpeg,png',
+            'image' => 'max:50000|mimes:jpg,jpeg,png',
             'service' => 'required',
             'product_type' => 'required',
             'gold_price' => 'required',
@@ -182,7 +182,7 @@ class ProductController extends Controller
             ]);
 
         }
-        return redirect()->route('product.index')->with('success', 'Product Updated successfully');
+        return redirect()->route('products.index')->with('success', 'Product Updated successfully');
     }
 
     /**

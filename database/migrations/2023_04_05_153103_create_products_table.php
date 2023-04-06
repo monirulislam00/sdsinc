@@ -18,13 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('platinum_des')->nullable();
-            $table->text('platinum_link')->nullable();
             $table->string('platinum_price');
             $table->text('gold_des')->nullable();
-            $table->text('gold_link')->nullable();
             $table->string('gold_price');
             $table->text('silver_des')->nullable();
-            $table->text('silver_link')->nullable();
             $table->string('silver_price');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('service_id');

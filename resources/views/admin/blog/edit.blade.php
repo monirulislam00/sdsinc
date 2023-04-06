@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">blog description</label>
-                        <input type="text" name="description" class="form-control" value="{{ $blog->description }}">
+                        <textarea type="text" name="description" class="form-control" rows="6">{{ $blog->description }}</textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">blog Image</label>

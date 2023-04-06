@@ -5,7 +5,6 @@
         <div class="container">
             <h1> <span>Latest</span> Product</h1>
             <div class="row">
-
                 @foreach ($products as $product)
                     <div class="col-md-4">
                         <div class="content mt-4 p-4 pb-0 relative" style="min-height: 250px">
@@ -18,7 +17,7 @@
                                         <p class="text-xl  font-bold">{{ $product->title }}</p>
                                     </div>
                                     <div class="description text-zinc-500">
-                                        <p class="font-semibold">{!! substr($product->description, 0, 90) !!}...</p>
+                                        <p class="font-semibold">{!! substr($product->description, 0, 90) . '...' !!}</p>
                                     </div>
                                 </div>
                             </div>

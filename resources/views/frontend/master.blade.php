@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Siams Development & Solution Inc.</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('backend/img/logo.png') }}">
     <!-- core CSS -->
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
