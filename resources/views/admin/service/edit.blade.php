@@ -22,21 +22,7 @@
                             @enderror
                         </small>
                     </div>
-                    <div class="form-group mb-3">
-                        <label>Service Type</label>
-                        <select name="service_type" id="" class="form-control">
-                            <option value="">select</option>
-                            @foreach ($service_types as $type)
-                                <option @if ($service->getServiceType->id == $type->id) selected @endif value="{{ $type->id }}">
-                                    {{ $type->name }}</option>
-                            @endforeach
-                        </select>
-                        <small class="text-danger">
-                            @error('service_type')
-                                {{ $message }}
-                            @enderror
-                        </small>
-                    </div>
+
                     <div class="form-group mb-3">
                         <label>Service Description</label>
                         <textarea type="text" name="description" class="form-control" rows="7">{{ $service->description }}</textarea>

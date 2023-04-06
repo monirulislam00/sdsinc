@@ -76,6 +76,9 @@
                     @can('view products')
                         <a class="collapse-item" href="{{ route('products.index') }}">Products</a>
                     @endcan
+                    @can('view products')
+                        <a class="collapse-item" href="{{ route('product_types.index') }}">Product Types</a>
+                    @endcan
                 </div>
             </div>
         </li>

@@ -8,8 +8,8 @@
             <div class="card">
                 <div class="card-header">Edit Service Catogory</div>
                 <div class="card-body">
-                    <form action="{{ route('service_categories.update', ['service_category' => $category->id]) }}"
-                        method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('product_types.update', ['product_type' => $category->id]) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-3">

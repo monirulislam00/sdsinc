@@ -17,7 +17,7 @@
                         </div>
                     @endcan
                     <div class="">
-                        <table class=" table-responsive text-center">
+                        <table class="table-responsive  table text-center">
                             <thead>
                                 <tr>
                                     <th scope="col">SL</th>
@@ -30,9 +30,7 @@
                                     <th scope="col">Platinum Description</th>
                                     <th scope="col">Sliver Price</th>
                                     <th scope="col">Sliver Description</th>
-                                    @hasrole('affiliated')
-                                        <th scope="col">Link</th>
-                                    @endhasrole
+
                                     @can(['edit products', 'delete products'])
                                         <th scope="col">Action</th>
                                     @endcan
@@ -48,25 +46,31 @@
                                         <td>{{ $product->gold_price }} $</td>
                                         <td><img src="{{ asset($product->image) }}" class="m-auto" alt=""
                                                 width="120px" height="80px"></td>
-                                        <td style="min-width:280px">{{ $product->gold_des }} $</td>
+                                        <td style="min-width:280px">
+                                            @foreach (json_decode($product->gold_des) as $item)
+                                                <p class="bg-info d-inline-block text-white p-1 rounded">
+                                                    {{ $item }}</p>
+                                            @endforeach
+                                        </td>
                                         <td>{{ $product->platinum_price }} $</td>
-                                        <td style="min-width:280px">{{ $product->platinum_des }} $</td>
+                                        <td style="min-width:280px">
+                                            @foreach (json_decode($product->platinum_des) as $item)
+                                                <p class="bg-info d-inline-block text-white p-1 rounded">
+                                                    {{ $item }}</p>
+                                            @endforeach
+                                        </td>
                                         <td>{{ $product->silver_price }} $</td>
-                                        <td style="min-width:280px">{{ $product->silver_des }} $</td>
-                                        @hasrole('affiliated')
-                                            <td scope="col">
-                                                {{-- <button class="btn btn-primary"><i
-                                                        class="fas fa-link"></i>
-                                                    </button>
-                                                        --}}
-                                                <a href="http://localhost:8001/product/5/{{ $userId }}"
-                                                    class="text-primary text-underline">http://localhost:8001/product/5/{{ $userId }}</a>
-                                            </td>
-                                        @endhasrole
+                                        <td style="min-width:280px">
+                                            @foreach (json_decode($product->silver_des) as $item)
+                                                <p class="bg-info d-inline-block text-white p-1 rounded">
+                                                    {{ $item }}</p>
+                                            @endforeach
+                                        </td>
+
                                         @can(['edit products', 'delete products'])
                                             <td>
                                                 @can('edit products')
-                                                    <a href="{{ url('dashboard/product/edit/' . $product->id) }}"
+                                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}"
                                                         class="btn btn-success">Edit</a>
                                                 @endcan
                                                 @can('delete products')
@@ -86,7 +90,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        {{-- {{ $products->links() }} --}}
                     </div>
                 </div>
             </div>

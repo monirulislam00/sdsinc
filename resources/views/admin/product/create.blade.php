@@ -30,7 +30,7 @@
                         </small>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="">Product Type</label>
+                        <label for="">Service Type</label>
                         <select name="service" id="" class="form-control">
                             <option value="">select service</option>
                             @foreach ($services as $service)
@@ -39,6 +39,20 @@
                         </select>
                         <small class="text-danger">
                             @error('service')
+                                {{ $message }}
+                            @enderror
+                        </small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Product Type</label>
+                        <select name="product_type" id="" class="form-control">
+                            <option value="">select</option>
+                            @foreach ($product_types as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        <small class="text-danger">
+                            @error('product_type')
                                 {{ $message }}
                             @enderror
                         </small>

@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ServiceCategoryController;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +33,10 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AffiliatedController;
 use App\Http\Controllers\Bio_metricController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\AffiliateEarningController;
 use App\Http\Controllers\AffiliateProfileController;
 
@@ -51,12 +53,13 @@ use App\Http\Controllers\AffiliateProfileController;
 
 Route::get('/', function () {
     $products = Product::latest()->with('getService')->take(6)->get();
+    $services = Service::latest()->take(6)->get();
     $features = DB::table('features')->get();
     $portfolio = DB::table('portfolios')->latest()->get();
     $partner = DB::table('partners')->latest()->get();
     $popularBlogs = DB::table('blogs')->orderBy('visits', 'desc')->take(3)->get();
     $blogs = DB::table('blogs')->latest()->take(6)->get();
-    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products', 'blogs'));
+    return view('frontend.index', compact('features', 'portfolio', 'partner', 'popularBlogs', 'products', 'blogs', 'services'));
 })->name('/');
 
 Route::middleware([
@@ -129,9 +132,9 @@ Route::prefix('dashboard')->group(
 
         // Service Route
         Route::resource('/service', ServiceController::class);
-        Route::resource('/service_categories', ServiceCategoryController::class);
         /* ----------------------------- Product Routes ----------------------------- */
 
+        Route::resource('/product_types', ProductTypeController::class);
         Route::resource('products', ProductController::class)->middleware('auth');
 
         // Contact Route

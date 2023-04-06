@@ -5,11 +5,11 @@
             @if (session()->has('success'))
                 <p class="alert alert-success">{{ session('success') }}</p>
             @endif
-            <a href="{{ route('service.index') }}" class="btn btn-primary">All Categories</a>
+            <a href="{{ route('product_types.index') }}" class="btn btn-primary">All Categories</a>
             <div class="card">
                 <div class="card-header">Add Service Catogory</div>
                 <div class="card-body">
-                    <form action="{{ route('service_categories.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('product_types.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
                             <label> Title</label>

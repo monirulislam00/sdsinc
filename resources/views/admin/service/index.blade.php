@@ -1,7 +1,6 @@
 @extends('admin.admin_master')
 @section('admin_content')
     <div class="row">
-
         <div class="card col-md-8">
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,7 +23,7 @@
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Service Image</th>
                                 <th scope="col">Service Description</th>
-                                <th scope="col">Service Type</th>
+
                                 @can(['edit service', 'delete service'])
                                     <th scope="col">Action</th>
                                 @endcan
@@ -39,7 +38,7 @@
                                     <td><img src="{{ asset($service->image) }}" class="m-auto" alt="" width="120px"
                                             height="80px"></td>
                                     <td style="text-align:justify;min-width:280px">{{ $service->description }}</td>
-                                    <td>{{ $service->getServiceType->name }}</td>
+
                                     @can(['edit service', 'delete service'])
                                         <td>
                                             @can('edit service')
@@ -52,7 +51,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger"
-                                                        onclick="return confirm('Do you want to Delete')">Delete</a>
+                                                        onclick="return confirm('Do you want to Delete with its products?')">Delete</a>
                                                 </form>
                                             @endcan
                                         </td>
@@ -65,46 +64,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 card">
-            <div class="card-header text-dark">Service Types</div>
-            <div class=" my-2 text-end" style="float: right;">
-                <a href="{{ route('service_categories.create') }}" class="btn btn-primary">Add service category</a>
-            </div>
-            <table class="text-center ">
-                <thead>
-                    <tr>
-                        <th scope="col">SL</th>
-                        <th scope="col">Service Type</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php($i = 1)
-                    @foreach ($service_categoires as $item)
-                        <tr>
-                            <td>{{ $i }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>
-                                @can(['edit service', 'delete service'])
-                                    @can('edit service')
-                                        <a href="{{ route('service_categories.edit', ['service_category' => $item->id]) }}"
-                                            class="btn btn-success">Edit</a>
-                                    @endcan
-                                    @can('delete service')
-                                        <form action="{{ route('service_categories.destroy', ['service_category' => $item->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger"
-                                                onclick="return confirm(`Do you want to Delete with it's servies?`)">Delete</a>
-                                        </form>
-                                    @endcan
-                                @endcan
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+
     </div>
 @endsection

@@ -12,10 +12,7 @@ class Service extends Model
         'service_name',
         'description',
         'image',
-        'service_cat',
+
     ];
-    public function getServiceType()
-    {
-        return $this->belongsTo(ServiceCategory::class, 'service_cat', 'id');
-    }
+
 }

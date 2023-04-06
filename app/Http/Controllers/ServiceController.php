@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Intervention\Image\Facades\Image;
@@ -15,10 +14,10 @@ class ServiceController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware(['permission:view service'])->only(['Service']);
-        $this->middleware(['permission:create service'])->only(['createService']);
-        $this->middleware(['permission:edit service'])->only(['Edit']);
-        $this->middleware(['permission:delete service'])->only(['Delete']);
+        $this->middleware(['permission:view services'])->only(['index']);
+        $this->middleware(['permission:create services'])->only(['create']);
+        $this->middleware(['permission:edit services'])->only(['store']);
+        $this->middleware(['permission:delete services'])->only(['destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -27,9 +26,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::latest()->with('getServiceType')->paginate();
-        $service_categoires = ServiceCategory::all();
-        return view('admin.service.index', compact('services', 'service_categoires'));
+        $services = Service::latest()->paginate();
+        return view('admin.service.index', compact('services'));
     }
 
     /**
@@ -39,8 +37,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $service_types = ServiceCategory::all();
-        return view('admin.service.create', compact('service_types'));
+
+        return view('admin.service.create');
     }
 
     /**
@@ -54,7 +52,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'service_name' => 'required',
             'description' => 'required|min:4|max:140',
-            'service_type' => 'required',
+
             'image' => 'required|max:50000|mimes:jpg,jped,png',
         ]);
 
@@ -69,7 +67,6 @@ class ServiceController extends Controller
             'service_name' => $request->service_name,
             'description' => $request->description,
             'image' => $last_img,
-            'service_cat' => $request->service_type,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('service.index')->with('success', 'Service Inserted successfully');
@@ -94,9 +91,9 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::where('id', $id)->with('getServiceType')->first();
-        $service_types = ServiceCategory::all();
-        return view('admin.service.edit', compact('service', 'service_types'));
+        $service = Service::where('id', $id)->first();
+
+        return view('admin.service.edit', compact('service'));
     }
 
     /**
@@ -111,7 +108,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'service_name' => 'required',
             'description' => 'required|min:4|max:140',
-            'service_type' => 'required',
+
         ]);
         $old_image = $request->old_image;
         $service_image = $request->image;
@@ -125,15 +122,15 @@ class ServiceController extends Controller
                 'service_name' => $request->service_name,
                 'description' => $request->description,
                 'image' => $last_img,
-                'service_cat' => $request->service_type,
+
                 'created_at' => Carbon::now(),
             ]);
         } else {
             Service::find($id)->update([
                 'service_name' => $request->service_name,
                 'description' => $request->description,
-                'service_cat' => $request->service_type,
-                'created_at' => Carbon::now(),
+
+                'updated_at' => Carbon::now(),
             ]);
         }
         return redirect()->route('service.index')->with('success', 'Service Updated successfully');

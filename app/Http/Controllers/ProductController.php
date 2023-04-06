@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Bus\PrunableBatchRepository;
@@ -27,9 +29,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(15);
-        $userId = Auth::user()->uniqueId;
-        return view('admin.product.index', compact('products', 'userId'));
+        $products = Product::with('getProductType', 'getService')->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -40,7 +41,9 @@ class ProductController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.product.create', compact('services'));
+        $product_types = ProductType::all();
+
+        return view('admin.product.create', compact('services', 'product_types'));
     }
 
     /**
@@ -56,15 +59,15 @@ class ProductController extends Controller
             'description' => 'required|min:2',
             'image' => 'required|max:50000|mimes:jpg,jpeg,png',
             'service' => 'required',
+            'product_type' => 'required',
             'gold_price' => 'required',
             'silver_price' => 'required',
             'platinum_price' => 'required',
-            'gold_description[]' => 'required',
-            'silver_description[]' => 'required',
-            'platinum_description[]' => 'required',
+            // 'gold_description[]' => 'required',
+            // 'silver_description[]' => 'required',
+            // 'platinum_description[]' => 'required',
 
         ]);
-        return $request->input('gold_description');
         $image = $request->file('image');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -72,16 +75,17 @@ class ProductController extends Controller
 
         $last_img = 'image/products/' . $name_gen;
         $description = str_replace(array("\r\n", "\n", "\r"), '<br>', $request->description);
-        Product::insert([
+        DB::table('products')->insert([
             'title' => $request->title,
             'description' => $description,
             'service_id' => $request->service,
+            'product_type_id' => $request->product_type,
             'gold_price' => $request->gold_price,
-            'gold_des' => $request->gold_description,
+            'gold_des' => json_encode($request->gold_description),
             'platinum_price' => $request->platinum_price,
-            'platinum_des' => $request->platinum_des,
+            'platinum_des' => json_encode($request->platinum_description),
             'silver_price' => $request->silver_price,
-            'silver_des' => $request->silver_des,
+            'silver_des' => json_encode($request->silver_description),
             'image' => $last_img,
             'created_at' => Carbon::now(),
         ]);
@@ -107,9 +111,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
-        $Product = Product::find($id);
-        return view('admin.product.edit', compact('Product'));
+        $product = Product::where('id', $id)->with('getProductType', 'getService')->first();
+        $product_types = ProductType::all();
+        $services = Service::all();
+        return view('admin.product.edit', compact('product', 'product_types', 'services'));
     }
 
     /**
@@ -124,15 +129,18 @@ class ProductController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:2',
             'description' => 'required|min:2',
-            'image' => 'max:50000|mimes:jpg,jpeg,png',
+            'image' => 'required|max:50000|mimes:jpg,jpeg,png',
+            'service' => 'required',
+            'product_type' => 'required',
             'gold_price' => 'required',
             'silver_price' => 'required',
             'platinum_price' => 'required',
-            'gold_des' => 'required',
-            'silver_des' => 'required',
-            'platinum_des' => 'required',
+            // 'gold_description[]' => 'required',
+            // 'silver_description[]' => 'required',
+            // 'platinum_description[]' => 'required',
 
         ]);
+        $description = str_replace(array("\r\n", "\n", "\r"), '<br>', $request->description);
         $old_image = $request->old_image;
         $image = $request->image;
         if ($image) {
@@ -143,34 +151,38 @@ class ProductController extends Controller
             if ($old_image != null) {
                 unlink($old_image);
             }
-            Product::find($id)->update([
+            DB::table('products')->where('id', $id)->update([
                 'title' => $request->title,
-                'description' => $request->description,
+                'description' => $description,
+                'service_id' => $request->service,
+                'product_type_id' => $request->product_type,
                 'gold_price' => $request->gold_price,
-                'gold_des' => $request->gold_des,
+                'gold_des' => json_encode($request->gold_description),
                 'platinum_price' => $request->platinum_price,
-                'platinum_des' => $request->platinum_des,
+                'platinum_des' => json_encode($request->platinum_description),
                 'silver_price' => $request->silver_price,
-                'silver_des' => $request->silver_des,
+                'silver_des' => json_encode($request->silver_description),
                 'image' => $last_img,
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->route('product.index')->with('success', 'Product Updated successfully');
+
         } else {
-            Product::find($id)->update([
+            DB::table('products')->where('id', $id)->update([
                 'title' => $request->title,
-                'description' => $request->description,
+                'description' => $description,
+                'service_id' => $request->service,
+                'product_type_id' => $request->product_type,
                 'gold_price' => $request->gold_price,
-                'gold_des' => $request->gold_des,
+                'gold_des' => json_encode($request->gold_description),
                 'platinum_price' => $request->platinum_price,
-                'platinum_des' => $request->platinum_des,
+                'platinum_des' => json_encode($request->platinum_description),
                 'silver_price' => $request->silver_price,
-                'silver_des' => $request->silver_des,
+                'silver_des' => json_encode($request->silver_description),
                 'created_at' => Carbon::now(),
             ]);
 
-            return redirect()->route('product.index')->with('success', 'Product Updated successfully');
         }
+        return redirect()->route('product.index')->with('success', 'Product Updated successfully');
     }
 
     /**
@@ -182,8 +194,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $image = Product::find($id);
-        $old_image = $image->image;
-        unlink($old_image);
+        // $old_image = $image->image;
+        // unlink($old_image);
         Product::find($id)->delete();
         return redirect()->back()->with('success', 'Product Deleted successfully');
     }
