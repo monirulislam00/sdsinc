@@ -130,6 +130,9 @@ Route::prefix('dashboard')->group(
         // Service Route
         Route::resource('/service', ServiceController::class);
         Route::resource('/service_categories', ServiceCategoryController::class);
+        /* ----------------------------- Product Routes ----------------------------- */
+
+        Route::resource('products', ProductController::class)->middleware('auth');
 
         // Contact Route
         Route::get('contact/message/view', [ContactController::class, 'Contact'])->name('contact');
@@ -209,9 +212,7 @@ Route::prefix('dashboard')->group(
         Route::post('ecom/update/{id}', [EcommerceController::class, 'Update']);
         Route::get('ecom/delete/{id}', [EcommerceController::class, 'Delete']);
 
-        /* ----------------------------- Product Routes ----------------------------- */
 
-        Route::resource('products', ProductController::class)->middleware('auth');
 
         Route::middleware('auth')->group(function () {
             // ============ Change password & User profile========================//

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,14 @@ class ServiceCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'catagory_name' => 'required|unique:service_categories,name,' . $id,
+        ]);
+        ServiceCategory::find($id)->update([
+            'name' => $request->catagory_name,
+        ]);
+        session()->flash('success', 'Updated successfully');
+        return redirect()->route('service.index');
     }
 
     /**
@@ -96,6 +104,12 @@ class ServiceCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $services = Service::where('service_cat', $id)->get();
+        foreach ($services as $service) {
+            $service->delete();
+        }
+        ServiceCategory::find($id)->delete();
+        session()->flash('success', "Deleted Service Categoires with it's services");
+        return redirect()->route('service.index');
     }
 }

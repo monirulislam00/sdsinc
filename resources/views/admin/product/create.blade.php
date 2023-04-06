@@ -2,19 +2,17 @@
 @section('admin_content')
     <div class="row">
         <div class="float-right m-1">
-            <a href="{{ route('service') }}" class="btn btn-primary">All services</a>
+            <a href="{{ route('products.index') }}" class="btn btn-primary">All products</a>
         </div>
     </div>
-    <div class="card">
-
-        <div class="card-header">Add Service</div>
-        <form action="{{ route('store.service') }}" method="POST" enctype="multipart/form-data">
-
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="card">
+            <div class="card-header">Add product</div>
             <div class="row p-2">
                 <div class="card-body col-md-6">
-                    @csrf
                     <div class="form-group mb-3">
-                        <label>Service Name</label>
+                        <label>product Name</label>
                         <input type="text" name="title" class="form-control">
                         <small class="text-danger">
                             @error('title')
@@ -23,17 +21,7 @@
                         </small>
                     </div>
                     <div class="form-group mb-3">
-                        <label>Service Description</label>
-                        <textarea type="text" name="description" class="form-control" rows="7"></textarea>
-                        <small class="text-danger">
-                            @error('description')
-                                {{ $message }}
-                            @enderror
-                        </small>
-                    </div>
-                    <div class="form-group mb-3">
-
-                        <label>Service Image</label>
+                        <label>product Image</label>
                         <input name="image" class="form-control" type="file" id="formFile">
                         <small class="text-danger">
                             @error('image')
@@ -42,55 +30,40 @@
                         </small>
                     </div>
                     <div class="form-group mb-3">
-
-                        <div class="form-group mb-3">
-                            <label>Gold /Standard Price</label>
-                            <input type="text" name="gold_price" class="form-control">
-                            <small class="text-danger">
-                                @error('gold_price')
-                                    {{ $message }}
-                                @enderror
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Gold description</label>
-                        <textarea type="text" name="gold_des" class="form-control" rows="7"></textarea>
+                        <label for="">Product Type</label>
+                        <select name="service" id="" class="form-control">
+                            <option value="">select service</option>
+                            @foreach ($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->service_name }}</option>
+                            @endforeach
+                        </select>
                         <small class="text-danger">
-                            @error('gold_des')
+                            @error('service')
                                 {{ $message }}
                             @enderror
                         </small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Service</button>
                 </div>
                 <div class="card-body col-md-6">
-
                     <div class="form-group mb-3">
-                        <div class="form-group mb-3">
-                            <label>Platinum Price</label>
-
-                            <input type="text" name="platinum_price" class="form-control">
-                            <small class="text-danger">
-                                @error('platinum_price')
-                                    {{ $message }}
-                                @enderror
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Platinum description</label>
-                        <textarea type="text" name="platinum_des" class="form-control" rows="7"></textarea>
+                        <label>product Description</label>
+                        <textarea type="text" name="description" class="form-control" rows="8"></textarea>
                         <small class="text-danger">
-                            @error('platinum_des')
+                            @error('description')
                                 {{ $message }}
                             @enderror
                         </small>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class=" col-md-4">
+                <div class="card p-2">
+                    <div class="card-header">Silver Card</div>
                     <div class="form-group mb-3">
                         <div class="form-group mb-3">
                             <label>Silver Price</label>
-
                             <input type="text" name="silver_price" class="form-control">
                             <small class="text-danger">
                                 @error('silver_price')
@@ -102,7 +75,23 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Silver description</label>
-                        <textarea type="text" name="silver_des" class="form-control" rows="7"></textarea>
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <input type="text" class="form-control mt-1" name="silver_description[]">
+                        <small class="text-danger">
+                            @error('silver_description[]')
+                                {{ $message }}
+                            @enderror
+                        </small>
                         <small class="text-danger">
                             @error('silver_des')
                                 {{ $message }}
@@ -111,6 +100,82 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class=" col-md-4">
+                <div class="card p-2">
+                    <div class="card-header">Gold Card</div>
+                    <div class="form-group mb-3">
+                        <div class="form-group mb-3">
+                            <label>Gold /Standard Price</label>
+                            <input type="text" name="gold_price" class="form-control">
+                            <small class="text-danger">
+                                @error('gold_price')
+                                    {{ $message }}
+                                @enderror
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Gold Description</label>
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <input type="text" class="form-control mt-1" name="gold_description[]">
+                        <small class="text-danger">
+                            @error('gold_description[]')
+                                {{ $message }}
+                            @enderror
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-md-4">
+                <div class="card p-2">
+                    <div class="card-header">Platinum Card</div>
+                    <div class="form-group mb-3">
+                        <div class="form-group mb-3">
+                            <label>Platinum Price</label>
+                            <input type="text" name="platinum_price" class="form-control">
+                            <small class="text-danger">
+                                @error('platinum_price')
+                                    {{ $message }}
+                                @enderror
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Platinum description</label>
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <input type="text" class="form-control mt-1" name="platinum_description[]">
+                        <small class="text-danger">
+                            @error('platinum_description[]')
+                                {{ $message }}
+                            @enderror
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 float-end">
+            <button type="submit" class="btn btn-primary ">Add product</button>
+        </div>
+    </form>
 @endsection

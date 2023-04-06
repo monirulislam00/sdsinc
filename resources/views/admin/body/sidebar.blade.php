@@ -60,13 +60,31 @@
         Interface
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
+    @can(['view products', 'view service'])
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseService"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-th-large"></i>
+                <span>Servies & Products</span>
+            </a>
+            </a>
+            <div id="collapseService" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('view service')
+                        <a class="collapse-item" href="{{ route('service.index') }}">Service</a>
+                    @endcan
+                    @can('view products')
+                        <a class="collapse-item" href="{{ route('products.index') }}">Products</a>
+                    @endcan
+                </div>
+            </div>
+        </li>
+    @endcan
     @canany([
         'view slider',
-        'view products',
         'view features',
         'view portfoli',
         'view partner',
-        'view service',
         'view subscribers',
         'view
         blogs',
@@ -97,9 +115,7 @@
                     @can('view partner')
                         <a class="collapse-item" href="{{ route('partner') }}">Partner</a>
                     @endcan
-                    @can('view service')
-                        <a class="collapse-item" href="{{ route('service.index') }}">Service</a>
-                    @endcan
+
                     @can('affiliate service')
                         <a class="collapse-item" href="{{ route('affiliate.services') }}">Affiliate service</a>
                     @endcan

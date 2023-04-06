@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -19,43 +20,64 @@ class ProductController extends Controller
         $this->middleware(['permission:edit products'])->only(['edit']);
         $this->middleware(['permission:delete products'])->only(['destroy']);
     }
-    public function Service()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $services = Service::latest()->paginate(15);
+        $products = Product::latest()->paginate(15);
         $userId = Auth::user()->uniqueId;
-        return view('admin.service.index', compact('services', 'userId'));
+        return view('admin.product.index', compact('products', 'userId'));
     }
-    public function createService()
-    {
-        return view('admin.service.create');
-    }
-    public function StoreService(Request $request)
-    {
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $services = Service::all();
+        return view('admin.product.create', compact('services'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'title' => 'required|min:2',
             'description' => 'required|min:2',
             'image' => 'required|max:50000|mimes:jpg,jpeg,png',
+            'service' => 'required',
             'gold_price' => 'required',
             'silver_price' => 'required',
             'platinum_price' => 'required',
-            'gold_des' => 'required',
-            'silver_des' => 'required',
-            'platinum_des' => 'required',
+            'gold_description[]' => 'required',
+            'silver_description[]' => 'required',
+            'platinum_description[]' => 'required',
 
         ]);
+        return $request->input('gold_description');
         $image = $request->file('image');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(900, 600)->save('image/service/' . $name_gen);
+        Image::make($image)->resize(900, 600)->save('image/products/' . $name_gen);
 
-        $last_img = 'image/service/' . $name_gen;
-
-        Service::insert([
+        $last_img = 'image/products/' . $name_gen;
+        $description = str_replace(array("\r\n", "\n", "\r"), '<br>', $request->description);
+        Product::insert([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => $description,
+            'service_id' => $request->service,
             'gold_price' => $request->gold_price,
-            'gold_des' => $request->gold_des,
+            'gold_des' => $request->gold_description,
             'platinum_price' => $request->platinum_price,
             'platinum_des' => $request->platinum_des,
             'silver_price' => $request->silver_price,
@@ -63,14 +85,41 @@ class ProductController extends Controller
             'image' => $last_img,
             'created_at' => Carbon::now(),
         ]);
-        return redirect()->route('service')->with('success', 'service Inserted successfully');
+        return redirect()->route('products.index')->with('success', 'Product Inserted successfully');
     }
-    public function Edit($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $service = Service::find($id);
-        return view('admin.service.edit', compact('service'));
+        //
     }
-    public function Update(Request $request, $id)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+        $Product = Product::find($id);
+        return view('admin.product.edit', compact('Product'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'title' => 'required|min:2',
@@ -88,13 +137,13 @@ class ProductController extends Controller
         $image = $request->image;
         if ($image) {
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(900, 600)->save('image/service/' . $name_gen);
+            Image::make($image)->resize(900, 600)->save('image/products/' . $name_gen);
 
-            $last_img = 'image/service/' . $name_gen;
+            $last_img = 'image/products/' . $name_gen;
             if ($old_image != null) {
                 unlink($old_image);
             }
-            Service::find($id)->update([
+            Product::find($id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
                 'gold_price' => $request->gold_price,
@@ -106,9 +155,9 @@ class ProductController extends Controller
                 'image' => $last_img,
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->route('service')->with('success', 'service Updated successfully');
+            return redirect()->route('product.index')->with('success', 'Product Updated successfully');
         } else {
-            Service::find($id)->update([
+            Product::find($id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
                 'gold_price' => $request->gold_price,
@@ -120,16 +169,22 @@ class ProductController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            return redirect()->route('service')->with('success', 'service Updated successfully');
+            return redirect()->route('product.index')->with('success', 'Product Updated successfully');
         }
     }
-    public function Delete($id)
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $image = Service::find($id);
+        $image = Product::find($id);
         $old_image = $image->image;
         unlink($old_image);
-
-        Service::find($id)->delete();
-        return redirect()->back()->with('success', 'service Deleted successfully');
+        Product::find($id)->delete();
+        return redirect()->back()->with('success', 'Product Deleted successfully');
     }
 }

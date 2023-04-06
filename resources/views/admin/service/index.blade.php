@@ -75,6 +75,7 @@
                     <tr>
                         <th scope="col">SL</th>
                         <th scope="col">Service Type</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,6 +84,23 @@
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ $item->name }}</td>
+                            <td>
+                                @can(['edit service', 'delete service'])
+                                    @can('edit service')
+                                        <a href="{{ route('service_categories.edit', ['service_category' => $item->id]) }}"
+                                            class="btn btn-success">Edit</a>
+                                    @endcan
+                                    @can('delete service')
+                                        <form action="{{ route('service_categories.destroy', ['service_category' => $item->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger"
+                                                onclick="return confirm(`Do you want to Delete with it's servies?`)">Delete</a>
+                                        </form>
+                                    @endcan
+                                @endcan
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

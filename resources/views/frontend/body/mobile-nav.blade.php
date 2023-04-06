@@ -1,4 +1,4 @@
-<nav class=" bg-gray-800 border-gray-700 lg:hidden fixed top-0 left-0 w-full z-[200]">
+<nav class=" bg-gray-800 border-gray-700 lg:hidden fixed top-0 left-0 w-full z-[2800]">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <a href="{{ route('/') }}" class="flex items-center">
             <img src="{{ asset('frontend/images/logo.png') }}" class="h-8 mr-3" alt="SDSincbd Logo" />

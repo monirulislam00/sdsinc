@@ -8,11 +8,13 @@
             <div class="card">
                 <div class="card-header">Edit Service Catogory</div>
                 <div class="card-body">
-                    <form action="{{ route('service_categories.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('service_categories.update', ['service_category' => $category->id]) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group mb-3">
                             <label> Title</label>
-                            <input type="text" name="catagory_name" class="form-control">
+                            <input type="text" name="catagory_name" class="form-control" value="{{ $category->name }}">
                             @error('catagory_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
