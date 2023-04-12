@@ -49,7 +49,7 @@
                                     <td>{{ $order->email }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>
-                                    <td>{{ $order->getService->title }}</td>
+                                    <td>{{ $order->getProduct->title }}</td>
                                     <td>
                                         @if ($order->quality == 1)
                                             Platinum

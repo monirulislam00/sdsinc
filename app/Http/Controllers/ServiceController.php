@@ -59,8 +59,7 @@ class ServiceController extends Controller
         $Service_image = $request->file('image');
 
         $name_gen = hexdec(uniqid()) . '.' . $Service_image->getClientOriginalExtension();
-        Image::make($Service_image)->resize(100, 100)->save('image/service/' . $name_gen);
-
+        Image::make($Service_image)->resize(1920, 1088)->save('image/service/' . $name_gen);
         $last_img = 'image/service/' . $name_gen;
 
         Service::insert([

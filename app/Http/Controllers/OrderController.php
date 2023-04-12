@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Service;
+use App\Models\Product;
+
 use Illuminate\Http\Request;
 use App\Models\AffiliateEarning;
 use Illuminate\Support\Facades\Validator;
@@ -17,12 +18,12 @@ class OrderController extends Controller
     }
     /**
      *
-     *  @return all orders with services
+     *  @return all orders with products
      *
      */
-    public  function index()
+    public function index()
     {
-        $orders = Order::with('getService')->latest()->get();
+        $orders = Order::with('getProduct')->latest()->get();
         return view('admin.orders.index', ['orders' => $orders]);
     }
 
@@ -31,38 +32,38 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->status = "Accepted";
 
-        $service = Service::find($order->service_id);
+        $product = Product::find($order->product_id);
         if ($order->quality == 1) {
-            $servicePrice = $service->platinum_price;
+            $productPrice = $product->platinum_price;
         } else if ($order->quality == 2) {
-            $servicePrice = $service->gold_price;
+            $productPrice = $product->gold_price;
         } else if ($order->quality == 3) {
-            $servicePrice = $service->silver_price;
+            $productPrice = $product->silver_price;
         } else {
-            $servicePrice = "custom";
+            $productPrice = "custom";
         }
         if ($order->affiliate_id != null) {
             // storing affiliate earning
             $affiliateEarning = new AffiliateEarning;
             $affiliateEarning->order_id = $order->id;
             $affiliateEarning->affiliate_id = $order->affiliate_id;
-            $affiliateEarning->service_id = $order->service_id;
-            if (is_numeric($servicePrice)) {
-                $affiliateEarning->amount = ($servicePrice * 10) / 100;
+            $affiliateEarning->product_id = $order->product_id;
+            if (is_numeric($productPrice)) {
+                $affiliateEarning->amount = ($productPrice * 10) / 100;
             } else {
                 $affiliateEarning->amount = "custom";
             }
             $affiliateEarning->save();
             // storing other earnings
-            if (is_numeric($servicePrice)) {
-                $order->earnings = ($servicePrice * 90) / 100;
+            if (is_numeric($productPrice)) {
+                $order->earnings = ($productPrice * 90) / 100;
             } else {
                 $order->earnings = "custom";
             }
 
             $order->save();
         } else {
-            $order->earnings = $servicePrice;
+            $order->earnings = $productPrice;
             $order->save();
         }
         return redirect()->back()->with('success', 'Order Accepted successfully');

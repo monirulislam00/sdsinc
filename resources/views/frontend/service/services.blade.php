@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
+    <div class="page-title"
+        style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
         <h2 class="py-1 mt-4 fw-bold text-light">Services</h2>
         <h3>Home > Service</h3>
     </div>
@@ -14,26 +15,26 @@
             <div class="center fadeInDown ">
                 <div class="flex flex-wrap justify-center">
                     @foreach ($services as $service)
-                        <div class="max-w-sm m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="service/{{ $service->id }}">
+                        <div
+                            class="max-w-sm m-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <a href="service/{{ $service->service_name }}">
                                 <img class="rounded-t-lg" src="{{ $service->image }}" alt="" />
                             </a>
                             <div class="p-3 text-left">
                                 <div class="flex flex-wrap">
                                     <div class="basis-[75%]"> <a href="#">
-                                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                                {{ $service->title }}</h5>
+                                            <h5
+                                                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                                {{ $service->service_name }}</h5>
                                         </a>
                                         <p class="mb-3  text-slate-700 text-base">
                                             {{ substr($service->description, 0, 92) }} ...
                                         </p>
                                     </div>
-                                    <div class="basis-[25%] text-center ">
-                                        <p class="text-sm bg-[#f0a596] p-1 px-2 inline-block rounded-full text-[#932c18] font-bold">${{ $service->gold_price }}</p>
-                                    </div>
+
                                 </div>
 
-                                <a href="service/{{ $service->id }}"
+                                <a href="service/{{ $service->service_name }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primaryColor rounded-lg hover:bg-primaryLight focus:ring-4 focus:outline-none focus:ring-amber-50">
                                     Read more
                                     <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor"

@@ -286,10 +286,11 @@ Route::get('portfolio', [CommonController::class, 'FrontendPortfolio'])->name('f
 //================================= service routes ========================/
 
 Route::get('service', [CommonController::class, 'FrontendService'])->name('frontend.service');
-Route::get('service/{id}/{userId?}', [CommonController::class, 'FrontendSingleService']);
+Route::get('service/{serviceName}/', [CommonController::class, 'FrontendSingleService']);
+Route::get('products/{productId}/{userId?}', [CommonController::class, 'FrontendSingleProduct']);
 
-Route::post('service/order', [CommonController::class, 'getInfo'])->name('order.info');
-Route::post('service/placeOrder', [CommonController::class, 'placeOrder'])->name('order.place');
+Route::post('product/order', [CommonController::class, 'getInfo'])->name('order.info');
+Route::post('product/placeOrder', [CommonController::class, 'placeOrder'])->name('order.place');
 //================================= contact routes ========================/
 
 Route::get('contact', [CommonController::class, 'FrontendContact'])->name('frontend.contact');
