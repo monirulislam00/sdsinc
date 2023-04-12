@@ -40,7 +40,7 @@ class OrderController extends Controller
         } else if ($order->quality == 3) {
             $productPrice = $product->silver_price;
         } else {
-            $productPrice = "custom";
+            $productPrice = 0;
         }
         if ($order->affiliate_id != null) {
             // storing affiliate earning
@@ -51,14 +51,14 @@ class OrderController extends Controller
             if (is_numeric($productPrice)) {
                 $affiliateEarning->amount = ($productPrice * 10) / 100;
             } else {
-                $affiliateEarning->amount = "custom";
+                $affiliateEarning->amount = 0;
             }
             $affiliateEarning->save();
             // storing other earnings
             if (is_numeric($productPrice)) {
                 $order->earnings = ($productPrice * 90) / 100;
             } else {
-                $order->earnings = "custom";
+                $order->earnings = 0;
             }
 
             $order->save();
@@ -72,6 +72,12 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order->status = "Cancelled";
+        if ($order->earnings != 0) {
+            $order->earnings = 0;
+        }
+        if ($order->affiliate_id != null) {
+            $affiliateEarning = AffiliateEarning::where('order_id', $order->id)->delete();
+        }
         $order->save();
         $affiliateEarning = AffiliateEarning::where('order_id', $id)->delete();
         return redirect()->back()->with('success', 'Order Cancelled successfully');

@@ -37,34 +37,34 @@
                             </thead>
                             <tbody>
                                 @php($i = 1)
-                                @foreach ($services as $service)
+                                @foreach ($products as $product)
                                     <tr>
                                         <th scope="row">{{ $i++ }}</th>
-                                        <td>{{ $service->title }}</td>
-                                        <td style="text-align:justify;min-width:280px">{{ $service->description }}</td>
-                                        <td>{{ $service->gold_price }} $</td>
-                                        <td><img src="{{ asset($service->image) }}" class="m-auto" alt=""
+                                        <td>{{ $product->title }}</td>
+                                        <td style="text-align:justify;min-width:280px">{{ $product->description }}</td>
+                                        <td>{{ $product->gold_price }} $</td>
+                                        <td><img src="{{ asset($product->image) }}" class="m-auto" alt=""
                                                 width="120px" height="80px"></td>
-                                        <td style="min-width:280px">{{ $service->gold_des }} $</td>
-                                        <td>{{ $service->platinum_price }} $</td>
-                                        <td style="min-width:280px">{{ $service->platinum_des }} $</td>
-                                        <td>{{ $service->silver_price }} $</td>
-                                        <td style="min-width:280px">{{ $service->silver_des }} $</td>
+                                        <td style="min-width:280px">{{ $product->gold_des }} $</td>
+                                        <td>{{ $product->platinum_price }} $</td>
+                                        <td style="min-width:280px">{{ $product->platinum_des }} $</td>
+                                        <td>{{ $product->silver_price }} $</td>
+                                        <td style="min-width:280px">{{ $product->silver_des }} $</td>
                                         @hasrole('affiliated')
                                             <td scope="col">
                                                 {{-- <button class="btn btn-primary"><i
                                                         class="fas fa-link"></i>
                                                     </button>
                                                         --}}
-                                                <a href="{{ route('/') }}/service/{{ $service->id }}/{{ $userId }}"
-                                                    class="text-primary text-underline">{{ route('/') }}/service/{{ $service->id }}/{{ $userId }}</a>
+                                                <a href="{{ route('/') }}/products/{{ $product->id }}/{{ $userId }}"
+                                                    class="text-primary text-underline">{{ route('/') }}/products/{{ $product->id }}/{{ $userId }}</a>
                                             </td>
                                         @endhasrole
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $services->links() }}
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>

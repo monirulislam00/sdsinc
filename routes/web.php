@@ -260,7 +260,7 @@ Route::prefix('dashboard')->group(
 /* -------------------------------------------------------------------------- */
 Route::prefix('affiliated/')->group(function () {
     Route::get('/dashboard', [AffiliatedController::class, "index"])->name('affiliate.index');
-    Route::get('/services', [AffiliatedController::class, "services"])->name('affiliate.services');
+    Route::get('/products', [AffiliatedController::class, "products"])->name('affiliate.products');
 
     //==========================orders through link ==================================/
     Route::get('earnings', [AffiliateEarningController::class, 'getEarnings'])->name('earnings.affiliated');

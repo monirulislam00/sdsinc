@@ -19,9 +19,9 @@
                                 <th scope="col">Customer's Email</th>
                                 <th scope="col">Customer's Name</th>
                                 <th scope="col">Customer's Phone</th>
-                                <th scope="col">Service Name</th>
-                                <th scope="col">Service Quality</th>
-                                <th scope="col">Service Type</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Quality</th>
+                                <th scope="col">Product Type</th>
                                 <th scope="col">Earning</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Customer's Reason of needing</th>
@@ -62,8 +62,16 @@
                                         @endif
                                     </td>
                                     {{-- <td>{{ $order->quality }}</td> --}}
-                                    <td>{{ $order->service_type }}</td>
-                                    <td>{{ $order->earnings }}</td>
+                                    <td>{{ $order->product_type }}</td>
+                                    <td>
+
+                                        @if ($order->status == 'Accepted' && $order->earnings == 0)
+                                            custom
+                                        @else
+                                            {{ $order->earnings }}
+                                        @endif
+
+                                    </td>
                                     <td>{{ $order->country }}</td>
                                     <td>{{ $order->reason }}</td>
                                     <td>{{ $order->description }}</td>

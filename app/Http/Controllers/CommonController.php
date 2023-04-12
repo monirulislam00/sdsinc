@@ -208,8 +208,7 @@ class CommonController extends Controller
                 'data' => $validator->messages()
             ], 200);
         } else {
-            // setting flash session to redirect after placing order .Related to getinfo function
-
+            session()->flash('message', "placed");
             $type = $request->type == 'demo' ? "demo" : "real";
             $order = Order::create([
                 'name' => $request->fullName,
@@ -225,7 +224,6 @@ class CommonController extends Controller
                 'product_id' => $request->product,
                 'affiliate_id' => $request->promoCode
             ]);
-            session()->flash('message', "placed");
             OrderPlacedMail::dispatch($order);
             return response()->json([
                 'status' => 1,

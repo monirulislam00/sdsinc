@@ -119,7 +119,7 @@
                     @endcan
 
                     @can('affiliate service')
-                        <a class="collapse-item" href="{{ route('affiliate.services') }}">Affiliate service</a>
+                        <a class="collapse-item" href="{{ route('affiliate.products') }}">Affiliate service</a>
                     @endcan
                     @can('view subscribers')
                         <a class="collapse-item" href="{{ route('subscribers.index') }}">Subscribers</a>
