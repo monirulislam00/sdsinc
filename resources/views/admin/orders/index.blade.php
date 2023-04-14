@@ -16,6 +16,7 @@
                             <tr>
                                 <th scope="col">SL</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Order created</th>
                                 <th scope="col">Customer's Email</th>
                                 <th scope="col">Customer's Name</th>
                                 <th scope="col">Customer's Phone</th>
@@ -46,6 +47,7 @@
                                             <p class="bg-danger rounded p-1">{{ $order->status }}</p>
                                         @endif
                                     </td>
+                                    <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->email }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>

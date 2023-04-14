@@ -52,7 +52,7 @@ use App\Http\Controllers\AffiliateProfileController;
 */
 
 Route::get('/', function () {
-    $products = Product::latest()->with('getService')->take(6)->get();
+    $products = Product::latest()->with('getProductType')->take(6)->get();
     $services = Service::latest()->take(6)->get();
     $features = DB::table('features')->get();
     $portfolio = DB::table('portfolios')->latest()->get();

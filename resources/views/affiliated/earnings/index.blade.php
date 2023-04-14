@@ -25,7 +25,7 @@
                             @foreach ($earnings as $earning)
                                 <tr>
                                     <th>{{ $i++ }}</th>
-                                    <td>{{ $earning->getService }}</td>
+                                    <td>{{ $earning->getProduct->title }}</td>
                                     <td>
                                         @if ($earning->getOrder->quality == 1)
                                             Platinum
@@ -38,7 +38,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($order->earnings == 0)
+                                        @if ($earning->getOrder->earnings == 0)
                                             custom
                                         @else
                                             ${{ $earning->amount }}

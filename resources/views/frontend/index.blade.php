@@ -7,24 +7,26 @@
             <div class="row">
                 @foreach ($products as $product)
                     <div class="col-md-4">
-                        <div class="content mt-4 p-4 pb-0 relative" style="min-height: 250px">
-                            <div class="row ">
-                                <div class="col-3 pt-4">
-                                    <img src="{{ asset($product->image) }}" alt="" srcset="">
+                        <a href="/products/{{ $product->id }}">
+                            <div class="content mt-4 p-4 pb-0 relative" style="min-height: 250px">
+                                <div class="row ">
+                                    <div class="col-3 pt-4">
+                                        <img src="{{ asset($product->image) }}" alt="" srcset="">
+                                    </div>
+                                    <div class="col-9 my-4">
+                                        <div class="title">
+                                            <p class="text-xl  font-bold">{{ $product->title }}</p>
+                                        </div>
+                                        <div class="description text-zinc-500">
+                                            <p class="font-semibold">{!! substr($product->description, 0, 90) . '...' !!}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-9 my-4">
-                                    <div class="title">
-                                        <p class="text-xl  font-bold">{{ $product->title }}</p>
-                                    </div>
-                                    <div class="description text-zinc-500">
-                                        <p class="font-semibold">{!! substr($product->description, 0, 90) . '...' !!}</p>
-                                    </div>
+                                <div class="type p-2 bg-orange-600 absolute top-0 right-0">
+                                    <p class="mb-0 text-white font-semibold">{{ $product->getProductType->name }}</p>
                                 </div>
                             </div>
-                            <div class="type p-2 bg-orange-600 absolute top-0 right-0">
-                                <p class="mb-0 text-white font-semibold">{{ $product->getService->service_name }}</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -37,19 +39,21 @@
             <div class="row">
                 @foreach ($services as $service)
                     <div class="col-md-4 ">
-                        <div class="content mt-4 p-3 shadow-md">
-                            <div class="svg w-20 py-2.5">
-                                <img src="{{ asset($service->image) }}" alt="">
+                        <a href="service/{{ $service->service_name }}">
+                            <div class="content mt-4 p-3 shadow-md">
+                                <div class="svg w-20 py-2.5">
+                                    <img src="{{ asset($service->image) }}" alt="">
+                                </div>
+                                <div class="title">
+                                    <h3>{{ $service->service_name }}</h3>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        {{ $service->description }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="title">
-                                <h3>{{ $service->service_name }}</h3>
-                            </div>
-                            <div class="description">
-                                <p>
-                                    {{ $service->description }}
-                                </p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
                 {{-- <div class="col-md-4 ">

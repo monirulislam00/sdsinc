@@ -48,11 +48,11 @@ class CommonController extends Controller
     {
         $service = Service::where('service_name', $serviceName)->first();
         $products = Product::where('service_id', $service->id)->get();
-        return view('frontend.service.single-service', compact('products'));
+        return view('frontend.service.single-service', compact('products', 'service'));
     }
     public function FrontendSingleProduct($productId, $uniqueId = null)
     {
-        $product = Product::where('id', $productId)->first();
+        $product = Product::with('getService')->where('id', $productId)->first();
         // dd($service);
         return view('frontend.service.single-product', compact('product', 'uniqueId'));
     }

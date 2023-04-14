@@ -1274,9 +1274,6 @@ select {
 .z-50 {
   z-index: 50;
 }
-.z-\[50\] {
-  z-index: 50;
-}
 .z-\[999\] {
   z-index: 999;
 }
@@ -1880,10 +1877,6 @@ select {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-.border-gray-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 .border-green-300 {
   --tw-border-opacity: 1;

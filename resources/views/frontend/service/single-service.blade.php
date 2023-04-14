@@ -3,13 +3,13 @@
     <div class="page-title"
         style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
         <h2 class="py-1 mt-4 fw-bold text-light">Services</h2>
-        <h3>Home > Service</h3>
+        <h3>Home > Services > Products</h3>
     </div>
     <section id="services" class="service-item">
         <div class="container-fluid px-4 my-3">
             <div class="center fadeInDown">
-                <h2 class="py-2 mt-1">Our Service</h2>
-                <p class="lead">We provide Development and Solution services with expart team.</p>
+                <h2 class="py-2 mt-1">{{ $service->service_name }}</h2>
+
             </div>
             <!--/#services-->
             <div class="center fadeInDown ">
