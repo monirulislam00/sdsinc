@@ -58,7 +58,7 @@
                                 <ul class="p-0 flex flex-col" style="text-align: justify;">
                                     @foreach (json_decode($product->platinum_des) as $item)
                                         @if ($item != '')
-                                            <li class="text-center py-2 border-y-[1px]">
+                                            <li class="text-center py-2">
                                                 {{ $item }}</li>
                                         @endif
                                     @endforeach
@@ -104,7 +104,7 @@
                             <ul class="p-0 flex flex-col" style="text-align: justify;">
                                 @foreach (json_decode($product->gold_des) as $item)
                                     @if ($item != '')
-                                        <li class="text-center py-2 border-y-[1px]">
+                                        <li class="text-center py-2">
                                             {{ $item }}</li>
                                     @endif
                                 @endforeach
@@ -148,7 +148,7 @@
                                 <ul class="p-0 flex flex-col" style="text-align: justify;">
                                     @foreach (json_decode($product->silver_des) as $item)
                                         @if ($item != '')
-                                            <li class="text-center py-2 border-y-[1px]">
+                                            <li class="text-center py-2">
                                                 {{ $item }}</li>
                                         @endif
                                     @endforeach
