@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('home_content')
     <?php
-    // $directors = DB::table('teams')->get();
+    // $members = DB::table('teams')->get();
     ?>
 
     <div class="page-title" style='background-image: url({{ asset('frontend/images/page-title.png') }})'>
@@ -33,40 +33,42 @@
         </div>
 
     </section>
-
+    @include('frontend.about.team.modal')
     <section id="team-area">
         <div class="container">
+            @foreach ($departments as $department)
+                @if ($department->getTeamMembers->count() > 0)
+                    <div class="teamheading">
+                        <h2 class="mb-4">{{ $department->department_name }}</h2>
+                        <div class="row">
 
-            <div class="teamheading">
-                <h2 class="mb-4">Board Of Directors</h2>
-                <div class="row">
-                    <div>
-                        {{-- @foreach ($directors as $director)
-                            <div class="col-md-4 col-sm-6 single-team">
-                                <div class="inner">
-                                    <div class="team-img">
-                                        <img src="{{ asset($director->image) }}" alt="">
-                                    </div>
-                                    <div class="team-content">
-                                        <h4>{{ $director->name }}</h4>
-                                        <p class="desg">{{ $director->company }}</p>
-                                        <p class="desg">{{ $director->title }}</p>
-                                        <p class="desg">{{ $director->phone }}</p>
-                                        <p class="desg">{{ $director->mail }}</p>
-                                        <div class="team-social">
-                                            <a class="fa fa-facebook" href="#"></a>
-                                            <a class="fa fa-twitter" href="#"></a>
-                                            <a class="fa fa-linkedin" href="#"></a>
-                                            <a class="fa fa-pinterest" href="#"></a>
+                            @foreach ($department->getTeamMembers as $member)
+                                <div class="col-md-4 col-sm-6 single-team see-profile" data-bs-toggle="modal"
+                                    data-bs-target="#teamModal" data-id="{{ $member->id }}">
+                                    <div class="inner">
+                                        <div class="team-img">
+                                            <img src="{{ asset($member->image) }}" alt="">
+                                        </div>
+                                        <div class="team-content">
+                                            <h4>{{ $member->name }}</h4>
+                                            <p class="desg">{{ $member->company }}</p>
+                                            <p class="desg">{{ $member->phone }}</p>
+                                            <p class="desg">{{ $member->email }}</p>
+                                            <div class="team-social">
+                                                <a class="fa fa-facebook" href="#"></a>
+                                                <a class="fa fa-twitter" href="#"></a>
+                                                <a class="fa fa-linkedin" href="#"></a>
+                                                <a class="fa fa-pinterest" href="#"></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach --}}
-                    </div>
-                </div>
-            </div>
+                            @endforeach
 
+                        </div>
+                    </div>
+                @endif
+            @endforeach
 
         </div>
     </section>

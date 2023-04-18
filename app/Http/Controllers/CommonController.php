@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -157,11 +158,14 @@ class CommonController extends Controller
     }
     public function FrontendAboutsds()
     {
+
         return view('frontend.about.aboutSDS.aboutsds');
     }
     public function FrontendTeam()
     {
-        return view('frontend.about.team.team');
+        $departments = Department::with('getTeamMembers')->get();
+
+        return view('frontend.about.team.team', ['departments' => $departments]);
     }
     public function FrontendTechnologies()
     {
