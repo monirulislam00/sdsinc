@@ -140,19 +140,20 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTeam"
                 aria-expanded="true" aria-controls="collapseTeam">
                 <i class="fas fa-users"></i>
-                <span>Our team</span>
+                <span>Our Team & Dept</span>
             </a>
             <div id="collapseTeam" class="collapse" aria-labelledby="headingTeam" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('about.team') }}">Director</a>
+                    {{-- <a class="collapse-item" href="{{ route('about.team') }}">Director</a>
                     <a class="collapse-item" href="{{ route('about.management') }}">Management</a>
                     <a class="collapse-item" href="{{ route('about.HR') }}">HR</a>
                     <a class="collapse-item" href="{{ route('about.account') }}">Account</a>
                     <a class="collapse-item" href="{{ route('about.biometric') }}">Bio-Metric</a>
                     <a class="collapse-item" href="{{ route('about.webdev') }}">Web-Dev</a>
                     <a class="collapse-item" href="{{ route('about.network') }}">Network</a>
-                    <a class="collapse-item" href="{{ route('about.ecom') }}">E-Commerce</a>
+                    <a class="collapse-item" href="{{ route('about.ecom') }}">E-Commerce</a> --}}
                     <a class="collapse-item" href="{{ route('view.team') }}">Team member</a>
+                    <a class="collapse-item" href="{{ route('view.department') }}">Department</a>
                 </div>
             </div>
         </li>

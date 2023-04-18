@@ -2,13 +2,6 @@
 @section('home_content')
     <?php
     // $directors = DB::table('teams')->get();
-    // $managements = DB::table('management')->get();
-    // $hrs = DB::table('h_r_s')->get();
-    // $accounts = DB::table('accounts')->get();
-    // $bios = DB::table('bio_metrics')->get();
-    // $webs = DB::table('webdevs')->get();
-    // $networks = DB::table('networks')->get();
-    // $e_commerces = DB::table('e_commerces')->get();
     ?>
 
     <div class="page-title" style='background-image: url({{ asset('frontend/images/page-title.png') }})'>

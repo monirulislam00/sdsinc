@@ -72,23 +72,6 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">Add Department</div>
-            <div class="card-body">
-                <form action="{{route('addDepartment')}}" method="POST">
-                    @csrf
-                    <div class="form-group mb-3">
-                        <label> Department Name</label>
-                        <input type="text" name="department_name" class="form-control">
-                        @error('department_name')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 </div>
 @endsection

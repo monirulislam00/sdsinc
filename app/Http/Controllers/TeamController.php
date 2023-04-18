@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
 use App\Models\Department;
 use App\Models\TeamMember;
 use Intervention\Image\Facades\Image;
@@ -15,6 +14,10 @@ class TeamController extends Controller
     {
         $this->middleware('auth');
     }
+    public function ViewDepartment(){
+        $departments = Department::latest()->get();
+        return view('admin.department.index',compact('departments'));
+    }
     public function AddDepartment(Request $request){
         $validated = $request->validate([
             'department_name' => 'required'
@@ -25,6 +28,24 @@ class TeamController extends Controller
         ]);
         return redirect()->back()->with('success', 'Department inserted successfully');
     }
+    public function EditDepartment($id){
+        $department = Department::find($id);
+        return view('admin.department.edit',compact('department'));
+    }
+    public function UpdateDepartment(Request $request,$id){
+        Department::find($id)->update([
+            'department_name' => $request->department_name,
+            'updated_at' => Carbon::now()
+        ]);
+        return redirect()->route('view.department')->with('success', 'Department Updated successfully');
+
+    }
+    public function DeleteDepartment($id){
+        Department::find($id)->delete();
+        return redirect()->back()->with('success', 'Department Deleted successfully');
+    }
+
+
     public function ViewTeam(){
         $teams = TeamMember::latest()->get();
         return view('admin.team.index',compact('teams'));
@@ -88,7 +109,7 @@ class TeamController extends Controller
                 'phone'         => $request->phone,
                 'email'         => $request->email,
                 'image'         => $last_img,
-                'created_at'    => Carbon::now()
+                'updated_at'    => Carbon::now()
             ]);
             return redirect()->route('view.team')->with('success', 'Membar Updated successfully');
         } else {
@@ -99,7 +120,7 @@ class TeamController extends Controller
                 'company'       => $request->company,
                 'phone'         => $request->phone,
                 'email'         => $request->email,
-                'created_at'    => Carbon::now()
+                'updated_at'    => Carbon::now()
             ]);
             return redirect()->route('view.team')->with('success', 'Membar Updated successfully');
         }

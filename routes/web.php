@@ -151,8 +151,12 @@ Route::prefix('dashboard')->group(
         /* --------------------------- BlogCategory routes -------------------------- */
         Route::post('blog/category', [BlogCategoryController::class, 'createCategory'])->name('blogCategory.store');
 
-        // About team Route =====Board of Director
+        // About team Route => Team Route
         Route::post('add/department', [Teamcontroller::class, 'AddDepartment'])->name('addDepartment');
+        Route::get('view/department', [TeamController::class, 'ViewDepartment'])->name('view.department');
+        Route::get('department/edit/{id}', [TeamController::class, 'EditDepartment']);
+        Route::post('department/update/{id}', [TeamController::class, 'UpdateDepartment']);
+        Route::get('department/delete/{id}', [TeamController::class, 'DeleteDepartment']);
 
         Route::get('view/team', [TeamController::class, 'ViewTeam'])->name('view.team');
         Route::get('add/team', [TeamController::class, 'AddTeam'])->name('addteam');
@@ -161,68 +165,68 @@ Route::prefix('dashboard')->group(
         Route::post('team/update/{id}', [TeamController::class, 'Update']);
         Route::get('team/delete/{id}', [TeamController::class, 'Delete']);
 
-        Route::get('director/team/view', [TeamController::class, 'Team'])->name('about.team');
+        // Route::get('director/team/view', [TeamController::class, 'Team'])->name('about.team');
         //Route::get('add/director/team', [TeamController::class, 'AddTeam'])->name('addteam');
-        Route::post('store/director/team', [TeamController::class, 'StoreTeam'])->name('store.team');
+        // Route::post('store/director/team', [TeamController::class, 'StoreTeam'])->name('store.team');
         // Route::get('team/edit/{id}', [TeamController::class, 'Edit']);
         // Route::post('team/update/{id}', [TeamController::class, 'Update']);
         // Route::get('team/delete/{id}', [TeamController::class, 'Delete']);
 
         // Management Route
-        Route::get('management/team/view', [ManagementController::class, 'Management'])->name('about.management');
-        Route::get('add/management', [ManagementController::class, 'AddManagement'])->name('addmanagement');
-        Route::post('Store/management', [ManagementController::class, 'StoreManagement'])->name('store.management');
-        Route::get('mmt/edit/{id}', [ManagementController::class, 'Edit']);
-        Route::post('mmt/update/{id}', [ManagementController::class, 'Update']);
-        Route::get('mmt/delete/{id}', [ManagementController::class, 'Delete']);
+        // Route::get('management/team/view', [ManagementController::class, 'Management'])->name('about.management');
+        // Route::get('add/management', [ManagementController::class, 'AddManagement'])->name('addmanagement');
+        // Route::post('Store/management', [ManagementController::class, 'StoreManagement'])->name('store.management');
+        // Route::get('mmt/edit/{id}', [ManagementController::class, 'Edit']);
+        // Route::post('mmt/update/{id}', [ManagementController::class, 'Update']);
+        // Route::get('mmt/delete/{id}', [ManagementController::class, 'Delete']);
 
         // HR Route
-        Route::get('hr/team/view', [HrController::class, 'HR'])->name('about.HR');
-        Route::get('add/hr', [HrController::class, 'AddHR'])->name('addhr');
-        Route::post('store/hr', [HrController::class, 'StoreHR'])->name('store.hr');
-        Route::get('hr/edit/{id}', [HrController::class, 'Edit']);
-        Route::post('hr/update/{id}', [HrController::class, 'Update']);
-        Route::get('hr/delete/{id}', [HrController::class, 'Delete']);
+        // Route::get('hr/team/view', [HrController::class, 'HR'])->name('about.HR');
+        // Route::get('add/hr', [HrController::class, 'AddHR'])->name('addhr');
+        // Route::post('store/hr', [HrController::class, 'StoreHR'])->name('store.hr');
+        // Route::get('hr/edit/{id}', [HrController::class, 'Edit']);
+        // Route::post('hr/update/{id}', [HrController::class, 'Update']);
+        // Route::get('hr/delete/{id}', [HrController::class, 'Delete']);
 
         // Account Route
-        Route::get('account/team/view', [AccountController::class, 'Account'])->name('about.account');
-        Route::get('add/account', [AccountController::class, 'AddAccount'])->name('addaccount');
-        Route::post('Store/hr', [AccountController::class, 'StoreAccount'])->name('store.account');
-        Route::get('acc/edit/{id}', [AccountController::class, 'Edit'])->name('account.edit');
-        Route::post('acc/update/{id}', [AccountController::class, 'Update']);
-        Route::get('acc/delete/{id}', [AccountController::class, 'Delete']);
+        // Route::get('account/team/view', [AccountController::class, 'Account'])->name('about.account');
+        // Route::get('add/account', [AccountController::class, 'AddAccount'])->name('addaccount');
+        // Route::post('Store/hr', [AccountController::class, 'StoreAccount'])->name('store.account');
+        // Route::get('acc/edit/{id}', [AccountController::class, 'Edit'])->name('account.edit');
+        // Route::post('acc/update/{id}', [AccountController::class, 'Update']);
+        // Route::get('acc/delete/{id}', [AccountController::class, 'Delete']);
 
-        // Bio Metric Route
-        Route::get('bio_metric/team/view', [Bio_metricController::class, 'Bio_Metric'])->name('about.biometric');
-        Route::get('add/bio_metric', [Bio_metricController::class, 'AddBio'])->name('addbiometric');
-        Route::post('Store/bio_metric', [Bio_metricController::class, 'StoreBio'])->name('store.biometric');
-        Route::get('bio/edit/{id}', [Bio_metricController::class, 'Edit']);
-        Route::post('bio/update/{id}', [Bio_metricController::class, 'Update']);
-        Route::get('bio/delete/{id}', [Bio_metricController::class, 'Delete']);
+         // Bio Metric Route
+        // Route::get('bio_metric/team/view', [Bio_metricController::class, 'Bio_Metric'])->name('about.biometric');
+        // Route::get('add/bio_metric', [Bio_metricController::class, 'AddBio'])->name('addbiometric');
+        // Route::post('Store/bio_metric', [Bio_metricController::class, 'StoreBio'])->name('store.biometric');
+        // Route::get('bio/edit/{id}', [Bio_metricController::class, 'Edit']);
+        // Route::post('bio/update/{id}', [Bio_metricController::class, 'Update']);
+        // Route::get('bio/delete/{id}', [Bio_metricController::class, 'Delete']);
 
         // WebDev Route
-        Route::get('webdev/team/view', [WebdevController::class, 'Dev'])->name('about.webdev');
-        Route::get('add/webdev', [WebdevController::class, 'AddDev'])->name('addwebdev');
-        Route::post('Store/webdev', [WebdevController::class, 'StoreDev'])->name('store.webdev');
-        Route::get('dev/edit/{id}', [WebdevController::class, 'Edit']);
-        Route::post('dev/update/{id}', [WebdevController::class, 'Update']);
-        Route::get('dev/delete/{id}', [WebdevController::class, 'Delete']);
+        // Route::get('webdev/team/view', [WebdevController::class, 'Dev'])->name('about.webdev');
+        // Route::get('add/webdev', [WebdevController::class, 'AddDev'])->name('addwebdev');
+        // Route::post('Store/webdev', [WebdevController::class, 'StoreDev'])->name('store.webdev');
+        // Route::get('dev/edit/{id}', [WebdevController::class, 'Edit']);
+        // Route::post('dev/update/{id}', [WebdevController::class, 'Update']);
+        // Route::get('dev/delete/{id}', [WebdevController::class, 'Delete']);
 
         // Network Route
-        Route::get('network/team/view', [NetworkController::class, 'Net'])->name('about.network');
-        Route::get('add/network/team', [NetworkController::class, 'AddNet'])->name('addnetwork');
-        Route::post('store/webdev/team', [NetworkController::class, 'StoreNet'])->name('store.network');
-        Route::get('net/edit/{id}', [NetworkController::class, 'Edit']);
-        Route::post('net/update/{id}', [NetworkController::class, 'Update']);
-        Route::get('net/delete/{id}', [NetworkController::class, 'Delete']);
+        // Route::get('network/team/view', [NetworkController::class, 'Net'])->name('about.network');
+        // Route::get('add/network/team', [NetworkController::class, 'AddNet'])->name('addnetwork');
+        // Route::post('store/webdev/team', [NetworkController::class, 'StoreNet'])->name('store.network');
+        // Route::get('net/edit/{id}', [NetworkController::class, 'Edit']);
+        // Route::post('net/update/{id}', [NetworkController::class, 'Update']);
+        // Route::get('net/delete/{id}', [NetworkController::class, 'Delete']);
 
         // E-commerce Route
-        Route::get('e-commerce/team/view', [EcommerceController::class, 'Ecom'])->name('about.ecom');
-        Route::get('add/e_commerce/team', [EcommerceController::class, 'AddEcom'])->name('addecommerce');
-        Route::post('store/e_commerce/team', [EcommerceController::class, 'StoreEcom'])->name('store.ecommerce');
-        Route::get('ecom/edit/{id}', [EcommerceController::class, 'Edit']);
-        Route::post('ecom/update/{id}', [EcommerceController::class, 'Update']);
-        Route::get('ecom/delete/{id}', [EcommerceController::class, 'Delete']);
+        // Route::get('e-commerce/team/view', [EcommerceController::class, 'Ecom'])->name('about.ecom');
+        // Route::get('add/e_commerce/team', [EcommerceController::class, 'AddEcom'])->name('addecommerce');
+        // Route::post('store/e_commerce/team', [EcommerceController::class, 'StoreEcom'])->name('store.ecommerce');
+        // Route::get('ecom/edit/{id}', [EcommerceController::class, 'Edit']);
+        // Route::post('ecom/update/{id}', [EcommerceController::class, 'Update']);
+        // Route::get('ecom/delete/{id}', [EcommerceController::class, 'Delete']);
 
 
 
