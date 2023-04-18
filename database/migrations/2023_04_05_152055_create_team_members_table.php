@@ -16,6 +16,11 @@ class CreateTeamMembersTable extends Migration
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->string('email',100)->unique();
+            $table->string('phone', 100)->unique();
+            $table->string('company', 100);
+            $table->string('designation', 100);
+            $table->string('image', 255);
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();

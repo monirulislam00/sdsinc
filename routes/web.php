@@ -152,12 +152,21 @@ Route::prefix('dashboard')->group(
         Route::post('blog/category', [BlogCategoryController::class, 'createCategory'])->name('blogCategory.store');
 
         // About team Route =====Board of Director
-        Route::get('director/team/view', [TeamController::class, 'Team'])->name('about.team');
-        Route::get('add/director/team', [TeamController::class, 'AddTeam'])->name('addteam');
-        Route::post('store/director/team', [TeamController::class, 'StoreTeam'])->name('store.team');
+        Route::post('add/department', [Teamcontroller::class, 'AddDepartment'])->name('addDepartment');
+
+        Route::get('view/team', [TeamController::class, 'ViewTeam'])->name('view.team');
+        Route::get('add/team', [TeamController::class, 'AddTeam'])->name('addteam');
+        Route::post('store/team', [TeamController::class, 'StoreTeam'])->name('store.team');
         Route::get('team/edit/{id}', [TeamController::class, 'Edit']);
         Route::post('team/update/{id}', [TeamController::class, 'Update']);
         Route::get('team/delete/{id}', [TeamController::class, 'Delete']);
+
+        Route::get('director/team/view', [TeamController::class, 'Team'])->name('about.team');
+        //Route::get('add/director/team', [TeamController::class, 'AddTeam'])->name('addteam');
+        Route::post('store/director/team', [TeamController::class, 'StoreTeam'])->name('store.team');
+        // Route::get('team/edit/{id}', [TeamController::class, 'Edit']);
+        // Route::post('team/update/{id}', [TeamController::class, 'Update']);
+        // Route::get('team/delete/{id}', [TeamController::class, 'Delete']);
 
         // Management Route
         Route::get('management/team/view', [ManagementController::class, 'Management'])->name('about.management');

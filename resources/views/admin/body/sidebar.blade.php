@@ -152,6 +152,7 @@
                     <a class="collapse-item" href="{{ route('about.webdev') }}">Web-Dev</a>
                     <a class="collapse-item" href="{{ route('about.network') }}">Network</a>
                     <a class="collapse-item" href="{{ route('about.ecom') }}">E-Commerce</a>
+                    <a class="collapse-item" href="{{ route('view.team') }}">Team member</a>
                 </div>
             </div>
         </li>
