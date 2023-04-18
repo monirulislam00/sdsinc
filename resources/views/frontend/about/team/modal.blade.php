@@ -27,8 +27,8 @@
                 success: function(response, index) {
                     console.log(response)
                     let profile = `
-                    <img src="${response.url +'/'+ response.data.image}" alt="" class="max-w-[80px] h-auto rounded-sm">
-                     <h3>${response.data.name}</h3>
+                    <img src="${response.url +'/'+ response.data.image}" alt="" class="max-w-[200px] h-auto rounded-sm">
+                     <h2>${response.data.name}</h2>
                       <h4>${response.data.company}</h4>
                       <h4>${response.data.designation}</h4>
                        <p>

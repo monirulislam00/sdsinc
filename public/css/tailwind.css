@@ -1569,6 +1569,9 @@ select {
 .max-w-\[80px\] {
   max-width: 80px;
 }
+.max-w-\[200px\] {
+  max-width: 200px;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
