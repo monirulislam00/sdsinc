@@ -13,6 +13,16 @@ class TeamController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(['permission:view teams'])->only(['ViewDepartment']);
+        $this->middleware(['permission:create teams'])->only(['AddDepartment']);
+        $this->middleware(['permission:edit teams'])->only(['EditDepartment']);
+        $this->middleware(['permission:delete teams'])->only(['DeleteDepartment']);
+
+
+        $this->middleware(['permission:view teams'])->only(['ViewTeam']);
+        $this->middleware(['permission:create teams'])->only(['AddTeam']);
+        $this->middleware(['permission:edit teams'])->only(['Edit']);
+        $this->middleware(['permission:delete teams'])->only(['Delete']);
     }
     public function ViewDepartment()
     {
