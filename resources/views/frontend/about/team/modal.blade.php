@@ -31,6 +31,8 @@
                      <h2>${response.data.name}</h2>
                       <h4>${response.data.company}</h4>
                       <h4>${response.data.designation}</h4>
+                      <h4>${response.data.phone}</h4>
+                      <h4>${response.data.email}</h4>
                        <p>
                             ${response.data.description}
                         </p>

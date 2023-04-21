@@ -18,7 +18,6 @@ class TeamController extends Controller
         $this->middleware(['permission:edit teams'])->only(['EditDepartment']);
         $this->middleware(['permission:delete teams'])->only(['DeleteDepartment']);
 
-
         $this->middleware(['permission:view teams'])->only(['ViewTeam']);
         $this->middleware(['permission:create teams'])->only(['AddTeam']);
         $this->middleware(['permission:edit teams'])->only(['Edit']);
@@ -93,6 +92,7 @@ class TeamController extends Controller
             'name' => $request->name,
             'designation' => $request->designation,
             'company' => $request->company,
+            'description' => $request->description,
             'phone' => $request->phone,
             'email' => $request->email,
             'image' => $last_img,
@@ -126,6 +126,7 @@ class TeamController extends Controller
                 'name' => $request->name,
                 'designation' => $request->designation,
                 'company' => $request->company,
+                'description' => $request->description,
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'image' => $last_img,
@@ -138,6 +139,7 @@ class TeamController extends Controller
                 'name' => $request->name,
                 'designation' => $request->designation,
                 'company' => $request->company,
+                'description' => $request->description,
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'updated_at' => Carbon::now()
