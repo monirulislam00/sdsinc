@@ -41,7 +41,7 @@ class OrderPlaceNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('New Email Notification')
+            ->subject('Order placed Notification')
             ->greeting('Hello sir!')
             ->action('Visit us', url('https://sdsincbd.com/'))
             ->line('Your order has been placed successfully. Our team member will contact you soon through your phone number.
