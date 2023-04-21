@@ -60,6 +60,13 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
+                        <label> Description</label>
+                        <textarea type="text" name="description" class="form-control" rows="5"></textarea>
+                        @error('decription')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
                         <label> Image</label>
                         <input  name="image" class="form-control" type="file" id="formFile">
                         @error('image')

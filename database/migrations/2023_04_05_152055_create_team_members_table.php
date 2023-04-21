@@ -21,6 +21,7 @@ class CreateTeamMembersTable extends Migration
             $table->string('company', 100);
             $table->string('designation', 100);
             $table->string('image', 255);
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();
