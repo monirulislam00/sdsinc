@@ -42,7 +42,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('admin.body.sidebar')
+        @if (auth()->user()->hasexactroles('affiliated'))
+            @include('affiliated.affiliate-sidebar')
+        @else
+            @include('admin.body.sidebar')
+        @endif
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

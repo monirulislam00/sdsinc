@@ -12,9 +12,9 @@ $(document).ready(function () {
                 $("#preloader").fadeOut("slow");
             });
         }
-        console.log("ok");
+        // console.log("ok");
     }
-    preloader();
+    // preloader();
     $(".carousel.owl-carousel").owlCarousel({
         loop: true,
         margin: 10,
@@ -31,7 +31,7 @@ $(document).ready(function () {
             },
         },
     });
-    console.log("ok");
+    // console.log("ok");
     // // ***********HEader & MENU bar********
     // /**
     //  * Easy selector helper function

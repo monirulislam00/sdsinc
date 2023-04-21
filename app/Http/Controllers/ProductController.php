@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
-use Intervention\Image\Facades\Image;
+use App\Models\Service;
+use App\Models\ProductType;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Bus\PrunableBatchRepository;
 
 class ProductController extends Controller
 {
@@ -24,8 +29,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->get();
-        return view('admin.products.index', compact('products'));
+        $products = Product::with('getProductType', 'getService')->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -35,7 +40,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        $product_types = ProductType::all();
+
+        return view('admin.product.create', compact('services', 'product_types'));
     }
 
     /**
@@ -47,24 +55,38 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required|min:4|max:140',
-            'type' => 'required',
-            'image' => 'required|max:50000|mimes:jpg,jped,png',
+            'title' => 'required|min:2',
+            'description' => 'required|min:2',
+            'image' => 'required|max:50000|mimes:jpg,jpeg,png',
+            'service' => 'required',
+            'product_type' => 'required',
+            'gold_price' => 'required',
+            'silver_price' => 'required',
+            'platinum_price' => 'required',
+            // 'gold_description[]' => 'required',
+            // 'silver_description[]' => 'required',
+            // 'platinum_description[]' => 'required',
+
         ]);
+        $image = $request->file('image');
 
-        $product_image = $request->file('image');
-
-        $name_gen = hexdec(uniqid()) . '.' . $product_image->getClientOriginalExtension();
-        Image::make($product_image)->resize(100, 100)->save('image/products/' . $name_gen);
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(900, 600)->save('image/products/' . $name_gen);
 
         $last_img = 'image/products/' . $name_gen;
-
-        Product::insert([
+        $description = str_replace(array("\r\n", "\n", "\r"), '<br>', $request->description);
+        DB::table('products')->insert([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => $description,
+            'service_id' => $request->service,
+            'product_type_id' => $request->product_type,
+            'gold_price' => $request->gold_price,
+            'gold_des' => json_encode($request->gold_description),
+            'platinum_price' => $request->platinum_price,
+            'platinum_des' => json_encode($request->platinum_description),
+            'silver_price' => $request->silver_price,
+            'silver_des' => json_encode($request->silver_description),
             'image' => $last_img,
-            'type' => $request->type,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('products.index')->with('success', 'Product Inserted successfully');
@@ -89,8 +111,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-        return view('admin.products.edit', compact('product'));
+        $product = Product::where('id', $id)->with('getProductType', 'getService')->first();
+        $product_types = ProductType::all();
+        $services = Service::all();
+        return view('admin.product.edit', compact('product', 'product_types', 'services'));
     }
 
     /**
@@ -103,39 +127,62 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required|min:4|max:140',
-            'type' => 'required',
+            'title' => 'required|min:2',
+            'description' => 'required|min:2',
+            'image' => 'max:50000|mimes:jpg,jpeg,png',
+            'service' => 'required',
+            'product_type' => 'required',
+            'gold_price' => 'required',
+            'silver_price' => 'required',
+            'platinum_price' => 'required',
+            // 'gold_description[]' => 'required',
+            // 'silver_description[]' => 'required',
+            // 'platinum_description[]' => 'required',
+
         ]);
+        $description = str_replace(array("\r\n", "\n", "\r"), '<br>', $request->description);
         $old_image = $request->old_image;
-        $product_image = $request->image;
-
-        if ($product_image) {
-
-            $name_gen = hexdec(uniqid()) . '.' . $product_image->getClientOriginalExtension();
-            Image::make($product_image)->resize(1920, 1088)->save('image/products/' . $name_gen);
+        $image = $request->image;
+        if ($image) {
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(900, 600)->save('image/products/' . $name_gen);
 
             $last_img = 'image/products/' . $name_gen;
-
-            unlink($old_image);
-
-            Product::find($id)->update([
+            if ($old_image != null) {
+                unlink($old_image);
+            }
+            DB::table('products')->where('id', $id)->update([
                 'title' => $request->title,
-                'description' => $request->description,
+                'description' => $description,
+                'service_id' => $request->service,
+                'product_type_id' => $request->product_type,
+                'gold_price' => $request->gold_price,
+                'gold_des' => json_encode($request->gold_description),
+                'platinum_price' => $request->platinum_price,
+                'platinum_des' => json_encode($request->platinum_description),
+                'silver_price' => $request->silver_price,
+                'silver_des' => json_encode($request->silver_description),
                 'image' => $last_img,
-                'type' => $request->type,
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->route('products.index')->with('success', 'product Updated successfully');
+
         } else {
-            Product::find($id)->update([
+            DB::table('products')->where('id', $id)->update([
                 'title' => $request->title,
-                'description' => $request->description,
-                'type' => $request->type,
+                'description' => $description,
+                'service_id' => $request->service,
+                'product_type_id' => $request->product_type,
+                'gold_price' => $request->gold_price,
+                'gold_des' => json_encode($request->gold_description),
+                'platinum_price' => $request->platinum_price,
+                'platinum_des' => json_encode($request->platinum_description),
+                'silver_price' => $request->silver_price,
+                'silver_des' => json_encode($request->silver_description),
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->route('products.index')->with('success', 'product Updated successfully');
+
         }
+        return redirect()->route('products.index')->with('success', 'Product Updated successfully');
     }
 
     /**
@@ -147,10 +194,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $image = Product::find($id);
-        $old_image = $image->image;
-        unlink($old_image);
-
+        // $old_image = $image->image;
+        // unlink($old_image);
         Product::find($id)->delete();
-        return redirect()->route('products.index')->with('success', 'Product Deleted successfully');
+        return redirect()->back()->with('success', 'Product Deleted successfully');
     }
 }

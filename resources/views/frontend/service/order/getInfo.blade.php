@@ -112,7 +112,7 @@
                                 </small>
                             </div>
                             <br>
-                            <input type="hidden" id="serviceId" name="serviceId" value="{{ $data['service_id'] }}">
+                            <input type="hidden" id="product_id" name="product" value="{{ $data['product_id'] }}">
                             <input type="hidden" name="type" value="{{ $data['type'] ?? '' }}">
                             <input type="hidden" name="quality" value="{{ $data['quality'] }}">
                             <input type="hidden" name="promoCode" value="{{ $data['promoCode'] }}">
@@ -162,7 +162,7 @@
                 success: function(response, data) {
                     if (response.status == 1) {
                         $("#get-info")[0].reset();
-                        $("#serviceId").val('');
+                        $("#product_id").val('');
                         $("#get-info").html(`
                             <div id="alert-additional-content-3" class="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-300  " role="alert">
                             <div class="flex items-center">
@@ -188,7 +188,7 @@
                                 showHideTransition: 'plain',
                                 icon: 'warning'
                             })
-                        })
+                        }) 459
 
                         $('#button-here').html(`
                             <button style="border: 2px solid #2B40AF" type="submit"

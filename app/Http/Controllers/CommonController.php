@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Contact;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Portfolio;
 use App\Models\Subscriber;
-use Illuminate\Support\Str;
 // use AmrShawky\Currency\Facade\Currency;
+use Illuminate\Support\Str;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use App\Jobs\OrderPlacedMail;
 use Carbon\Exceptions\Exception;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -40,13 +43,19 @@ class CommonController extends Controller
     public function FrontendService()
     {
         $services = Service::all();
-        return view('frontend.service.service', compact('services'));
+        return view('frontend.service.services', compact('services'));
     }
-    public function FrontendSingleService($id, $uniqueId = null)
+    public function FrontendSingleService($serviceName)
     {
-        $service = Service::where('id', $id)->first();
+        $service = Service::where('service_name', $serviceName)->first();
+        $products = Product::where('service_id', $service->id)->get();
+        return view('frontend.service.single-service', compact('products', 'service'));
+    }
+    public function FrontendSingleProduct($productId, $uniqueId = null)
+    {
+        $product = Product::with('getService')->where('id', $productId)->first();
         // dd($service);
-        return view('frontend.service.single-service', compact('service', 'uniqueId'));
+        return view('frontend.service.single-product', compact('product', 'uniqueId'));
     }
     public function FrontendContact()
     {
@@ -55,22 +64,22 @@ class CommonController extends Controller
     public function ContactMessage(Request $request)
     {
         $validated = $request->validate([
-            'fullName'       => 'required',
-            'email'      => 'required',
-            'phone'      => 'min:11 | required',
-            'enquiryType'    => 'required',
-            'message'    => 'required',
+            'fullName' => 'required',
+            'email' => 'required',
+            'phone' => 'min:11 | required',
+            'enquiryType' => 'required',
+            'message' => 'required',
         ]);
         Contact::insert([
-            'fullName'          => $request->fullName,
-            'email'         => $request->email,
-            'phone'         => $request->countryCode . " " . $request->phone,
-            'companyname'   => $request->companyName,
+            'fullName' => $request->fullName,
+            'email' => $request->email,
+            'phone' => $request->countryCode . " " . $request->phone,
+            'companyname' => $request->companyName,
             'countryName' => $request->countryName,
-            'enquiryType'       => $request->enquiryType,
-            'fromWhereHeard'       => $request->fromWhereHeard,
-            'message'       => $request->message,
-            'created_at'    => Carbon::now()
+            'enquiryType' => $request->enquiryType,
+            'fromWhereHeard' => $request->fromWhereHeard,
+            'message' => $request->message,
+            'created_at' => Carbon::now()
         ]);
         // return p($request->all());
 
@@ -129,7 +138,7 @@ class CommonController extends Controller
             'cardNumber' => 'required|unique:users|max:255',
         ]);
         $uniqueId = Str::uuid()->toString();
-        $affiliated =  User::create([
+        $affiliated = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -138,22 +147,25 @@ class CommonController extends Controller
             'password' => Hash::make($request->password),
             'paymentMethod' => $request->paymentMethod,
             'cardNumber' => $request->cardNumber,
-            'uniqueId' =>  $uniqueId,
-            'created_at'    => Carbon::now()
+            'uniqueId' => $uniqueId,
+            'created_at' => Carbon::now()
         ]);
         // return $affiliated;
         if ($affiliated != null) {
             $affiliated->syncRoles('affiliated');
         }
-        return redirect()->back()->with('success','Sign Up Successfully, Please Log in');
+        return redirect()->back()->with('success', 'Sign Up Successfully, Please Log in');
     }
     public function FrontendAboutsds()
     {
+
         return view('frontend.about.aboutSDS.aboutsds');
     }
     public function FrontendTeam()
     {
-        return view('frontend.about.team.team');
+        $departments = Department::with('getTeamMembers')->get();
+
+        return view('frontend.about.team.team', ['departments' => $departments]);
     }
     public function FrontendTechnologies()
     {
@@ -175,7 +187,7 @@ class CommonController extends Controller
     public function getInfo(Request $request)
     {
         if (!session()->has('message')) {
-            $data = $request->only(['service_id', 'quality', 'promoCode', 'type']);
+            $data = $request->only(['product_id', 'quality', 'promoCode', 'type']);
             return view('frontend.service.order.getInfo', ['data' => $data]);
         } else {
             // redirecting after getting information
@@ -188,10 +200,10 @@ class CommonController extends Controller
             'fullName' => 'required',
             'email' => 'required',
             'phone' => 'min:10 | required',
-            'reason' => 'required | min:20',
+            'reason' => 'required | min:10',
             'companySize' => 'integer',
-            'description' => 'required | min:20',
-            'serviceId' => 'required',
+            'description' => 'required | min:10',
+            'product' => 'required',
             'quality' => 'required',
         ]);
         if ($validator->fails()) {
@@ -200,9 +212,8 @@ class CommonController extends Controller
                 'data' => $validator->messages()
             ], 200);
         } else {
-            // setting flash session to redirect after placing order .Related to getinfo function
             session()->flash('message', "placed");
-            $type = $request->type == 'demo' ? "demo" :  "real";
+            $type = $request->type == 'demo' ? "demo" : "real";
             $order = Order::create([
                 'name' => $request->fullName,
                 'email' => $request->email,
@@ -212,12 +223,12 @@ class CommonController extends Controller
                 'companySize' => $request->companySize,
                 'reason' => $request->reason,
                 'description' => $request->description,
-                'service_type' => $type,
+                'product_type' => $type,
                 'quality' => $request->quality,
-                'service_id' => $request->serviceId,
+                'product_id' => $request->product,
                 'affiliate_id' => $request->promoCode
             ]);
-            $order->notify(new OrderPlaceNotification);
+            OrderPlacedMail::dispatch($order);
             return response()->json([
                 'status' => 1,
                 'data' => "Your order has been placed successfully. Our employee will contact you soon thorough your phone number."

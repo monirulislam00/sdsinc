@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
-
 {
     public function __construct()
     {
@@ -35,7 +34,7 @@ class UserController extends Controller
         $rolesWithoutAffiliates = [];
         foreach ($roles as $role) {
             if ($role != "affiliated") {
-                $rolesWithoutAffiliates[] =  $role;
+                $rolesWithoutAffiliates[] = $role;
             }
         }
         return view('admin.users.index', compact('users', 'rolesWithoutAffiliates'));
@@ -76,8 +75,6 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', 'min:8'],
-
-
         ]);
 
         $user = User::create([

@@ -86,7 +86,7 @@
                                 <h3 class="fw-bold">Contact</h3>
                                 <ul>
                                     <li>Situated in Sheikh Mohammed bin Rashid Blvd, Downtown Dubai, UAE</li>
-                                    <li>email: sdsincbd@sdsincbd.com</li>
+                                    <li>email: info@sdsincbd.com</li>
                                     <li>
                                         <h4>880-178-1179-679</h4>
                                     </li>

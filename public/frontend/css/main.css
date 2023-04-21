@@ -272,7 +272,7 @@ input.search-form:hover {
 /* header start */
 .header {
     transition: all 0.5s;
-    z-index: 997;
+    z-index: 100;
     padding: 20px 0;
     position: absolute;
     left: 0;
@@ -956,7 +956,7 @@ input.search-form:hover {
 }
 .button-1:hover,
 .button-1:focus {
-    background-color: var(--primary-light); 
+    background-color: var(--primary-light);
     box-shadow: var(--box-shadow);
 }
 /***********************
@@ -1384,15 +1384,15 @@ background-color: #2d3436;
     color: var(--white-text);
 }
 
-.portfolio-type{    
+.portfolio-type{
     background: #fff;
     color: var(--primary);
     text-align: center;
     min-width: none;
-    max-width: fit-content; 
+    max-width: fit-content;
     padding: 5px 12px;
     border-radius: 5px;
     font-weight: bold;
-}    
+}
 
 /* portfolio end */

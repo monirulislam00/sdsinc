@@ -3,29 +3,30 @@
     @include('frontend.body.slider')
     <section class="product py-5">
         <div class="container">
-            <h1> <span>Exclusive</span> Product</h1>
+            <h1> <span>Latest</span> Product</h1>
             <div class="row">
-
                 @foreach ($products as $product)
                     <div class="col-md-4">
-                        <div class="content mt-4 p-4 pb-0 relative" style="min-height: 250px">
-                            <div class="row ">
-                                <div class="col-3 pt-4">
-                                    <img src="{{ asset($product->image) }}" alt="" srcset="">
+                        <a href="/products/{{ $product->id }}">
+                            <div class="content mt-4 p-4 pb-0 relative" style="min-height: 250px">
+                                <div class="row ">
+                                    <div class="col-3 pt-4">
+                                        <img src="{{ asset($product->image) }}" alt="" srcset="">
+                                    </div>
+                                    <div class="col-9 my-4">
+                                        <div class="title">
+                                            <p class="text-xl  font-bold">{{ $product->title }}</p>
+                                        </div>
+                                        <div class="description text-zinc-500">
+                                            <p class="font-semibold">{!! substr($product->description, 0, 90) . '...' !!}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-9 my-4">
-                                    <div class="title">
-                                        <p class="text-xl  font-bold">{{ $product->title }}</p>
-                                    </div>
-                                    <div class="description text-zinc-500">
-                                        <p class="  font-semibold">{!! $product->description !!}</p>
-                                    </div>
+                                <div class="type p-2 bg-orange-600 absolute top-0 right-0">
+                                    <p class="mb-0 text-white font-semibold">{{ $product->getProductType->name }}</p>
                                 </div>
                             </div>
-                            <div class="type p-2 bg-orange-600 absolute top-0 right-0">
-                                <p class="mb-0 text-white font-semibold">{{ $product->type }}</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -36,23 +37,26 @@
         <div class="container">
             <h1> <span>Quality</span> Services</h1>
             <div class="row">
-                <div class="col-md-4 ">
-                    <div class="content mt-4 p-3 shadow-md">
-                        <div class="svg w-20 py-2.5">
-                            <img src="{{ asset('frontend/images/001-coding.png') }}" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Web Application Development</h3>
-                        </div>
-                        <div class="description">
-                            <p>Say goodbye to disjointed business operations and hello to streamlined efficiency with our
-                                cutting-edge web app development services. We specialize in creating custom solutions that
-                                integrate all aspects of your business, from workflow automation to corporate system
-                                integration.</p>
-                        </div>
+                @foreach ($services as $service)
+                    <div class="col-md-4 ">
+                        <a href="service/{{ $service->service_name }}">
+                            <div class="content mt-4 p-3 shadow-md">
+                                <div class="svg w-20 py-2.5">
+                                    <img src="{{ asset($service->image) }}" alt="">
+                                </div>
+                                <div class="title">
+                                    <h3>{{ $service->service_name }}</h3>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        {{ $service->description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col-md-4 ">
+                @endforeach
+                {{-- <div class="col-md-4 ">
                     <div class="content mt-4 p-3 shadow-md">
                         <div class="svg w-20 py-2.5">
                             <img src="{{ asset('frontend/images/002-development.png') }}" alt="">
@@ -159,7 +163,7 @@
                                 resource augmentation service is open for you.</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
             </div>
@@ -233,8 +237,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="content mt-4 shadow-md">
-                        <img src="{{ asset('frontend/images/014-hosting-services.png') }}" alt=""
-                            srcset="">
+                        <img src="{{ asset('frontend/images/014-hosting-services.png') }}" alt="" srcset="">
                         <p class="text-center font-bold">ISP & CABLE</p>
                     </div>
                 </div>

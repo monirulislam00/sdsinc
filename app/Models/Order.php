@@ -23,12 +23,12 @@ class Order extends Model
         'reason',
         'description',
         'quality',
-        'service_id',
+        'product_id',
         'affiliate_id',
-        'service_type'
+        'product_type'
     ];
-    public function getService()
+    public function getProduct()
     {
-        return $this->hasOne(Service::class, 'id', 'service_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }

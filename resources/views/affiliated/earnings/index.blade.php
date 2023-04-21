@@ -15,8 +15,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">SL</th>
-                                <th scope="col">Service Name</th>
-                                <th scope="col">Service Quality</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Quality</th>
                                 <th scope="col">Earnings</th>
                             </tr>
                         </thead>
@@ -25,7 +25,7 @@
                             @foreach ($earnings as $earning)
                                 <tr>
                                     <th>{{ $i++ }}</th>
-                                    <td>{{ $earning->getService->title }}</td>
+                                    <td>{{ $earning->getProduct->title }}</td>
                                     <td>
                                         @if ($earning->getOrder->quality == 1)
                                             Platinum
@@ -37,7 +37,13 @@
                                             Custom
                                         @endif
                                     </td>
-                                    <td>${{ $earning->amount }}</td>
+                                    <td>
+                                        @if ($earning->getOrder->earnings == 0)
+                                            custom
+                                        @else
+                                            ${{ $earning->amount }}
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

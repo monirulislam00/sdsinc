@@ -1,4 +1,3 @@
-<!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -60,13 +59,34 @@
         Interface
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
+    @can(['view products', 'view service'])
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseService"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-th-large"></i>
+                <span>Servies & Products</span>
+            </a>
+            </a>
+            <div id="collapseService" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @can('view service')
+                        <a class="collapse-item" href="{{ route('service.index') }}">Service</a>
+                    @endcan
+                    @can('view products')
+                        <a class="collapse-item" href="{{ route('products.index') }}">Products</a>
+                    @endcan
+                    @can('view products')
+                        <a class="collapse-item" href="{{ route('product_types.index') }}">Product Types</a>
+                    @endcan
+                </div>
+            </div>
+        </li>
+    @endcan
     @canany([
         'view slider',
-        'view products',
         'view features',
         'view portfoli',
         'view partner',
-        'view service',
         'view subscribers',
         'view
         blogs',
@@ -97,11 +117,9 @@
                     @can('view partner')
                         <a class="collapse-item" href="{{ route('partner') }}">Partner</a>
                     @endcan
-                    @can('view service')
-                        <a class="collapse-item" href="{{ route('service') }}">Service</a>
-                    @endcan
+
                     @can('affiliate service')
-                        <a class="collapse-item" href="{{ route('affiliate.services') }}">Affiliate service</a>
+                        <a class="collapse-item" href="{{ route('affiliate.products') }}">Affiliate service</a>
                     @endcan
                     @can('view subscribers')
                         <a class="collapse-item" href="{{ route('subscribers.index') }}">Subscribers</a>
@@ -122,18 +140,20 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTeam"
                 aria-expanded="true" aria-controls="collapseTeam">
                 <i class="fas fa-users"></i>
-                <span>Our team</span>
+                <span>Our Team & Dept</span>
             </a>
             <div id="collapseTeam" class="collapse" aria-labelledby="headingTeam" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('about.team') }}">Director</a>
+                    {{-- <a class="collapse-item" href="{{ route('about.team') }}">Director</a>
                     <a class="collapse-item" href="{{ route('about.management') }}">Management</a>
                     <a class="collapse-item" href="{{ route('about.HR') }}">HR</a>
                     <a class="collapse-item" href="{{ route('about.account') }}">Account</a>
                     <a class="collapse-item" href="{{ route('about.biometric') }}">Bio-Metric</a>
                     <a class="collapse-item" href="{{ route('about.webdev') }}">Web-Dev</a>
                     <a class="collapse-item" href="{{ route('about.network') }}">Network</a>
-                    <a class="collapse-item" href="{{ route('about.ecom') }}">E-Commerce</a>
+                    <a class="collapse-item" href="{{ route('about.ecom') }}">E-Commerce</a> --}}
+                    <a class="collapse-item" href="{{ route('view.team') }}">Team member</a>
+                    <a class="collapse-item" href="{{ route('view.department') }}">Department</a>
                 </div>
             </div>
         </li>

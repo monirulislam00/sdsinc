@@ -24,6 +24,10 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'view slider'],
             ['name' => 'edit slider'],
             ['name' => 'delete slider'],
+            ['name' => 'create services'],
+            ['name' => 'view services'],
+            ['name' => 'edit services'],
+            ['name' => 'delete services'],
             ['name' => 'create products'],
             ['name' => 'view products'],
             ['name' => 'edit products'],
@@ -68,7 +72,6 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'view users'],
             ['name' => 'edit users'],
             ['name' => 'delete users'],
-            // ['name' => 'affiliate earnings'],
             ['name' => 'share links'],
 
 

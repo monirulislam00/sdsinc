@@ -1,10 +1,13 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title"
+    <div class="pb-[20px] pt-[90px] lg:pt-[40px] px-5 page-title"
         style="background: url('{{ asset('frontend/images/contact.jpg') }}');background-size:contain;background-position:-50%">
-        <div class="container mt-3">
-            <h1 class="text-start mb-1 fw-light">Any Question ?</h1>
-            <h3 class="text-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo similique ut <br>
+        <div class="container mt-3 text-start px-3">
+            <h1 class="mb-1 font-medium">Any Question ?</h1>
+            <h3 class="text-dark" style="text-align: left;">Lorem, ipsum dolor sit amet consectetur
+                adipisicing
+                elit.
+                Explicabo similique ut <br>
                 incorrupti, quos minus.</h3>
         </div>
     </div>
