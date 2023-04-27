@@ -24,9 +24,9 @@ class CreateProductsTable extends Migration
             $table->text('silver_des')->nullable();
             $table->string('silver_price');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('service_id')->nullable();
             $table->foreign('service_id')->references('id')->on('services');
-            $table->unsignedBigInteger('product_type_id');
+            $table->unsignedBigInteger('product_type_id')->nullable();
             $table->foreign('product_type_id')->references('id')->on('product_types');
             $table->timestamps();
         });

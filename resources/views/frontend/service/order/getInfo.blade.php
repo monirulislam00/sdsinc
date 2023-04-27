@@ -141,6 +141,7 @@
 @push('get-info-js')
     <script>
         $(document).on('submit', "#get-info", function(e) {
+
             e.preventDefault();
             $.ajax({
                 url: "placeOrder",
@@ -188,7 +189,7 @@
                                 showHideTransition: 'plain',
                                 icon: 'warning'
                             })
-                        }) 459
+                        })
 
                         $('#button-here').html(`
                             <button style="border: 2px solid #2B40AF" type="submit"

@@ -33,6 +33,5 @@ class OrderPlacedMail implements ShouldQueue
     public function handle()
     {
         $this->order->notify(new OrderPlaceNotification);
-        info('order placed. Order no: ' . $this->order->id);
     }
 }
