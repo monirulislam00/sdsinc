@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TeamMember extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [ 'name', 'email', 'phone', 'company', 'designation', 'image'];
+
+    protected $fillable = [ 'name', 'email', 'phone', 'company', 'designation', 'image', 'description'];
     public function getDepartment()
     {
         return $this->belongsTo(Department::class, 'department_id', 'id');

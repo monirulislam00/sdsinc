@@ -38,9 +38,9 @@
         <div class="container">
             @foreach ($departments as $department)
                 @if ($department->getTeamMembers->count() > 0)
-                    <div class="teamheading">
-                        <h2 class="mb-4" id="{{$department->department_name}}">{{ $department->department_name }}</h2>
-                        <div class="row">
+                    <div class="teamheading text-center">
+                        <h2 class="text-center m-auto" id="{{$department->department_name}}">{{ $department->department_name }}</h2>
+                        <div class="row mt-4">
 
                             @foreach ($department->getTeamMembers as $member)
                                 <div class="col-md-4 col-sm-6 single-team see-profile" data-bs-toggle="modal"
