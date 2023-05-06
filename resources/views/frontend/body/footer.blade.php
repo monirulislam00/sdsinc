@@ -1,5 +1,5 @@
 <?php
-    $dptname = DB::table('departments')->get()->all();
+    $dptname = DB::table('departments')->take(7)->get();
 ?>
 <section id="bottom" style="padding-top: 15px">
     <div class="container fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">

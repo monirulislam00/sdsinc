@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('home_content')
-    <div class="page-title" style='background-image: url({{ asset('frontend/images/page-title.png') }})'>
+    <div class="page-title" style='background-image: url({{ asset('frontend/images/bg.jpg') }})'>
         <h2 class="py-1 mt-4 fw-bold text-light">About Us</h2>
         <h3>Home > About us > About of SDSINC</h3>
     </div>

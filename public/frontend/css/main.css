@@ -930,11 +930,11 @@ input.search-form:hover {
     margin: 3rem 0;
 }
 
-.affiliated .background {
+/* .affiliated .background {
     background-image: url("../images/affiliated.jpg");
     height: 50vh;
     width: 100%;
-}
+} */
 
 .affiliated .background {
     display: flex;
@@ -953,11 +953,11 @@ input.search-form:hover {
     font-weight: bold;
     letter-spacing: 1px;
     min-width: 6rem;
+    transition: .3s;
 }
 .button-1:hover,
 .button-1:focus {
-    background-color: var(--primary-light);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0px 0px 5px 2px #555;
 }
 /***********************
 ********* Footer ******
