@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog modal-md">
+    <div class="modal-dialog modal-lg modal-notify modal-info">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
@@ -25,14 +25,13 @@
                 url: "api/member/" + id,
                 method: "get",
                 success: function(response, index) {
-                    console.log(response)
+                    //console.log(response)
                     let profile = `
                     <img src="${response.url +'/'+ response.data.image}" alt="" class="max-w-[200px] h-auto rounded-sm">
-                     <h2>${response.data.name}</h2>
-                      <h4>${response.data.company}</h4>
-                      <h4>${response.data.designation}</h4>
-                      <h4>${response.data.phone}</h4>
-                      <h4>${response.data.email}</h4>
+                     <h4 class="mt-2">${response.data.name}</h4>
+                     <h4>${response.data.designation}</h4>
+                     <h4>${response.data.phone}</h4>
+                     <h4>${response.data.email}</h4>
                        <p>
                             ${response.data.description}
                         </p>

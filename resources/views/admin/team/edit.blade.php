@@ -40,10 +40,6 @@
                         <input type="text" name="email" class="form-control" value="{{ $team->email }}">
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label"> Email</label>
-                        <input type="text" name="email" class="form-control" value="{{ $team->email }}">
-                    </div>
-                    <div class="form-group mb-3">
                         <label> Description</label>
                         <textarea type="text" name="description" class="form-control" rows="5">{{$team->description}}</textarea>
                     </div>
