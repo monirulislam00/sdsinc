@@ -25,6 +25,7 @@
                                     <th scope="col" width="10%"> Designation</th>
                                     <th scope="col" width="15%"> Phone</th>
                                     <th scope="col" width="15%"> Email</th>
+                                    <th scope="col" width="15%"> Description</th>
                                     <th scope="col" width="10%"> Image</th>
                                     <th scope="col" width="15%">Action</th>
 
@@ -41,6 +42,7 @@
                                         <td>{{$team->designation}}</td>
                                         <td>{{$team->phone}}</td>
                                         <td>{{$team->email}}</td>
+                                        <td>{{$team->description}}</td>
                                         <td><img src="{{asset($team->image)}}" class="m-auto" alt=""
                                                 width="120px"></td>
                                         <td>

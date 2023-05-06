@@ -1,3 +1,6 @@
+<?php
+    $dptname = DB::table('departments')->get()->all();
+?>
 <section id="bottom" style="padding-top: 15px">
     <div class="container fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
         <div class="row">
@@ -13,17 +16,17 @@
                         <div class="widget">
                             <h3>SDSInc</h3>
                             <ul>
-                                <li><a href="about-us.html">About us</a></li>
-                                <li><a href="copyright.html">Copyright</a></li>
-                                <li><a href="terms.html">Terms of use</a></li>
-                                <li><a href="privacy-policy.html">Privacy policy</a></li>
-                                <li><a href="contact-us.html">Contact us</a></li>
+                                <li><a href="{{url('/About_of_SDSINC.')}}">About us</a></li>
+                                {{-- <li><a href="copyright.html">Copyright</a></li> --}}
+                                {{-- <li><a href="terms.html">Terms of use</a></li> --}}
+                                {{-- <li><a href="privacy-policy.html">Privacy policy</a></li> --}}
+                                <li><a href="{{url('/contact')}}">Contact us</a></li>
                             </ul>
                             <br />
-                            <h3>Investors</h3>
+                            <h3>Affiliated</h3>
                             <ul>
 
-                                <li><a href="#">Investors</a></li>
+                                <li><a href="{{url('/affiliate')}}">Join Affiliate</a></li>
 
                             </ul>
                         </div>
@@ -34,50 +37,44 @@
                         <div class="widget">
                             <h3>Support</h3>
                             <ul>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="#">Forum</a></li>
-                                <li><a href="#">Meet the team</a></li>
-                                <li><a href="#">Documentation</a></li>
+                                {{-- <li><a href="#">Faq</a></li> --}}
+                                <li><a href="{{url('/blogs')}}">Blog</a></li>
+                                <li><a href="{{url('/our_team')}}">Meet the team</a></li>
+                                <li><a href="{{url('/service')}}">Service</a></li>
+                                <li><a href="{{url('/portfolio')}}">Portfolio</a></li>
+                                {{-- <li><a href="#">Documentation</a></li>
                                 <li><a href="#">Refund policy</a></li>
-
-                                <li><a href="billing.html">Billing system</a></li>
+                                <li><a href="billing.html">Billing system</a></li> --}}
                             </ul>
                         </div>
 
                     </div>
-                    <!--/.col-md-3-->
 
                     <div class="col-md-3 col-sm-6">
                         <div class="widget">
                             <h3>Developers</h3>
                             <ul>
-                                <li><a href="biometric.html">Biometric & Software</a></li>
-                                <li><a href="ecommerce.html">E-Commerce & Web</a></li>
-                                <li><a href="robotic.html">Robotic & IoT</a></li>
-                                <li><a href="network.html">Network & Cloude</a></li>
-                                <li><a href="security.html">Surveillance & Security</a></li>
-                                <li><a href="industrial.html">Industry & Business</a></li>
-                                <li><a href="seo.html">Branding</a></li>
+                                @foreach ( $dptname as $dpt)
+                                <li><a href="{{url('/our_team#'.$dpt->department_name)}}">{{$dpt->department_name}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
-                    <!--/.col-md-3-->
 
                     <div class="col-md-3 col-sm-6">
                         <div class="widget">
                             <h3>Our Partners</h3>
                             <ul>
-                                <li><a href="www.emirates.com/bd/english/">Emirates</a></li>
-                                <li><a href="www.summitcommunications.net/">Summit Comunnication Ltd.</a></li>
-                                <li><a href="www.emdad.ae/">EMDAD SERVICES LLC</a></li>
+                                <li><a href="https://www.emirates.com/bd/english/">Emirates</a></li>
+                                <li><a href="https://www.summitcommunications.net/">Summit Comunnication Ltd.</a></li>
+                                <li><a href="https://www.emdad.ae/">EMDAD SERVICES LLC</a></li>
                             </ul>
-                            <br />
-                            <h3>Careers</h3>
+                            {{--<br />
+                             <h3>Careers</h3>
                             <ul>
                                 <li><a href="join-us.html">Join Our Team</a></li>
                                 <li><a href="#">We are hiring</a></li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
                     <div class="row">
@@ -108,7 +105,7 @@
                                 <form action="{{ route('subscribe') }}" method="post">
                                     @csrf
                                     <div class="flex gap-1 flex-wrap md:flex-nowrap">
-                                        <input class="rounded ring-1 ring-orange border-0" type="text"
+                                        <input class="rounded ring-1 ring-orange border-0" type="email"
                                             placeholder="enter your email" aria-label="subscribe to get notified"
                                             name="subscriberEmail">
                                         <span style="background: #f37a61" class="input-group-text py-2"><button

@@ -39,27 +39,28 @@
             @foreach ($departments as $department)
                 @if ($department->getTeamMembers->count() > 0)
                     <div class="teamheading">
-                        <h2 class="mb-4">{{ $department->department_name }}</h2>
+                        <h2 class="mb-4" id="{{$department->department_name}}">{{ $department->department_name }}</h2>
                         <div class="row">
 
                             @foreach ($department->getTeamMembers as $member)
                                 <div class="col-md-4 col-sm-6 single-team see-profile" data-bs-toggle="modal"
                                     data-bs-target="#teamModal" data-id="{{ $member->id }}">
-                                    <div class="inner">
-                                        <div class="team-img">
-                                            <img src="{{ asset($member->image) }}" alt="">
+                                    <div>
+                                        <div class="">
+                                            <img class="m-auto" src="{{ asset($member->image) }}" alt="">
                                         </div>
-                                        <div class="team-content">
-                                            <h4>{{ $member->name }}</h4>
-                                            <p class="desg">{{ $member->company }}</p>
+                                        <div class="text-center">
+                                            <h3 class="fw-bold mt-3">{{ $member->name }}</h3>
+                                            <p>{{$member->designation}}</p>
+                                            {{-- <p class="desg">{{ $member->company }}</p>
                                             <p class="desg">{{ $member->phone }}</p>
                                             <p class="desg">{{ $member->email }}</p>
-                                            <div class="team-social">
+                                             <div class="team-social">
                                                 <a class="fa fa-facebook" href="#"></a>
                                                 <a class="fa fa-twitter" href="#"></a>
                                                 <a class="fa fa-linkedin" href="#"></a>
                                                 <a class="fa fa-pinterest" href="#"></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
