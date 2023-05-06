@@ -1,7 +1,6 @@
 @extends('frontend.master')
 @section('home_content')
-<div class="text-center page-title text-light"
-        style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')">
+<div class="text-center page-title text-light" style='background-image: url({{ asset('frontend/images/bg.jpg') }})'>
         <div class="page-title-texts ">
             <h2 class="py-1 mt-4 fw-bold text-light">Affiliated</h2>
             <h3>Home > Affiliated</h3>
@@ -17,7 +16,7 @@
                 </div>
             @endif
             <div class="background flex justify-center">
-                <h1 class="text-white">Recommend Products. Earn Commissions.</h1>
+                <h1 class="my-5">Recommend Products. Earn Commissions.</h1>
                 <a class="button-1" href="#sign_up">Sign up</a>
                 <a class="button-1" href="{{url('/login')}}">Log in</a>
             </div>

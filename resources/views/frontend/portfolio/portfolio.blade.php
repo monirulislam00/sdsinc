@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('home_content')
-<div class="page-title" style="background-image: url({{asset('frontend/images/page-title.png')}})">
+<div class="page-title" style="background-image: url({{asset('frontend/images/bg.jpg')}})">
     <h2 class="py-1 mt-4 fw-bold text-light">Portfolio</h2>
     <h3>Home > Portfolio</h3>
 </div>
@@ -21,7 +21,7 @@
                         <a href="#"><h5 class="mb-2 text-2xl font-bold tracking-tight text-white">{{ $port->name }}</h5> </a>
                         <p class="m-0">{{$port->description}}</p>
                     </div>
-                    
+
                 </div>
                 @endforeach
             </div>

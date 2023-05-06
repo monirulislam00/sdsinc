@@ -4,7 +4,7 @@
     // $members = DB::table('teams')->get();
     ?>
 
-    <div class="page-title" style='background-image: url({{ asset('frontend/images/page-title.png') }})'>
+    <div class="page-title" style='background-image: url({{ asset('frontend/images/bg.jpg') }})'>
         <h2 class="py-1 mt-4 fw-bold text-light">Our Team</h2>
         <h3>Home > About us > Our Team</h3>
     </div>

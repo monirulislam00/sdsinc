@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('home_content')
     <div class="page-title"
-        style="background-image: url({{ asset('frontend/images/page-title.png') }});background-size:cover">
+        style="background-image: url({{ asset('frontend/images/bg.jpg') }})">
         <h2 class="py-1 mt-4 fw-bold text-light">Services</h2>
         <h3>Home > Services > Products</h3>
     </div>
