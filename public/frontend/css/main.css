@@ -1045,10 +1045,14 @@ input.search-form:hover {
 }
 
 .teamheading h2 {
-    text-align: center;
     padding: 15px;
+    padding-bottom: 15px;
     font-size: 25px;
     font-weight: bold;
+    background: var(--primary-light);
+    width: 15%;
+    color: var(--white-text);
+    border-radius: 5px;
 }
 
 .sub-team h3 {
