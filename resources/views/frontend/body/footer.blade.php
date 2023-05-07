@@ -138,9 +138,9 @@
                 <img src="{{ asset('frontend/images/logo.png') }}" alt="logo">
             </div>
             <div class="col-sm-5">
-                &copy; 2020 <a target="_blank" href="{{ url('/') }}"
-                    title="SDSInc One IT Development and Service Provide Company">Siams Development & Solution Inc</a>.
-                All Rights Reserved.
+                <a target="_blank" href="{{ url('/') }}" title="SDSInc One IT Development and Service Provide Company">
+                <h4 class=" mt-2 fw-bold"> &copy; <?php echo date("Y"); ?> Siams Development & Solution Inc
+                All Rights Reserved.</h4> </a>
             </div>
             <div class="col-sm-4">
                 <ul class="pull-right footer-socials">
