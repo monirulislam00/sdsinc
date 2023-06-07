@@ -11,15 +11,15 @@
                     <header class="section-header wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <h2 class="text-center py-3">About SDSInc.</h2>
                     </header>
-                    <p style="text-align: justify;">The internet has been a boon and an inseparable partner in our modern
-                        lives, but it has its own disadvantages as well. Criminals are now faceless and seemingly traceless.
-                        The bigger weapon now is not a gun, but a keyboard. From malicious codes to Trojans to phishing and
-                        organized crimes (data theft, DoS, DDoS) are the new threats we face every day. The new criminal
-                        hides in the Deep Web, without a face or a name, waiting, only but a keystroke away. The threat is
-                        very real and the danger of being attacked is imminent. Beetles has been created with the sole
-                        purpose of warding off these criminals, safeguarding the clients’ data, both personal and
-                        professional from such attacks and ensuring that no <b>Revenue</b> or <b>Business Impact</b> befalls
-                        the client.</p>
+                    <p style="text-align: justify;">
+                        Siam’s Development & Solution Inc. is a ICT Development and Service Provide based Company in Bangladesh. ABM Zhrual Haque Khan founded Siam’s Development Solution Inc. in 2018 and has since become an iconic brand in the country. The company operates in various IT industries and IT Solution. <br><br>
+                        At our core, we value innovation, collaboration, and integrity. Our mission is to help our clients achieve their goals through the effective use of technology and provide unmatched customer service to ensure an exceptional experience every time.
+                        We offer a wide range of IT Product and Service Solution such as Biometric, Software, E-Commerce, WebApps, Mobile Apps, Network, Data Center, Cloud, Surveillance, Security and Industry Development. & Solution. Overall, we provide large scale ICT Solution and Service provide. <br><br>
+                        We work closely with our clients to understand their unique needs and tailor our services to meet their specific requirements. we specialize in delivering high-quality technology solutions and services to our clients. Our team of experts has years of experience in the industry and are passionate about providing exceptional solutions that enhance our clients' businesses.
+                        Our talented team of professionals is dedicated to providing superior customer service and delivering results that exceed expectations. We believe in building long-term relationships with our clients and are committed to their success.
+                        Thank you for considering us for your IT and service provider needs. We look forward to the opportunity to work with you and help your business grow.<br><br>
+                        Overall, Siam’s Development & Solution Incorporation has established itself as a leading conglomerate in Bangladesh through its diversified portfolio of businesses and a strong commitment to quality and innovation.
+                    </p>
                 </div>
             </div>
         </div>
@@ -40,17 +40,17 @@
                         <p>To create long-term, sustainable value for customers and shareholders by developing, marketing,
                             and supporting products that deliver rapid return on investment through lower costs and improved
                             customer responsiveness.</p>
+                            <p>To enable our customers to attain and exceed their business objectives through our
+                                    partnership.<br>
+                                To provide an environment for our employees which fosters personal growth, economic reward
+                                    and challenging opportunities.<br>
+                                To be a good corporate citizen in the many communities in which we operate.
+                            </p>
                     </div>
-                    <div>
+                    {{-- <div>
                         <h2>Our Values</h2>
-                        <ul>
-                            <li>To enable our customers to attain and exceed their business objectives through our
-                                partnership.</li>
-                            <li>To provide an environment for our employees which fosters personal growth, economic reward
-                                and challenging opportunities.</li>
-                            <li>To be a good corporate citizen in the many communities in which we operate.</li>
-                        </ul>
-                    </div>
+
+                    </div> --}}
                 </div>
             </div>
         </div>

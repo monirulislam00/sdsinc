@@ -16,15 +16,15 @@
                     <header class="section-header wow fadeInUp ourteam"
                         style="visibility: visible; animation-name: fadeInUp;">
                         <h2 class="mt-4">Our Team</h2>
-                        <p style="text-align: justify;">The internet has been a boon and an inseparable partner in our
-                            modern lives, but it has its own disadvantages as well. Criminals are now faceless and seemingly
-                            traceless. The bigger weapon now is not a gun, but a keyboard. From malicious codes to Trojans
-                            to phishing and organized crimes (data theft, DoS, DDoS) are the new threats we face every day.
-                            The new criminal hides in the Deep Web, without a face or a name, waiting, only but a keystroke
-                            away. The threat is very real and the danger of being attacked is imminent. Beetles has been
-                            created with the sole purpose of warding off these criminals, safeguarding the clients’ data,
-                            both personal and professional from such attacks and ensuring that no <b>Revenue</b> or
-                            <b>Business Impact</b> befalls the client.
+                        <p style="text-align: justify;">Our team is composed of dedicated professionals who are passionate about what they do and are committed to providing our clients with the best services possible. We take great pride in our work and go above and beyond to ensure our clients’ needs are met. <br><br>
+
+                            Our team members bring a diverse range of skills and experiences to the table. From Biometric, Software development, E-Commerce, Web Development and WebApps, Network, Cloud Computing, Surveillance, Security and Cyber Security, IoT, AI, Industry development, marketing and sales to project management, technology, and more, we have experts in every field who work together to achieve our goals.
+                            <br><br>
+                            We believe in fostering a work environment that promotes creativity, innovation, and intellectual curiosity. Our team is encouraged to express their ideas and work collaboratively to find new and better ways to serve our clients.
+                            <br><br>
+                            At our company, our people are our greatest asset, and we are proud to have a team that is not only hardworking and talented but also supportive and inclusive. We are committed to creating a workplace culture where every person is valued, respected, and empowered.
+                            <br><br>
+                            Thank you for taking the time to learn more about our team. We look forward to serving you and helping you achieve your business goals.
                         </p>
                     </header>
 

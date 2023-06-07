@@ -1581,6 +1581,9 @@ select {
 .shrink-0 {
   flex-shrink: 0;
 }
+.grow {
+  flex-grow: 1;
+}
 .basis-\[25\%\] {
   flex-basis: 25%;
 }
@@ -2177,9 +2180,6 @@ select {
 }
 .text-end {
   text-align: end;
-}
-.align-middle {
-  vertical-align: middle;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
