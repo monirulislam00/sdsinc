@@ -108,9 +108,6 @@ class TeamController extends Controller
     }
     public function Update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'department_id' => 'required'
-        ]);
         $old_image = $request->old_image;
         $image = $request->image;
 

@@ -12,7 +12,7 @@
                         <select name="department_id" class="form-control">
                             <option value="">select</option>
                             @foreach($departments as $department)
-                            <option value="{{$department->id}}">{{$department->department_name}}</option>
+                            <option value="{{$department->id}}" {{$department->id == $team->department_id ? 'selected' : ''}}>{{$department->department_name}}</option>
                             @endforeach
                         </select>
                         @error('department_id')
