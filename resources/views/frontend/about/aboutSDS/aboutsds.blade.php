@@ -61,32 +61,8 @@
             <header class="section-header about_header">
                 <h2 class="text-center py-3">Why SDSInc?</h2>
                 <p style="text-align: justify;">
-                    Beetles is an ISO 27001 certified offensive cyber security consultancy company. We specialize in a
-                    manual and exploitative assessment of a company’s IT environment. With a hacker-led approach, we
-                    simulate a real-world attack on applications, APIs, Network Infrastructure and Network Devices.
-                    <br><br>
-                    Ourglobally crowdsourced resource pool of ethical hackers and pentesters provide us with a varied range
-                    of domain expertise, multi-discipline experiences, and skills. This sets our services apart in the cyber
-                    security industry today.
-                    <br><br>
-                    Redefining the traditional penetration testing model, our PenTests are smaller, faster, agile, and
-                    easily integrates with any development environment and processes. Our <b>PenTest_as_a_Service
-                        (PTaaS)</b> ensures a continuous coverage of the scope through a properly defied, structured
-                    approach and collaboration with your internal team.
-                    <br><br>
-                    <b>CrowdSpark</b>, our proprietary PenTest management platform, enables our PenTest engagements to be a
-                    delivered as a service, aptly defined as <b>PenTest_as_a_Service (PTaaS)</b>. As a result, our clients
-                    have the freedom and the luxury to schedule a PenTest on-demand. All the findings (vulnerability
-                    reports) are triaged accordingly to severity and delivered via our CrowdSpark platform. This allows you
-                    to receive the reports in real-time, as soon as they come in and schedule the remediation process
-                    appropriately.
-                    <br><br>
-                    We understand the need for security. We understand the real word implications and consequences of having
-                    a weak cyber security program. Beetles was born out of that realization of the need. Beetles has been
-                    founded by ethical hackers, professional pentesters and bug bounty hunters as well as security
-                    enthusiasts. Our goal is to enhance the IT industry and environments across all industry verticals,
-                    empower development and growth while keeping costs low and to build a sustainable platform for cyber
-                    security globally.
+                    Siam's Development & Solution Inc. is a large scale ICT Development & Service Provider in Bangladesh.  We focus on our client's satisfaction and reliable service first. We focus on quality in any service. We work hard to fix any service improvements and bugs as quickly as possible. We have separate and skilled teams of manpower to work on each technology. We have our own call center and support center through which we provide 24 hours customer support. 0% down time of any of our services.
+                    All our services are qualitative.
                 </p>
             </header>
         </div>
